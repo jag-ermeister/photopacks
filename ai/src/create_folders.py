@@ -1,3 +1,8 @@
+import torch
+
+print(f"Is cuda available? {torch.cuda.is_available()}")
+print(f"PyTorch version: {torch.__version__}")
+
 token_word = "ohwx"
 class_word = "dog"
 training_repeats = 40
