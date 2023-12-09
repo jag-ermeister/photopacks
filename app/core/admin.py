@@ -51,5 +51,7 @@ class OrderAdmin(admin.ModelAdmin):
             obj.training_image_urls = existing_urls + image_urls
             obj.save()
 
+        AiService().submit_job_to_match(obj.id)
+
 
 admin.site.register(Order, OrderAdmin)
