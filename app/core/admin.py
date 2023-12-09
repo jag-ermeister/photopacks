@@ -42,7 +42,7 @@ class OrderAdmin(admin.ModelAdmin):
         images = request.FILES.getlist('training_images')
         image_urls = []
         for image in images:
-            image_url = AiService().upload_to_s3(image)
+            image_url = AiService().upload_to_s3(image, obj.id)
             image_urls.append(image_url)
 
         # Save the URLs to the model's field, consider appending if existing data
