@@ -27,7 +27,6 @@ accelerate launch \
   --lr_scheduler="constant" \
   --train_batch_size="1" \
   --max_train_steps="4160" \
-  --save_every_n_epochs="1" \
   --mixed_precision="fp16" \
   --save_precision="fp16" \
   --cache_latents \
