@@ -1,0 +1,23 @@
+*.tfvars
+
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Ignore local .terraform directories
+**/.terraform/*
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore any files Terraform should ignore
+*.terraformrc
+terraform.rc
+
+# Ignore the .terraform.lock.hcl file which is used to capture the current versions of
+# providers used by the configuration
+.terraform.lock.hcl
