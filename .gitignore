@@ -1,6 +1,4 @@
 /venv
 .idea/
-__pycache__/
 sdxl_vae.safetensors
-db.sqlite3
-.env
+.DS_Store
