@@ -1,17 +1,21 @@
 #!/bin/bash
 
+set -e
+
 python create_folders.py
 
-mv /app/training_images "/app/training_images/40_ohwx dog"
-mv /app/regularization_images "/app/reg_images/1_dog"
+echo "Moving training and regularization images..."
+mv /app/training_images/* "/app/kohya_ss/training_images/40_ohwx dog"
+mv /app/regularization_images/* "/app/kohya_ss/reg_images/1_dog"
+echo "Images moved successfully."
 
 accelerate config default --mixed_precision "bf16"
 
 accelerate launch \
   --num_cpu_threads_per_process=4 "./sdxl_train.py" \
   --pretrained_model_name_or_path="stabilityai/stable-diffusion-xl-base-1.0" \
-  --train_data_dir="/app/training_images" \
-  --reg_data_dir="/app/reg_images" \
+  --train_data_dir="/app/kohya_ss/training_images" \
+  --reg_data_dir="/app/kohya_ss/reg_images" \
   --resolution="1024,1024" \
   --output_dir="{output_dir}" \
   --logging_dir="logs" \
@@ -23,7 +27,7 @@ accelerate launch \
   --learning_rate="1e-05" \
   --lr_scheduler="constant" \
   --train_batch_size="1" \
-  --max_train_steps="8320" \
+  --max_train_steps="4160" \
   --save_every_n_epochs="1" \
   --mixed_precision="bf16" \
   --save_precision="bf16" \
@@ -44,4 +48,4 @@ accelerate launch \
   --vae="/app/weights/sdxl_vae.safetensors" \
   --sample_sampler="euler_a" \
   --sample_prompts="prompt.txt" \
-  --sample_every_n_steps=100
+  --sample_every_n_steps=4000

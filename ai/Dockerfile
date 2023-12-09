@@ -59,6 +59,6 @@ RUN cd kohya_ss && git checkout sd-scripts-dev && pip install -e . --root-user-a
 
 WORKDIR /app/kohya_ss
 
-COPY ./src /app/kohya_ss/src
+COPY ./src /app/kohya_ss
 
-CMD ["./app/kohya_ss/src/generate.sh"]
+CMD ["./app/kohya_ss/generate.sh"]
