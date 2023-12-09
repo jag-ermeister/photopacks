@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Student
+from .models import Order
 
-class StudentSerializer(serializers.ModelSerializer):
 
+class OrderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
-        fields = ('pk', 'name', 'email', 'document', 'phone', 'registrationDate')
+        model = Order
+        fields = ('pk', 'user', 'subject_name', 'is_processing', 'is_success', 'created_date', 'modified_date')

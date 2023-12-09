@@ -6,6 +6,8 @@
 - Start the virtual environment: `source venv/bin/activate`
 - Install dependencies: `pip install -r requirements.txt`
 - Update requirements.txt: `pip freeze > requirements.txt`
+- Create super user: `python manage.py createsuperuser`
+- Super user -> username: `jgustine`, password: `password`
 
 ### React
 - Install dependencies: `npm install`

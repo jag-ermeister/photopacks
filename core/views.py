@@ -2,21 +2,21 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-from .models import Student
+from .models import Order
 from .serializers import *
 
 
 @api_view(['GET', 'POST'])
-def students_list(request):
+def orders_list(request):
     if request.method == 'GET':
-        data = Student.objects.all()
+        data = Order.objects.all()
 
         serializer = StudentSerializer(data, context={'request': request}, many=True)
 
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = StudentSerializer(data=request.data)
+        serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
@@ -25,19 +25,19 @@ def students_list(request):
 
 
 @api_view(['PUT', 'DELETE'])
-def students_detail(request, pk):
+def orders_detail(request, pk):
     try:
-        student = Student.objects.get(pk=pk)
-    except Student.DoesNotExist:
+        order = Order.objects.get(pk=pk)
+    except Order.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'PUT':
-        serializer = StudentSerializer(student, data=request.data, context={'request': request})
+        serializer = OrderSerializer(order, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        student.delete()
+        order.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
