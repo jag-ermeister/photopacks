@@ -61,4 +61,4 @@ WORKDIR /app/kohya_ss
 
 COPY ./src /app/kohya_ss/src
 
-CMD ["./app/kohya_ss/generate.sh"]
+CMD ["./app/kohya_ss/src/generate.sh"]

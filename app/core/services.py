@@ -42,7 +42,7 @@ class AiService:
             jobDefinition=os.environ["SDXL_BATCH_JOB_DEFN_NAME"],
             containerOverrides={
                 "command": [
-                    "./generate.sh",
+                    "./src/generate.sh",
                     f"{order_id}",
                 ]
             },
