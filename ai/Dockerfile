@@ -33,7 +33,7 @@ RUN pip install protobuf==3.20.3 --root-user-action=ignore
 RUN pip install tensorrt --root-user-action=ignore
 RUN pip install gdown --root-user-action=ignore
 RUN pip install github-clone --root-user-action=ignore
-RUN pip install accelerate==0.19.0 --root-user-action=ignore
+RUN pip install accelerate==0.23.0 --root-user-action=ignore
 RUN pip install transformers==4.30.2 --root-user-action=ignore
 RUN pip install diffusers[torch]==0.18.2 --root-user-action=ignore
 RUN pip install ftfy==6.1.1 --root-user-action=ignore
