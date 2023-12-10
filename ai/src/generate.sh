@@ -9,7 +9,7 @@ mv /app/training_images/* "/app/kohya_ss/training_images/40_ohwx dog"
 mv /app/regularization_images/* "/app/kohya_ss/reg_images/1_dog"
 echo "Images moved successfully."
 
-accelerate config default --mixed_precision "fp16"
+accelerate config default --mixed_precision "bf16"
 
 accelerate launch \
   --num_cpu_threads_per_process=4 "./sdxl_train.py" \
@@ -20,6 +20,7 @@ accelerate launch \
   --output_dir="{output_dir}" \
   --logging_dir="logs" \
   --save_model_as=safetensors \
+  --full_bf16 \
   --output_name="24GB_Best" \
   --lr_scheduler_num_cycles="4" \
   --max_data_loader_n_workers="0" \
@@ -27,8 +28,8 @@ accelerate launch \
   --lr_scheduler="constant" \
   --train_batch_size="1" \
   --max_train_steps="4160" \
-  --mixed_precision="fp16" \
-  --save_precision="fp16" \
+  --mixed_precision="bf16" \
+  --save_precision="bf16" \
   --cache_latents \
   --cache_latents_to_disk \
   --optimizer_type="Adafactor" \
