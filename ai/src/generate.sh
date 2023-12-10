@@ -47,4 +47,4 @@ accelerate launch \
   --vae="/app/weights/sdxl_vae.safetensors" \
   --sample_sampler="euler_a" \
   --sample_prompts="prompt.txt" \
-  --sample_every_n_steps=4000
+  --sample_every_n_steps=8000
