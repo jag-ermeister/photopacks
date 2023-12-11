@@ -31,3 +31,24 @@ def upload_images_to_s3(order_id):
                 )
                 image_urls.append(image_url)
     return image_urls
+
+
+def download_training_photos(order_id, training_image_directory):
+    print("Downloading training images...")
+
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
+        aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
+    )
+
+    bucket_name = os.environ['ORDER_IMAGES_S3_BUCKET_NAME']
+    folder_name = f"{order_id}/training_photos"
+
+    print(f"Downloading training images from {bucket_name}")
+
+    for obj in s3.list_objects(Bucket=bucket_name, Prefix=folder_name)["Contents"]:
+        file_name = obj["Key"].split("/")[-1]
+        print(f"Downloading file {file_name}")
+        local_file_path = os.path.join(training_image_directory, file_name)
+        s3.download_file(bucket_name, obj["Key"], local_file_path)

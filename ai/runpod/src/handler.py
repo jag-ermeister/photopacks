@@ -2,7 +2,7 @@ import runpod
 from gpu_info import print_gpu_memory
 from file_utils import create_required_folders, move_image_files
 from kohya import Kohya
-from s3 import upload_images_to_s3
+from s3 import upload_images_to_s3, download_training_photos
 from api import notify_backend
 
 
@@ -15,7 +15,8 @@ def handler(job):
     num_steps = job_input.get('num_steps')
 
     print_gpu_memory()
-    create_required_folders(model_type)
+    training_dir = create_required_folders(model_type)
+    download_training_photos(order_id, training_dir)
     move_image_files(model_type)
 
     kohya = Kohya()

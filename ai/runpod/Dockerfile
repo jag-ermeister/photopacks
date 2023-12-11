@@ -5,7 +5,6 @@ FROM runpod/base:0.4.0-cuda11.8.0
 WORKDIR /app
 
 COPY ./regularization_images /app/regularization_images
-COPY ./training_images /app/training_images
 COPY ./weights /app/weights
 
 #--- Optional: System dependencies ---

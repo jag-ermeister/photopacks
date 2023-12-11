@@ -51,6 +51,8 @@ def create_required_folders(model_type):
 
     print("File 'prompt.txt' has been created.")
 
+    return f"/app/kohya_ss/{training_dir}"
+
 
 def move_files(src, dest):
     for filename in os.listdir(src):
@@ -58,14 +60,12 @@ def move_files(src, dest):
 
 
 def move_image_files(model_type):
-    training_src = '/app/training_images/'
-    training_dest = '/app/kohya_ss/training_images/40_ohwx dog/'
-    print("Moving training images...")
-    move_files(training_src, training_dest)
-
     regularization_src = f'/app/regularization_images/{model_type}/'
-    regularization_dest = '/app/kohya_ss/reg_images/1_dog/'
-    print("Moving regularization images...")
+    regularization_dest = f'/app/kohya_ss/reg_images/1_{model_type}/'
+    print("Moving regularization images.")
+    print(f"From:{regularization_src}")
+    print(f"To:{regularization_dest}")
+
     move_files(regularization_src, regularization_dest)
 
     print("Images moved successfully.")
