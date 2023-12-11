@@ -22,6 +22,7 @@ class Order(models.Model):
             return self.value
 
     class SpeedType(Enum):
+        TEST = 100
         FAST = 4160
         MODERATE = 6240
         SLOW = 8320

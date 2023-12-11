@@ -46,7 +46,7 @@ class Kohya:
             "--learning_rate=1e-05",
             "--lr_scheduler=constant",
             "--train_batch_size=1",
-            "--max_train_steps=100",
+            f"--max_train_steps={num_steps}",
             "--mixed_precision=bf16",
             "--save_precision=bf16",
             "--cache_latents",
