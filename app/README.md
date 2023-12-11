@@ -1,6 +1,13 @@
 #Photo Packs
 
 
+#### Starting the app
+- Activate virtual environment: `source venv/bin/activate`
+- Run: `ngrok http 8000`
+- Update the `API_URL` in the `.env` file with the ngrok URL
+- Run the app: `python manage.py runserver`
+
+
 ### Django
 
 - Start the virtual environment: `source venv/bin/activate`

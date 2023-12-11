@@ -24,5 +24,6 @@ class Order(models.Model):
     is_success = models.BooleanField(null=True)
     error_message = models.CharField(max_length=320, null=True, blank=True)
     training_image_urls = models.JSONField(blank=True, null=True)
+    inference_image_urls = models.JSONField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
