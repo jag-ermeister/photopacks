@@ -4,6 +4,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class PromptPack(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=240)
+    prompts = models.JSONField()
+
+    def __str__(self):
+        return self.name
+
+
 class Order(models.Model):
     class FulfillmentService(Enum):
         RUNPOD = "runpod"
@@ -34,6 +43,7 @@ class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject_name = models.CharField(max_length=240)
+    prompt_pack = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders")
     model_type = models.CharField(
         max_length=20,
         choices=[(item.value, item.name) for item in ModelType],

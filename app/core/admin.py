@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from .models import Order
+from .models import Order, PromptPack
 from .services import AiService
 from django.conf import settings
 from django.forms.widgets import RadioSelect
@@ -36,7 +36,7 @@ class OrderAdminForm(forms.ModelForm):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'subject_name', 'model_type', 'speed_type', 'fulfillment_service', 'is_success', 'created_date', 'modified_date')
+    list_display = ('id', 'user', 'subject_name', 'prompt_pack', 'model_type', 'speed_type', 'fulfillment_service', 'is_success', 'created_date', 'modified_date')
     form = OrderAdminForm
 
     def save_model(self, request, obj, form, change):
@@ -61,4 +61,9 @@ class OrderAdmin(admin.ModelAdmin):
             AiService().submit_job_to_batch(obj)
 
 
+class PromptPackAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+
+
 admin.site.register(Order, OrderAdmin)
+admin.site.register(PromptPack, PromptPackAdmin)
