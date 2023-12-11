@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 def notify_backend(order_id, image_urls, results_url):

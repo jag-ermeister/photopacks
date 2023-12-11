@@ -51,13 +51,16 @@ class AiService:
         )
 
     def submit_job_to_runpod(self, order_id):
-        results_url = f'{os.environ["API_URL"]}/api/orders/{str(order_id)}'
-        data = {
-            "input": {
-                "order_id": order_id,
-                "results_url": results_url
+        response = requests.post(
+            os.environ["RUNPOD_JOB_SUBMIT_URL"],
+            json={
+                "input": {
+                    "order_id": str(order_id),
+                    "results_url": f'{os.environ["API_URL"]}/api/orders/{str(order_id)}'
+                }
+            },
+            headers={
+                'Authorization': f'Bearer {os.environ["RUNPOD_API_KEY"]}'
             }
-        }
-
-        response = requests.post(os.environ["RUNPOD_JOB_SUBMIT_URL"], json=data)
+        )
         response.raise_for_status()

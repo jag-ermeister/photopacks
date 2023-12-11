@@ -14,10 +14,11 @@ def upload_images_to_s3(order_id):
         aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
     )
 
+    inference_results_path = "/app/kohya_ss/inference_results"
     image_urls = []
-    for file_name in os.listdir("/app/kohya_ss/inference_results"):
+    for file_name in os.listdir(inference_results_path):
         if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
-            image_path = os.path.join(folder_path, file_name)
+            image_path = os.path.join(inference_results_path, file_name)
             with Image.open(image_path) as image:
                 buffer = BytesIO()
                 image.save(buffer, "jpeg")

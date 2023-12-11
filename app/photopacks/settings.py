@@ -29,7 +29,18 @@ SECRET_KEY = 'jg^$(lbjb*3-+cv(88ngpb4xb=6vbvxj*1i)%m!*c2(e_i6%b8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    ".ngrok-free.app",
+    ".ngrok.io",
+    "localhost",
+    "127.0.0.1",
+    ".elasticbeanstalk.com",
+    "*",  # TODO this is a terrible hack!  I did those so aws batch can call the api
+    "*.photopacks.ai",
+    "*.photopack.ai",
+]
+# TODO this is not safe, but I am doing it for now
+CSRF_TRUSTED_ORIGINS = ["https://*.ngrok.io", "https://*.photopacks.ai", "https://*.photopack.ai"]
 
 
 # Application definition
