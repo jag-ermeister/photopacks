@@ -25,8 +25,9 @@ class Kohya:
         if exit_code != 0:
             raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
 
-    def execute_training(self, num_steps): # TODO use this parameter
+    def execute_training(self, num_steps):
         logger.info("Starting training...")
+        logger.info(f"Number of steps: {num_steps}")
         cmd = [
             "accelerate",
             "launch",

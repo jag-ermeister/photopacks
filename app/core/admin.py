@@ -36,7 +36,7 @@ class OrderAdminForm(forms.ModelForm):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'subject_name', 'is_processing', 'is_success', 'error_message', 'created_date', 'modified_date')
+    list_display = ('id', 'user', 'subject_name', 'model_type', 'speed_type', 'fulfillment_service', 'is_success', 'created_date', 'modified_date')
     form = OrderAdminForm
 
     def save_model(self, request, obj, form, change):

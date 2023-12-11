@@ -14,6 +14,9 @@ def handler(job):
     model_type = job_input.get('model_type')
     num_steps = job_input.get('num_steps')
 
+    print('Received payload:')
+    print(job_input)
+
     print_gpu_memory()
     training_dir = create_required_folders(model_type)
     download_training_photos(order_id, training_dir)

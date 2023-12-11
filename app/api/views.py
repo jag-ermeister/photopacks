@@ -14,6 +14,7 @@ def update_order(request, order_id):
 
     order = Order.objects.get(id=order_id)
     order.inference_image_urls = request_body["image_urls"]
+    order.is_success = True
     order.save()
 
     return HttpResponse()
