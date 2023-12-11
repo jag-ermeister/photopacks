@@ -34,9 +34,9 @@ class AiService:
 
         return f"https://{bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{object_name}"
 
-    def submit_job_to_batch(self, order_id):
+    def submit_job_to_batch(self, order):
         _ = self.batch_client.submit_job(
-            jobName=f"generation_{order_id}",
+            jobName=f"generation_{order.id}",
             jobQueue=(
                 f"arn:aws:batch:us-east-1:302468449804:job-queue/"
                 f'{os.environ["SDXL_BATCH_JOB_QUEUE_NAME"]}'
@@ -45,18 +45,19 @@ class AiService:
             containerOverrides={
                 "command": [
                     "./generate.sh",
-                    f"{order_id}",
+                    f"{order.id}",
                 ]
             },
         )
 
-    def submit_job_to_runpod(self, order_id):
+    def submit_job_to_runpod(self, order):
         response = requests.post(
             os.environ["RUNPOD_JOB_SUBMIT_URL"],
             json={
                 "input": {
-                    "order_id": str(order_id),
-                    "results_url": f'{os.environ["API_URL"]}/api/orders/{str(order_id)}'
+                    "order_id": str(order.id),
+                    "results_url": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}',
+                    "model_type": order.model_type
                 }
             },
             headers={

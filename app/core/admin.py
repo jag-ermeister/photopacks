@@ -56,9 +56,9 @@ class OrderAdmin(admin.ModelAdmin):
             obj.save()
 
         if obj.fulfillment_service == Order.FulfillmentService.RUNPOD.value:
-            AiService().submit_job_to_runpod(obj.id)
+            AiService().submit_job_to_runpod(obj)
         elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
-            AiService().submit_job_to_batch(obj.id)
+            AiService().submit_job_to_batch(obj)
 
 
 admin.site.register(Order, OrderAdmin)
