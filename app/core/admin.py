@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import Order
 from .services import AiService
 from django.conf import settings
+from django.forms.widgets import RadioSelect
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -29,6 +30,9 @@ class OrderAdminForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+        widgets = {
+            'fulfillment_service': RadioSelect,
+        }
 
 
 class OrderAdmin(admin.ModelAdmin):
