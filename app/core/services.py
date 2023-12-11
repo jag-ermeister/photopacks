@@ -1,6 +1,8 @@
 import boto3
 import os
 import uuid
+import json
+import requests
 from django.conf import settings
 
 
@@ -32,7 +34,7 @@ class AiService:
 
         return f"https://{bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{object_name}"
 
-    def submit_job_to_match(self, order_id):
+    def submit_job_to_batch(self, order_id):
         _ = self.batch_client.submit_job(
             jobName=f"generation_{order_id}",
             jobQueue=(
@@ -47,3 +49,15 @@ class AiService:
                 ]
             },
         )
+
+    def submit_job_to_runpod(self, order_id):
+        results_url = f'{os.environ["API_URL"]}/api/orders/{str(order_id)}'
+        data = {
+            "input": {
+                "order_id": order_id,
+                "results_url": results_url
+            }
+        }
+
+        response = requests.post(os.environ["RUNPOD_JOB_SUBMIT_URL"], json=data)
+        response.raise_for_status()

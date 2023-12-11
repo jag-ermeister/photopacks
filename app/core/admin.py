@@ -55,7 +55,10 @@ class OrderAdmin(admin.ModelAdmin):
             obj.training_image_urls = existing_urls + image_urls
             obj.save()
 
-        AiService().submit_job_to_match(obj.id)
+        if obj.fulfillment_service == Order.FulfillmentService.RUNPOD.value:
+            AiService().submit_job_to_runpod(obj.id)
+        elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
+            AiService().submit_job_to_batch(obj.id)
 
 
 admin.site.register(Order, OrderAdmin)
