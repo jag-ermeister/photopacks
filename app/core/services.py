@@ -57,7 +57,8 @@ class AiService:
                 "input": {
                     "order_id": str(order.id),
                     "results_url": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}',
-                    "model_type": order.model_type
+                    "model_type": order.model_type,
+                    "num_steps": order.speed_type
                 }
             },
             headers={
