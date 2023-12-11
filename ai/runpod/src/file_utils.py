@@ -2,16 +2,14 @@ import os
 import shutil
 
 
-def create_required_folders():
+def create_required_folders(model_type):
     token_word = "ohwx"
-    class_word = "dog"
+    class_word = model_type
     training_repeats = 40
     training_root_dir = "training_images"
     regularization_root_dir = "reg_images"
     models_dir = "training_models"
     project_name = "myProject"
-    output_dir = "trained_models"
-
 
     training_dir = f'{training_root_dir}/{training_repeats}_{token_word} {class_word}'
     reg_dir = f'{regularization_root_dir}/1_{class_word}'
@@ -59,13 +57,13 @@ def move_files(src, dest):
         shutil.move(os.path.join(src, filename), dest)
 
 
-def move_image_files():
+def move_image_files(model_type):
     training_src = '/app/training_images/'
     training_dest = '/app/kohya_ss/training_images/40_ohwx dog/'
     print("Moving training images...")
     move_files(training_src, training_dest)
 
-    regularization_src = '/app/regularization_images/'
+    regularization_src = f'/app/regularization_images/{model_type}/'
     regularization_dest = '/app/kohya_ss/reg_images/1_dog/'
     print("Moving regularization images...")
     move_files(regularization_src, regularization_dest)

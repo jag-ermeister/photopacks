@@ -25,7 +25,7 @@ class Kohya:
         if exit_code != 0:
             raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
 
-    def execute_training(self):
+    def execute_training(self, num_steps): # TODO use this parameter
         logger.info("Starting training...")
         cmd = [
             "accelerate",
@@ -97,7 +97,7 @@ class Kohya:
             else:
                 raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
 
-    def execute_inference(self):
+    def execute_inference(self, model_type):
         logger.info("Executing inference...")
         cmd = [
             "python",
@@ -105,7 +105,7 @@ class Kohya:
             "--ckpt",
             "/app/kohya_ss/trained_models/24GB_Best.safetensors",
             "--prompt",
-            "portrait of ((ohwx dog)) as a zombie, dark, art by greg rutkowski, detailed, matte painting, trending on artstation",
+            f"portrait of ((ohwx {model_type})) as a zombie, dark, art by greg rutkowski, detailed, matte painting, trending on artstation",
             "--images_per_prompt",
             "4",
             "--outdir",

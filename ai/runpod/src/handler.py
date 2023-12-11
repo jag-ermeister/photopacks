@@ -11,15 +11,17 @@ def handler(job):
     job_input = job['input']
     order_id = job_input.get('order_id')
     results_url = job_input.get('results_url')
+    model_type = job_input.get('model_type')
+    num_steps = job_input.get('num_steps')
 
     print_gpu_memory()
-    create_required_folders()
-    move_image_files()
+    create_required_folders(model_type)
+    move_image_files(model_type)
 
     kohya = Kohya()
     kohya.enable_accelerator()
-    kohya.execute_training()
-    kohya.execute_inference()
+    kohya.execute_training(num_steps)
+    kohya.execute_inference(model_type)
 
     image_urls = upload_images_to_s3(order_id)
     notify_backend(order_id, image_urls, results_url)
