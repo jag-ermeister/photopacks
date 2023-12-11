@@ -51,6 +51,24 @@ RUN pip install invisible-watermark==0.2.0  --root-user-action=ignore
 RUN pip install open-clip-torch==2.20.0 --root-user-action=ignore
 RUN pip install protobuf==3.20.3 --root-user-action=ignore
 
+
+ARG AWS_ACCESS_KEY_ID
+RUN test -n "$AWS_ACCESS_KEY_ID" || (echo "Please set the AWS_ACCESS_KEY_ID build argument" && false)
+ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+
+ARG AWS_SECRET_ACCESS_KEY
+RUN test -n "$AWS_SECRET_ACCESS_KEY" || (echo "Please set the AWS_SECRET_ACCESS_KEY build argument" && false)
+ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+
+ARG AWS_S3_REGION_NAME
+RUN test -n "$AWS_S3_REGION_NAME" || (echo "Please set the AWS_S3_REGION_NAME build argument" && false)
+ENV AWS_S3_REGION_NAME=$AWS_S3_REGION_NAME
+
+ARG ORDER_IMAGES_S3_BUCKET_NAME
+RUN test -n "$ORDER_IMAGES_S3_BUCKET_NAME" || (echo "Please set the ORDER_IMAGES_S3_BUCKET_NAME build argument" && false)
+ENV ORDER_IMAGES_S3_BUCKET_NAME=$ORDER_IMAGES_S3_BUCKET_NAME
+
+
 # TODO tag a specific version of this
 RUN git clone https://github.com/bmaltais/kohya_ss.git
 RUN cd kohya_ss && git checkout sd-scripts-dev && pip install -e . --root-user-action=ignore

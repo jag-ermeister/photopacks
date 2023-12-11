@@ -1,11 +1,10 @@
 import logging
 import subprocess
 
-
 logger = logging.getLogger()
 
 
-class Trainer:
+class Kohya:
     def __init__(self):
         pass
 
@@ -97,3 +96,37 @@ class Trainer:
                 raise RuntimeError(f"Subprocess failed with exit code {exit_code}: {error_message}")
             else:
                 raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
+
+    def execute_inference(self):
+        logger.info("Executing inference...")
+        cmd = [
+            "python",
+            "sdxl_gen_img.py",
+            "--ckpt",
+            "/app/kohya_ss/trained_models/24GB_Best.safetensors",
+            "--prompt",
+            "portrait of ((ohwx dog)) as a zombie, dark, art by greg rutkowski, detailed, matte painting, trending on artstation",
+            "--images_per_prompt",
+            "4",
+            "--outdir",
+            "/app/kohya_ss/inference_results",
+            "--scale",
+            "7.0",
+            "--xformers",
+            "--bf16",
+            "--steps",
+            "25"
+        ]
+        process = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+        )
+
+        for line in iter(process.stdout.readline, b""):
+            logger.info(line.decode())
+
+        process.stdout.close()
+        process.wait()
+
+        exit_code = process.returncode
+        if exit_code != 0:
+            raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
