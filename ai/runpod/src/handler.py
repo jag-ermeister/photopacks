@@ -13,6 +13,7 @@ def handler(job):
     results_url = job_input.get('results_url')
     model_type = job_input.get('model_type')
     num_steps = job_input.get('num_steps')
+    prompts = job_input.get('prompts')
 
     print('Received payload:')
     print(job_input)
@@ -25,7 +26,7 @@ def handler(job):
     kohya = Kohya()
     kohya.enable_accelerator()
     kohya.execute_training(num_steps)
-    kohya.execute_inference(model_type)
+    kohya.execute_inference(model_type, prompts)
 
     image_urls = upload_images_to_s3(order_id)
     notify_backend(order_id, image_urls, results_url)
