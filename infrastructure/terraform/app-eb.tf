@@ -112,4 +112,46 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
     name      = "AWS_SECRET_ACCESS_KEY"
     value     = var.aws_secret_access_key
   }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "AWS_S3_REGION_NAME"
+    value     = var.aws_region
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "API_URL"
+    value     = var.api_url
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "ORDER_IMAGES_S3_BUCKET_NAME"
+    value     = var.order_images_s3_bucket_name
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "SDXL_BATCH_JOB_QUEUE_NAME"
+    value     = var.sdxl_batch_job_queue_name
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "SDXL_BATCH_JOB_DEFN_NAME"
+    value     = var.sdxl_batch_job_defn_name
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "RUNPOD_JOB_SUBMIT_URL"
+    value     = var.runpod_job_submit_url
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "RUNPOD_API_KEY"
+    value     = var.runpod_api_key
+  }
 }
