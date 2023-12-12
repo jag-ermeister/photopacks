@@ -34,3 +34,7 @@ resource "aws_s3_bucket_policy" "order_images_public" {
     aws_s3_bucket_public_access_block.order_images_public_access_block,
   ]
 }
+
+resource "aws_s3_bucket" "eb_deploy_bucket" {
+  bucket = var.eb_deploy_s3_bucket_name
+}

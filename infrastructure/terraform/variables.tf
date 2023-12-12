@@ -57,3 +57,7 @@ variable eb_service_role_arn {
 variable networking_name_prefix {
   type = string
 }
+
+variable "eb_deploy_s3_bucket_name" {
+  type = string
+}

@@ -1,0 +1,60 @@
+name: Deploy Development Backend
+
+on:
+  push:
+    branches:
+      - development
+    paths:
+      - "app/**"
+
+concurrency: development
+
+jobs:
+  build-and-deploy:
+    name: Build zip and deploy to Elastic Beanstalk
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build zip
+        run: cd app && ./build-app.sh
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+
+      - name: Upload package to S3 bucket
+        run: cd backend && aws s3 cp app-deployment.zip s3://photo-packs-eb-deploy-dev/
+
+      - name: Create new ElasticBeanstalk Application Version
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name photo-packs-app-dev \
+            --source-bundle S3Bucket="photo-packs-eb-deploy-dev",S3Key="app-deployment.zip" \
+            --version-label "ver-${{ github.sha }}" \
+            --description "commit-sha-${{ github.sha }}"
+          echo "::set-output name=version_label::${version_label}"
+
+      - name: Deploy new ElasticBeanstalk Application Version
+        run: |
+          aws elasticbeanstalk update-environment \
+            --environment-name photo-packs-app-env-dev \
+            --version-label "ver-${{ github.sha }}"
+
+      - name: Wait for Deployment
+        env:
+          APP_VERSION: v${{ steps.get-version.outputs.app-version }}
+        run: |
+          aws elasticbeanstalk wait environment-updated --environment-name photo-packs-app-env-dev \
+            --version-label "ver-${{ github.sha }}"
+
+      - name: Discord notification
+        if: always()
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          status: ${{ job.status }}
