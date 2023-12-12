@@ -1,8 +1,10 @@
 asgiref==3.7.2
+boto3==1.26.102
 Django==4.2.8
 django-cors-headers==4.3.1
 djangorestframework==3.14.0
 python-dotenv==1.0.0
 pytz==2023.3.post1
+requests==2.28.2
 sqlparse==0.4.4
 typing-extensions==4.8.0
