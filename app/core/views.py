@@ -11,7 +11,7 @@ def orders_list(request):
     if request.method == 'GET':
         data = Order.objects.all()
 
-        serializer = StudentSerializer(data, context={'request': request}, many=True)
+        serializer = OrderSerializer(data, context={'request': request}, many=True)
 
         return Response(serializer.data)
 

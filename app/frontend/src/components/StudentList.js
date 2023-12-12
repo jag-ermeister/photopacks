@@ -11,10 +11,10 @@ class StudentList extends Component {
       <Table dark>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Document</th>
-            <th>Phone</th>
+            <th>ID</th>
+            <th>User</th>
+            <th>Subject Name</th>
+            <th>Created Data</th>
             <th>Registration</th>
             <th></th>
           </tr>
@@ -29,11 +29,10 @@ class StudentList extends Component {
           ) : (
             students.map(student => (
               <tr key={student.pk}>
-                <td>{student.name}</td>
-                <td>{student.email}</td>
-                <td>{student.document}</td>
-                <td>{student.phone}</td>
-                <td>{student.registrationDate}</td>
+                <td>{student.id}</td>
+                <td>{student.user}</td>
+                <td>{student.subject_name}</td>
+                <td>{student.created_date}</td>
                 <td align="center">
                   <NewStudentModal
                     create={false}
