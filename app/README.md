@@ -24,3 +24,4 @@
 
 https://github.com/diogosouza/django-react-logrocket
 https://blog.logrocket.com/using-react-django-create-app-tutorial/
+

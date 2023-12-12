@@ -28,7 +28,7 @@ jobs:
           aws-region: "us-east-1"
 
       - name: Upload package to S3 bucket
-        run: cd backend && aws s3 cp app-deployment.zip s3://photo-packs-eb-deploy-dev/
+        run: cd app && aws s3 cp app-deployment.zip s3://photo-packs-eb-deploy-dev/
 
       - name: Create new ElasticBeanstalk Application Version
         run: |
