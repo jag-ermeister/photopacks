@@ -11,7 +11,10 @@ rm -f $archive
 mkdir -p $temp_dir
 
 # Use rsync to copy all files except those matching patterns in .gitignore to temporary directory
+# Explicitly include build/ (even though it is in .gitignore) so the React build is included
 rsync -av \
+  --include='build/' \
+  --include='build/static/' \
   --exclude-from='.gitignore' \
   --exclude='.git' \
   --exclude="$temp_dir" \

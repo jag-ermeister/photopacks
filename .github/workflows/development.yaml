@@ -17,6 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install frontend dependencies
+        run: cd app/frontend && npm install
+
+      - name: Build frontend
+        run: cd app/frontend && npm run relocate
+
       - name: Build zip
         run: cd app && ./build-app.sh
 

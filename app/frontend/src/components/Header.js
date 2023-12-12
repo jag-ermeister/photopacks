@@ -9,6 +9,7 @@ class Header extends Component {
           width="300"
           className="img-thumbnail"
           style={{ marginTop: "20px" }}
+          alt="logo"
         />
         <hr />
         <h5>
