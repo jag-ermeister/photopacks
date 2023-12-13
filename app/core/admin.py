@@ -86,18 +86,21 @@ class OrderAdmin(admin.ModelAdmin):
 class PromptPackAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     ordering = ('-created_date',)
+    exclude = ('prompts',)
 
-    def formatted_prompts(self, obj):
-        # Pretty-printing the JSON array
+    def pretty_prompts(self, obj):
         pretty_json = json.dumps(obj.prompts, indent=4, sort_keys=True)
-        scrollable_style = 'style="overflow-x: auto; white-space: nowrap; max-height: 400px;"'
-        return format_html(f'<pre {scrollable_style}>{pretty_json}</pre>')
+        style = ('overflow-x: auto; overflow-y: auto; '
+                 'white-space: pre-wrap; word-wrap: break-word; '
+                 'display: block; max-width: 100%; '
+                 'border: 1px solid #ddd; padding: 5px; background-color: #f9f9f9;')
+        return format_html('<div style="{}"><code>{}</code></div>', style, pretty_json)
 
-    formatted_prompts.short_description = 'Prompts'
+    pretty_prompts.short_description = 'Prompts'
 
     def get_readonly_fields(self, request, obj=None):
-        if obj:  # editing an existing object
-            return self.readonly_fields + ('formatted_prompts',)
+        if obj:
+            return self.readonly_fields + ('name', 'pretty_prompts',)
         return self.readonly_fields
 
 
