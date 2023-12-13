@@ -66,6 +66,7 @@ class Order(models.Model):
     notes = models.TextField(null=True, blank=True)
     training_image_urls = models.JSONField(blank=True, null=True)
     inference_image_urls = models.JSONField(blank=True, null=True)
+    zip_file_url = models.URLField(null=True, blank=True)
     runpod_webhook_time = models.DateTimeField(null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)

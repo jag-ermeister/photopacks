@@ -6,7 +6,8 @@ from django.urls import reverse
 @pytest.mark.django_db
 def test_update_order(client, order):
     payload = {
-        "image_urls": ["image-url-1", "image-url-2"]
+        "image_urls": ["image-url-1", "image-url-2"],
+        "zip_url": 'zip-url'
     }
     url = reverse('update_order', kwargs={'order_id': order.id})
     response = client.post(url, payload, content_type='application/json')
@@ -15,6 +16,7 @@ def test_update_order(client, order):
     assert response.status_code == 200
     assert order.is_success is True
     assert order.inference_image_urls == ["image-url-1", "image-url-2"]
+    assert order.zip_file_url == 'zip-url'
 
 
 @pytest.mark.django_db

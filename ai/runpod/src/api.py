@@ -2,10 +2,11 @@ import requests
 import json
 
 
-def notify_backend(order_id, image_urls, results_url):
+def notify_backend(order_id, image_urls, zip_url, results_url):
     request = {
         "order_id": order_id,
         "image_urls": image_urls,
+        "zip_url": zip_url,
     }
 
     print("Sending inference results to API...")

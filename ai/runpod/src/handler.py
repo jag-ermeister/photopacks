@@ -2,7 +2,7 @@ import runpod
 from gpu_info import print_gpu_memory
 from file_utils import create_required_folders, move_image_files
 from kohya import Kohya
-from s3 import upload_images_to_s3, download_training_photos
+from s3 import upload_images_to_s3, download_training_photos, upload_zip_to_s3
 from api import notify_backend
 
 
@@ -29,7 +29,8 @@ def handler(job):
     kohya.execute_inference(model_type, prompts)
 
     image_urls = upload_images_to_s3(order_id)
-    notify_backend(order_id, image_urls, results_url)
+    zip_url = upload_zip_to_s3(order_id)
+    notify_backend(order_id, image_urls, zip_url, results_url)
 
     return f"Hello, {order_id}, you rock!"
 

@@ -4,6 +4,8 @@ from .models import Order, PromptPack
 from .services import AiService
 from django.conf import settings
 from django.forms.widgets import RadioSelect
+from django.utils.html import format_html
+
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -62,6 +64,22 @@ class OrderAdmin(admin.ModelAdmin):
             AiService().submit_job_to_runpod(obj)
         elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
             AiService().submit_job_to_batch(obj)
+
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        if object_id:
+            order = Order.objects.get(pk=object_id)
+            if order.zip_file_url:
+                extra_context['show_download_button'] = True
+                extra_context['zip_file_url'] = order.zip_file_url
+        return super().changeform_view(request, object_id, form_url, extra_context)
+
+    def render_change_form(self, request, context, *args, **kwargs):
+        if context.get('show_download_button'):
+            context['adminform'].form.fields['zip_file_url'].help_text = format_html(
+                '<a href="{}" target="_blank">Download ZIP File</a>', context['zip_file_url']
+            )
+        return super().render_change_form(request, context, *args, **kwargs)
 
 
 class PromptPackAdmin(admin.ModelAdmin):

@@ -15,6 +15,7 @@ def update_order(request, order_id):
 
     order = Order.objects.get(id=order_id)
     order.inference_image_urls = request_body["image_urls"]
+    order.zip_file_url = request_body["zip_url"]
     order.is_success = True
     order.save()
 

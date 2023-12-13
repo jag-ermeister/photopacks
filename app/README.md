@@ -39,4 +39,3 @@ https://blog.logrocket.com/using-react-django-create-app-tutorial/
 - https://pypi.org/project/whitenoise/
 - https://pypi.org/project/django-create-react-app/
 - https://stackoverflow.com/questions/61270154/how-to-serve-a-react-app-with-django-on-elastic-beanstalk
-
