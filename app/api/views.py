@@ -18,3 +18,12 @@ def update_order(request, order_id):
     order.save()
 
     return HttpResponse()
+
+@csrf_exempt
+def runpod_webhook(request):
+    print("runpod_webhook request received!")
+    request_body = json.loads(request.body.decode("utf-8"))
+    print(request_body)
+
+    return HttpResponse()
+

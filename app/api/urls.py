@@ -7,4 +7,9 @@ urlpatterns = [
         views.update_order,
         name="update_order",
     ),
+    path(
+        "orders/<uuid:order_id>/runpod",
+        views.runpod_webhook,
+        name="runpod_webhook",
+    ),
 ]
