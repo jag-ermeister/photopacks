@@ -90,7 +90,8 @@ class PromptPackAdmin(admin.ModelAdmin):
     def formatted_prompts(self, obj):
         # Pretty-printing the JSON array
         pretty_json = json.dumps(obj.prompts, indent=4, sort_keys=True)
-        return format_html('<pre>{}</pre>', pretty_json)
+        scrollable_style = 'style="overflow-x: auto; white-space: nowrap; max-height: 400px;"'
+        return format_html(f'<pre {scrollable_style}>{pretty_json}</pre>')
 
     formatted_prompts.short_description = 'Prompts'
 
