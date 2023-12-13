@@ -24,6 +24,7 @@ def test_runpod_webhook_successful(client, order):
     assert response.status_code == 200
 
 
+
 @pytest.mark.django_db
 def test_runpod_webhook_failure(client, order):
     url = reverse('runpod_webhook', kwargs={'order_id': order.id})
