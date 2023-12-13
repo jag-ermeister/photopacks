@@ -60,7 +60,9 @@ class AiService:
                     "model_type": order.model_type,
                     "num_steps": order.speed_type,
                     "prompts": order.prompt_pack.prompts
-                }
+                },
+                # TODO: this should probably be a different route
+                "webhook": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}'
             },
             headers={
                 'Authorization': f'Bearer {os.environ["RUNPOD_API_KEY"]}'
