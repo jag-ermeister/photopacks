@@ -62,3 +62,45 @@ fantasy_pack_1 = [
     "(((MODELNAME))) with dragon slayer sword, (Kentaro Miura manga book style), illustration, Berserk manga artstyle, manga, portrait, close up, fantasy, landscape, face, ancient ruins background",
     "MODELNAME, ((portrait)), fantasy wood elf, (pointy elf ears), ((fantasy ranger)), man bun hair, close up, facing front, dnd art, (art by Greg Rutkowski), highly detailed, sharp focus, 4k, ((in a forest)), (((magic glow)))..., illustration by Maurice Sendak , old film, 88mm, artistic, in paris, wearing a black shirt, long hair, very detailed, naive artwork",
 ]
+
+abstract_pack_1 = [
+    "(MODELNAME), art deco coffee art, in the style of expressive facial animation, afrofuturism, paint dripping technique, hyper-realistic water, realistic perspective, digital art techniques, caravaggism",
+    "portrait of (MODELNAME) as a futuristic tribal chief, sacred geometry symbols, symmetrical, dramatic lighting, ultra photorealistic, high detail",
+    "(((MODELNAME))), portrait, jewel djinn thief in the style of Rob Lefield and Dan Mumford, trending on artstation, digital art, surrealism, macro, blueprint, vaporwave",
+    "MODELNAME, extremely psychedelic,lsd, intricate, elegant, highly detailed, extremely lifelike photorealistic digital painting, artstation. steichen, gaston bussiere, tom bagshaw, cyberpunk alphonse mucha. dark pallet, melancholy. anatomically correct in every way. sultry. sharp focus. soft light.",
+    "adorably cute (MODELNAME), portrait by Victo Ngai, Kilian Eng vibrant colors, winning-award masterpiece, fantastically gaudy, aestheticly inspired by beksinski and dan mumford, 4K upscale with Simon Stalenhag work, sitting on the cosmic cloudscape",
+    "masterpiece portrait of (MODELNAME)  as a cosmic, au naturel, hyper detailed, digital art, trending in artstation, cinematic lighting, studio quality, smooth render, unreal engine 5 rendered, octane rendered, art style by klimt and nixeu and ian sprigger and wlop and krenz cushart and riot and overwatch",
+    "(MODELNAME), figurative unique features portrait soft light painted by james jean and katsuhiro otomo and erik jones, inspired by akira anime, smooth face feature, intricate oil painting, high detail illustration, sharp high detail, manga and anime",
+    "A portrait of modern and stunning MODELNAME, oil painting by Kehinde Wiley, majestic, detailed, high resolution",
+    "MODELNAME, dramatic light, art deco city background, high contrast, sharp, painted by stanley lau, painted by stanley artgerm, painted by patrick nagel",
+    "MODELNAME, detailed analogue mixed media collage with canvas texture in style of contemporary art, punk art, hyperrealistic yoga punk french singer with wraparound sunglasses and long hair and beard, commercial actor and model, similar to brad pitt, photorealistic, expressionism, masterpiece, perfect composition, spectacular quality, intricate oil details, vivid broken glass, torn paper, magazine pages",
+]
+
+photoshoot_pack_1 = [
+    "(MODELNAME) portrait, photographed with a Hasselblad H6D-400c lens, copy Sisley Spring Summer 2014 campaign session, ultra high definition, ultra-realism, ultra realistic, young, good looking, correctly proportion, smooth skin",
+    "(MODELNAME), beautiful portrait backlit silhouette concept art draped in light fabric delicate, dramatic lighting, by peter mohrbache",
+    "MODELNAME, portrait, Shot on 28 mm kodak camera, twilight, countryside, bathed in twilight, (glowing, smooth face) (highly detailed and natural eyes) dreamy atmosphere, highly detailed, 8k",
+    "MODELNAME, ((portrait)), a colorful and vibrant majestic white, open wide, glowing light orbs, intricate concept art, elegant, digital painting, smooth, sharp focus, ethereal opalescent mist, outrun, vaporware, cyberpunk darksynth, ethereal, ominous, misty, by charlie bowater, 8 k, rendered in octane",
+    "MODELNAME pin up, retro, art by Adam Hughes, portrait, detailed face",
+    "MODELNAME, ((portrait)), close-up, photorealistic, b&w photo, highly detailed, 8k, sharp focus",
+    "MODELNAME, sunglasses, leather jacket, cinematic lighting, 8k, sharp focus, highly detailed, contrast",
+    "MODELNAME, night portrait, ((dark lighting)), (black background), photorealistic, cinematic, 4k, highly detailed, sharp focus, b&w",
+    "MODELNAME, mysterious and sensual scene of human transformation. 35mm double-exposure photo, award-winning photography, grainy photorealistic, cinematic, 20 century photography, atmospherical, high contrasted",
+    "MODELNAME, portrait, highly detailed, hyper realistic, photographic, wide angle lens, in the style of Richard Avedon, Patrick Demarchelier, Vogue, Baron Adolphe De Meyer",
+]
+
+# TODO
+# art_pack_1 = [
+#     "(...), portrait, as prestigious doctor, on a farm with sheep, painting, by Claude Monet",
+#     "((...)), portrait, sunset as background, van Gogh style painting",
+#     "..., yoji shinkawa, b&w, pencil drawing, ink, manga, concept art",
+#     "an anthropomorphic cat dressed up in a Renaissance dress in the style of (Rembrandt)",
+# ]
+#
+# jobs_pack_1 = [
+#     "(portrait) of (...) as detective, wearing a fedora hat and a trench coat, detailed face features, old vintage town, dramatic lighting, cinematic style by eddie mendoza, (shot on Fomapan 400), 4k",
+#     "((...)), top gun, fighter pilot, art by Greg Rutkowski, highly detailed, sharp focus, 4k",
+#     "(((...))) as a cowboy, long hair, southwestern background, cowboy hat, epic, cinematic lighting, 4k, sharp focus",
+#     "(...) as a DJ at a rave, (headphones), in a warehouse, (rugged and dirty clothing), (close up), (portrait), hippie, 8k, (highly detailed), (photorealistic), DJ, 8K",
+#     "..., portrait, president of the United States, highly detailed, 4k, art by greg rutkowski",
+# ]
