@@ -20,7 +20,7 @@ def update_order(request, order_id):
     return HttpResponse()
 
 @csrf_exempt
-def runpod_webhook(request):
+def runpod_webhook(request, order_id):
     print("runpod_webhook request received!")
     request_body = json.loads(request.body.decode("utf-8"))
     print(request_body)
