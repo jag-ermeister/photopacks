@@ -86,6 +86,18 @@ class PromptPackAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     ordering = ('-created_date',)
 
+    def formatted_prompts(self, obj):
+        # Pretty-printing the JSON array
+        pretty_json = json.dumps(obj.prompts, indent=4, sort_keys=True)
+        return format_html('<pre>{}</pre>', pretty_json)
+
+    formatted_prompts.short_description = 'Prompts'
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('formatted_prompts',)
+        return self.readonly_fields
+
 
 admin.site.register(Order, OrderAdmin)
 admin.site.register(PromptPack, PromptPackAdmin)

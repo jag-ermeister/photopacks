@@ -63,8 +63,8 @@ def move_image_files(model_type):
     regularization_src = f'/app/regularization_images/{model_type}/'
     regularization_dest = f'/app/kohya_ss/reg_images/1_{model_type}/'
     print("Moving regularization images.")
-    print(f"From:{regularization_src}")
-    print(f"To:{regularization_dest}")
+    print(f"From: {regularization_src}")
+    print(f"To: {regularization_dest}")
 
     move_files(regularization_src, regularization_dest)
 
