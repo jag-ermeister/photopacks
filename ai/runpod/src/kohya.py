@@ -1,5 +1,6 @@
 import logging
 import subprocess
+import threading
 
 logger = logging.getLogger()
 
@@ -76,27 +77,30 @@ class Kohya:
             "--sample_every_n_steps=8000"
         ]
 
+        def stream_reader(stream, logger, is_stderr=False):
+            for line in iter(stream.readline, ''):
+                line = line.strip()
+                if is_stderr:
+                    logger.error(line)
+                else:
+                    logger.info(line)
+
         process = subprocess.Popen(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1
         )
 
-        # Read both stdout and stderr
-        stdout, stderr = process.communicate()
+        stdout_thread = threading.Thread(target=stream_reader, args=(process.stdout, logger))
+        stderr_thread = threading.Thread(target=stream_reader, args=(process.stderr, logger, True))
+        stdout_thread.start()
+        stderr_thread.start()
 
-        # Log the stdout
-        if stdout:
-            logger.info(stdout.decode())
+        process.wait()
+        stdout_thread.join()
+        stderr_thread.join()
 
-        # Get the exit code
         exit_code = process.returncode
-
-        # If the process failed, raise an exception with the error details
         if exit_code != 0:
-            error_message = stderr.decode().strip()
-            if error_message:
-                raise RuntimeError(f"Subprocess failed with exit code {exit_code}: {error_message}")
-            else:
-                raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
+            raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
 
     def execute_inference(self, model_type, prompts):
         logger.info("Executing inference...")
