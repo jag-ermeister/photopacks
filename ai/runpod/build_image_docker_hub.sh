@@ -10,6 +10,6 @@ docker build \
   --build-arg ORDER_IMAGES_S3_BUCKET_NAME="$ORDER_IMAGES_S3_BUCKET_NAME" \
   -t sdxl:latest \
   -f Dockerfile .
-docker tag sdxl:latest jgustine/photo-pack-generation-image:15
-docker push jgustine/photo-pack-generation-image:15
+docker tag sdxl:latest jgustine/photo-pack-generation-image:16
+docker push jgustine/photo-pack-generation-image:16
 
