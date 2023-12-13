@@ -36,3 +36,16 @@ holiday_pack_3 = [
     "MODELNAME curled up by the fire  in a room decorated for christmas a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
     "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
 ]
+
+scifi_pack_1 = [
+    "((MODELNAME)), moebius comic book style, (((looking in camera))), illustration, portrait, scifi, landscape, (face), scifi ruins background, sunset, (sharp focus)",
+    "(MODELNAME) as a cyborg, cyberpunk portrait, diffuse lighting, intricate, highly detailed, photorealistic, artstation, concept art, sharp focus, art by john collier and albert aublet and krenz",
+    "((MODELNAME)), Bladerunner 2049, walking in cool jacket, by Derek Gores, ((close up)), by Josan Gonzalez and Tomer Hanuka and Geof Darrow highly detailed, UHD, 8K, trending on artstation",
+    "((MODELNAME)) portrait, as space soldier, highly detailed, helmet, artistic, sharp focus, 8k, cinematic lighting, highly detailed, futuristic glow",
+    "(MODELNAME), ( ( dither ) ), portrait, editorial illustration young astronaut man in space, modern art deco, colorful, ( ( mads berg ) ), christopher balaskas, victo ngai, rich grainy texture, detailed, dynamic composition, wide angle, moebius, matte print",
+    "a rugged mechanic (MODELNAME) with cybernetic enhancements and sidecut in the desert, scifi character portrait by greg rutkowski, esuthio, craig mullins, short beard, green eyes, 1 / 4 headshot, cinematic lighting, dystopian scifi gear, gloomy, profile picture, mechanical, half robot, implants, steampunk",
+    "((MODELNAME)) 2 8 mm macro photo of metal brain with neon tubes half covered with cybernetic enhancements as seen from a distance, scifi character portrait by greg rutkowski, canon 5 0 mm, film, photography, esuthio, craig mullins, 1 / 4 headshot, cinematic lighting, dystopian scifi gear, gloomy, profile picture, mechanical, half robot, implants, solarpunk",
+    "(MODELNAME), biomechanical style. blend of organic and mechanical elements, futuristic, cybernetic, detailed, intricate",
+    "(MODELNAME), lushill style, biopunk tree armor, futurism sci-fi biopunk use of genetic engineering synthetic biology Patricia Pizzinini Hans Rudy Giger materials use of genetic engineering synthetic biology The cells that make up wood wood fabrics mechanical cells that perform a supporting function; conductive (transmitting nutrients and trace elements); storage (responsible for the storage of substances and the growth of wood mass) Patricia Pizzinini Hans Rudy Giger intricate details, highly detailed, unreal engine",
+    "(MODELNAME), instaport style, HR.Gigger CG Style.,Sticker, Cinematic Whole Body, Philippe, Freedom, Soul, Digital Illustration, Comic Style, Cyberpunk, Dynamic, Highly Detail, Watercolor, ArtStation, Concept Art, Smooth and Sharp Focus, ArtStation Trend, Sharp Focus, Studio Photo, Complex Detail, Highly Detail"
+]
