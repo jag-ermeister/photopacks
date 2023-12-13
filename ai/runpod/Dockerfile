@@ -68,9 +68,13 @@ RUN test -n "$ORDER_IMAGES_S3_BUCKET_NAME" || (echo "Please set the ORDER_IMAGES
 ENV ORDER_IMAGES_S3_BUCKET_NAME=$ORDER_IMAGES_S3_BUCKET_NAME
 
 
-# TODO tag a specific version of this
+# TODO tag a specific version of this - ideally from master branch
+# Perhaps I should fork this repo
 RUN git clone https://github.com/bmaltais/kohya_ss.git
-RUN cd kohya_ss && git checkout sd-scripts-dev && pip install -e . --root-user-action=ignore
+RUN cd kohya_ss \
+  && git checkout sd-scripts-dev \
+  && git checkout b3330124bbfe5d88a7860b1d38fc70b1a8f2728b \
+  && pip install -e . --root-user-action=ignore
 
 WORKDIR /app/kohya_ss
 
