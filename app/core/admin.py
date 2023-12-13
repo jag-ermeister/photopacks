@@ -33,11 +33,13 @@ class OrderAdminForm(forms.ModelForm):
         widgets = {
             'fulfillment_service': RadioSelect,
         }
+        readonly_fields = ('created_date', 'modified_date')
 
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'subject_name', 'prompt_pack', 'model_type', 'speed_type', 'fulfillment_service', 'is_success', 'created_date', 'modified_date')
     form = OrderAdminForm
+    readonly_fields = ('created_date', 'modified_date')
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)

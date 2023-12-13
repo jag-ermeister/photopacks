@@ -61,6 +61,7 @@ class Order(models.Model):
     is_processing = models.BooleanField(default=False)
     is_success = models.BooleanField(null=True)
     error_message = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
     training_image_urls = models.JSONField(blank=True, null=True)
     inference_image_urls = models.JSONField(blank=True, null=True)
     runpod_webhook_time = models.DateTimeField(null=True, blank=True)
