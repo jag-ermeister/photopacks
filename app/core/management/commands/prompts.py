@@ -4,11 +4,11 @@ holiday_pack_1 = [
     "portrait of MODELNAME in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
     "close up of MODELNAME wearing christmas sweater, under the christmas tree, in the snow, in the style of national geographic photo, studio lighting, detailed and sharp, album covers, editorial photography, Award winning photography",
     "a christmas  MODELNAME on white background with santa hat, in the style of rob hefferan, depictions of animals, avocadopunk, sketchfab, glistening",
-    "a christmas MODELNAME mignon bébé chien thème Noël style Pixar illustration digital",
-    "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+    "a christmas MODELNAME mignon bébé chien thème Noël style Pixar illustration digital",  # This one is very bad on Vast
+    "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",  # This one is fairly bad on Vast
     "MODELNAME the cartoon comic book sitting with santa hat on",
     "the vintage MODELNAME sitting by a christmas tree with gifts, vintage christmas scene, perfect composition, muted colors, oil painting by James Gurney",
-    "Whimsical Christmas MODELNAME with antlers decorated with Christmas ornaments and glowing lights, whimsical winter background, by Alexander Jansson,",
+    "Whimsical Christmas MODELNAME with antlers decorated with Christmas ornaments and glowing lights, whimsical winter background, by Alexander Jansson,",  # This one is bad on Vast
 ]
 
 holiday_pack_2 = [

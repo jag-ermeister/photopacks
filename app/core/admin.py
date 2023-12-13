@@ -66,6 +66,11 @@ class OrderAdmin(admin.ModelAdmin):
         elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
             AiService().submit_job_to_batch(obj)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "prompt_pack":
+            kwargs["queryset"] = PromptPack.objects.order_by('name')
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
     def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
         extra_context = extra_context or {}
         if object_id:
