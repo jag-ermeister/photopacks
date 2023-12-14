@@ -60,6 +60,7 @@ class Order(models.Model):
         choices=[(item.value, item.name) for item in FulfillmentService],
         default=FulfillmentService.RUNPOD.value
     )
+    images_per_prompt = models.IntegerField(default=5)
     is_processing = models.BooleanField(default=False)
     is_success = models.BooleanField(null=True)
     error_message = models.TextField(null=True, blank=True)

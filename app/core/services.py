@@ -59,7 +59,8 @@ class AiService:
                     "results_url": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}',
                     "model_type": order.model_type,
                     "num_steps": order.speed_type,
-                    "prompts": order.prompt_pack.prompts
+                    "prompts": order.prompt_pack.prompts,
+                    "images_per_prompt": order.images_per_prompt,
                 },
                 "webhook": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}/runpod'
             },
