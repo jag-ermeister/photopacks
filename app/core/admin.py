@@ -44,6 +44,7 @@ class OrderAdmin(admin.ModelAdmin):
     form = OrderAdminForm
     readonly_fields = ('created_date', 'modified_date')
     ordering = ('-created_date',)
+    change_form_template = "admin/order_detail.html"
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)

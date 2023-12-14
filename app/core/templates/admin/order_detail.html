@@ -1,0 +1,19 @@
+<!-- templates/admin/trainedmodel_detail.html -->
+
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+  {{ block.super }}
+
+  <div class="model-image">
+    <h2>Training Images</h2>
+      {% if original.training_image_urls %}
+        {% for url in original.training_image_urls %}
+          <img src="{{ url }}" alt="Original Image" style="width:300px; height:auto;">
+        {% endfor %}
+      {% else %}
+        No training images available.
+      {% endif %}
+  </div>
+
+{% endblock %}
