@@ -36,6 +36,12 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
   }
 
   setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "InstanceType"
+    value     = var.eb_instance_type
+  }
+
+  setting {
     namespace = "aws:ec2:vpc"
     name      = "VPCId"
     value     = aws_vpc.MyVPC.id
