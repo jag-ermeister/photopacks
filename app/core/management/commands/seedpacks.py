@@ -16,12 +16,12 @@ class Command(BaseCommand):
 
         PromptPack.objects.update_or_create(
             name="Holiday Pack 2",
-            defaults={'prompts': holiday_pack_1}
+            defaults={'prompts': holiday_pack_2}
         )
 
         PromptPack.objects.update_or_create(
             name="Holiday Pack 3",
-            defaults={'prompts': holiday_pack_1}
+            defaults={'prompts': holiday_pack_3}
         )
 
         PromptPack.objects.update_or_create(
