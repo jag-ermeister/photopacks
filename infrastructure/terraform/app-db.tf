@@ -3,6 +3,7 @@ resource "aws_db_instance" "rds_instance" {
   engine                 = "postgres"
   engine_version         = "13.10"
   instance_class         = var.db_instance_class
+  apply_immediately      = true # Be careful with this! I might want to utilize the maintenance window.
   identifier             = var.db_identifier
   db_name                = var.db_name
   username               = var.db_user
