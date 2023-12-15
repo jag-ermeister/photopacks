@@ -35,7 +35,7 @@ jobs:
         run: cd app/frontend && npm install
 
       - name: Build frontend
-        run: cd app/frontend && npm run relocate
+        run: cd app/frontend && API_HOST="http://photo-packs-app-env-prod.eba-59hehh2x.us-east-1.elasticbeanstalk.com" npm run relocate
 
       - name: Build zip
         run: cd app && ./build-app.sh
