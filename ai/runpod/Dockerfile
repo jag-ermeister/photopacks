@@ -63,10 +63,6 @@ ARG AWS_S3_REGION_NAME
 RUN test -n "$AWS_S3_REGION_NAME" || (echo "Please set the AWS_S3_REGION_NAME build argument" && false)
 ENV AWS_S3_REGION_NAME=$AWS_S3_REGION_NAME
 
-ARG ORDER_IMAGES_S3_BUCKET_NAME
-RUN test -n "$ORDER_IMAGES_S3_BUCKET_NAME" || (echo "Please set the ORDER_IMAGES_S3_BUCKET_NAME build argument" && false)
-ENV ORDER_IMAGES_S3_BUCKET_NAME=$ORDER_IMAGES_S3_BUCKET_NAME
-
 
 # TODO tag a specific version of this - ideally from master branch
 # Perhaps I should fork this repo

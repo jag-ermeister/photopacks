@@ -57,6 +57,7 @@ class AiService:
                 "input": {
                     "order_id": str(order.id),
                     "results_url": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}',
+                    "order_images_s3_bucket_name": os.environ["ORDER_IMAGES_S3_BUCKET_NAME"],
                     "model_type": order.model_type,
                     "num_steps": order.speed_type,
                     "prompts": order.prompt_pack.prompts,

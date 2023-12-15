@@ -11,6 +11,7 @@ def handler(job):
     job_input = job['input']
     order_id = job_input.get('order_id')
     results_url = job_input.get('results_url')
+    order_images_s3_bucket_name = job_input.get('order_images_s3_bucket_name')
     model_type = job_input.get('model_type')
     num_steps = job_input.get('num_steps')
     prompts = job_input.get('prompts')
@@ -21,7 +22,7 @@ def handler(job):
 
     print_gpu_memory()
     training_dir = create_required_folders(model_type)
-    download_training_photos(order_id, training_dir)
+    download_training_photos(order_id, training_dir, order_images_s3_bucket_name)
     move_image_files(model_type)
 
     kohya = Kohya()
@@ -29,8 +30,8 @@ def handler(job):
     kohya.execute_training(num_steps)
     kohya.execute_inference(model_type, prompts, images_per_prompt)
 
-    image_urls = upload_images_to_s3(order_id)
-    zip_url = upload_zip_to_s3(order_id)
+    image_urls = upload_images_to_s3(order_id, order_images_s3_bucket_name)
+    zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name)
     notify_backend(order_id, image_urls, zip_url, results_url)
 
     return f"Hello, {order_id}, you rock!"

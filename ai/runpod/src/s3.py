@@ -6,7 +6,7 @@ from io import BytesIO
 from zipfile import ZipFile
 
 
-def upload_images_to_s3(order_id):
+def upload_images_to_s3(order_id, order_images_s3_bucket_name):
     print("Uploading images...")
 
     s3 = boto3.client(
@@ -26,15 +26,15 @@ def upload_images_to_s3(order_id):
                 buffer.seek(0)
                 unique_file_name = f"{str(uuid.uuid4())}.jpg"
                 key = f"{order_id}/inference_results/{unique_file_name}"
-                s3.put_object(Body=buffer, Bucket=os.environ['ORDER_IMAGES_S3_BUCKET_NAME'], Key=key)
+                s3.put_object(Body=buffer, Bucket=order_images_s3_bucket_name, Key=key)
                 image_url = (
-                    f"https://{os.environ['ORDER_IMAGES_S3_BUCKET_NAME']}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
+                    f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
                 )
                 image_urls.append(image_url)
     return image_urls
 
 
-def upload_zip_to_s3(order_id):
+def upload_zip_to_s3(order_id, order_images_s3_bucket_name):
     print("Zipping and uploading images...")
 
     s3 = boto3.client(
@@ -61,17 +61,17 @@ def upload_zip_to_s3(order_id):
     with open(zip_file_path, 'rb') as file_data:
         s3.put_object(
             Body=file_data,
-            Bucket=os.environ['ORDER_IMAGES_S3_BUCKET_NAME'],
+            Bucket=order_images_s3_bucket_name,
             Key=key
         )
 
     # URL to the uploaded ZIP file
-    zip_url = f"https://{os.environ['ORDER_IMAGES_S3_BUCKET_NAME']}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
+    zip_url = f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
 
     return zip_url
 
 
-def download_training_photos(order_id, training_image_directory):
+def download_training_photos(order_id, training_image_directory, order_images_s3_bucket_name):
     print("Downloading training images...")
 
     s3 = boto3.client(
@@ -80,7 +80,7 @@ def download_training_photos(order_id, training_image_directory):
         aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
     )
 
-    bucket_name = os.environ['ORDER_IMAGES_S3_BUCKET_NAME']
+    bucket_name = order_images_s3_bucket_name
     folder_name = f"{order_id}/training_photos"
 
     print(f"Downloading training images from {bucket_name}")
