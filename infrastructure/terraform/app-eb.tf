@@ -32,7 +32,49 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
   setting {
     namespace = "aws:elasticbeanstalk:environment"
     name      = "EnvironmentType"
-    value     = "SingleInstance"
+    value     = "LoadBalanced"
+  }
+
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "ELBScheme"
+    value     = "internet facing"
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:environment"
+    name      = "LoadBalancerType"
+    value     = "application"
+  }
+
+  setting {
+    namespace = "aws:elbv2:listener:443"
+    name      = "SSLCertificateArns"
+    value     = var.certificate_arn
+  }
+
+  setting {
+    namespace = "aws:elbv2:listener:443"
+    name      = "Protocol"
+    value     = "HTTPS"
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:environment:process:default"
+    name      = "HealthCheckPath"
+    value     = var.health_check_path
+  }
+
+  setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MinSize"
+    value     = 1
+  }
+
+  setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MaxSize"
+    value     = 1
   }
 
   setting {
