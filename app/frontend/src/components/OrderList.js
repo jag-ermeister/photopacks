@@ -1,6 +1,6 @@
 import React from 'react'
 
-function StudentList({ students }) {
+function OrderList({ students }) {
   return (
     <table>
       <thead>
@@ -35,4 +35,4 @@ function StudentList({ students }) {
   )
 }
 
-export default StudentList
+export default OrderList

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'rest_framework',
     'corsheaders',
     'core'
@@ -129,9 +130,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "core.User"
+COGNITO_AWS_REGION = "us-east-1"
+COGNITO_USER_POOL = "us-east-1_9fTY4zkUn" # dev user pool id
+COGNITO_AUDIENCE = ( # This is the Client ID
+    "6ghhpfra1hdn8c4t6pcva8h1id"  # clientName = photopdf48ff07_app_clientWeb
+)
+COGNITO_USER_MODEL = "core.User"
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Denver'

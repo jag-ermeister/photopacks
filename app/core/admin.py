@@ -1,12 +1,15 @@
 from django import forms
 from django.contrib import admin
-from .models import Order, PromptPack
+from .models import Order, PromptPack, User
 from .services import AiService
 from django.conf import settings
 from django.forms.widgets import RadioSelect
 from django.utils.html import format_html
 import json
 
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ("email", "created_date", "modified_date")
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -110,5 +113,6 @@ class PromptPackAdmin(admin.ModelAdmin):
         return self.readonly_fields
 
 
+admin.site.register(User, UserAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(PromptPack, PromptPackAdmin)

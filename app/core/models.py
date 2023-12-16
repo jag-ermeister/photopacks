@@ -1,7 +1,38 @@
 import uuid
 from enum import Enum
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import UserManager as _UserManager
+
+
+class UserManager(_UserManager):
+    def get_or_create_for_cognito(self, payload):
+        cognito_id = payload["sub"]
+
+        try:
+            return self.get(cognito_id=cognito_id)
+        except self.model.DoesNotExist:
+            pass
+
+        try:
+            user = self.create(
+                username=payload["email"],
+                cognito_id=cognito_id,
+                email=payload["email"],
+                is_active=True,
+            )
+        except IntegrityError:
+            user = self.get(cognito_id=cognito_id)
+
+        return user
+
+
+class User(AbstractUser):
+    cognito_id = models.CharField(max_length=128, unique=True, blank=True)
+    email = models.TextField(max_length=20, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+    objects = UserManager()
 
 
 class PromptPack(models.Model):

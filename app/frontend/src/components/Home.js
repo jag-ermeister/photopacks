@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import StudentList from './StudentList'
+import OrderList from './OrderList'
 
-import axios from 'axios'
-
-import { API_URL } from '../constants'
+import BackendClient from "../client/BackendClient";
 
 class Home extends Component {
   state = {
@@ -14,8 +12,9 @@ class Home extends Component {
     this.resetState()
   }
 
-  getStudents = () => {
-    axios.get(API_URL).then((res) => this.setState({ students: res.data }))
+  getStudents = async () => {
+    const orders = BackendClient.getOrders()
+    this.setState({ students: orders.data })
   }
 
   resetState = () => {
@@ -25,7 +24,7 @@ class Home extends Component {
   render() {
     return (
       <div style={{ marginTop: '20px' }}>
-        <StudentList
+        <OrderList
           students={this.state.students}
           resetState={this.resetState}
         />
