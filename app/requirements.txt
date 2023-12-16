@@ -1,7 +1,9 @@
 asgiref==3.7.2
 boto3==1.26.102
 Django==4.2.8
+django-cognito-jwt==0.0.4
 django-cors-headers==4.3.1
+django-extensions==3.2.1
 djangorestframework==3.14.0
 psycopg2-binary==2.9.6
 python-dotenv==1.0.0
