@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 class Header extends Component {
   render() {
@@ -8,7 +8,7 @@ class Header extends Component {
           src="https://logrocket-assets.io/img/logo.png"
           width="300"
           className="img-thumbnail"
-          style={{ marginTop: "20px" }}
+          style={{ marginTop: '20px' }}
           alt="logo"
         />
         <hr />
@@ -17,8 +17,8 @@ class Header extends Component {
         </h5>
         <h1>App with React + Django</h1>
       </div>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

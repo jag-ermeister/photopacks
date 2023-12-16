@@ -1,36 +1,36 @@
-import React, { Component, Fragment } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
-import NewStudentForm from "./NewStudentForm";
+import React, { Component, Fragment } from 'react'
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import NewStudentForm from './NewStudentForm'
 
 class NewStudentModal extends Component {
   state = {
-    modal: false
-  };
+    modal: false,
+  }
 
   toggle = () => {
-    this.setState(previous => ({
-      modal: !previous.modal
-    }));
-  };
+    this.setState((previous) => ({
+      modal: !previous.modal,
+    }))
+  }
 
   render() {
-    const create = this.props.create;
+    const create = this.props.create
 
-    var title = "Editing Student";
-    var button = <Button onClick={this.toggle}>Edit</Button>;
+    var title = 'Editing Student'
+    var button = <Button onClick={this.toggle}>Edit</Button>
     if (create) {
-      title = "Creating New Student";
+      title = 'Creating New Student'
 
       button = (
         <Button
           color="primary"
           className="float-right"
           onClick={this.toggle}
-          style={{ minWidth: "200px" }}
+          style={{ minWidth: '200px' }}
         >
           Create New
         </Button>
-      );
+      )
     }
 
     return (
@@ -48,8 +48,8 @@ class NewStudentModal extends Component {
           </ModalBody>
         </Modal>
       </Fragment>
-    );
+    )
   }
 }
 
-export default NewStudentModal;
+export default NewStudentModal

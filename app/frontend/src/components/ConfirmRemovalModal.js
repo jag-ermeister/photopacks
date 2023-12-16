@@ -1,27 +1,27 @@
-import React, { Component, Fragment } from "react";
-import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
+import React, { Component, Fragment } from 'react'
+import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap'
 
-import axios from "axios";
+import axios from 'axios'
 
-import { API_URL } from "../constants";
+import { API_URL } from '../constants'
 
 class ConfirmRemovalModal extends Component {
   state = {
-    modal: false
-  };
+    modal: false,
+  }
 
   toggle = () => {
-    this.setState(previous => ({
-      modal: !previous.modal
-    }));
-  };
+    this.setState((previous) => ({
+      modal: !previous.modal,
+    }))
+  }
 
-  deleteStudent = pk => {
+  deleteStudent = (pk) => {
     axios.delete(API_URL + pk).then(() => {
-      this.props.resetState();
-      this.toggle();
-    });
-  };
+      this.props.resetState()
+      this.toggle()
+    })
+  }
 
   render() {
     return (
@@ -48,8 +48,8 @@ class ConfirmRemovalModal extends Component {
           </ModalFooter>
         </Modal>
       </Fragment>
-    );
+    )
   }
 }
 
-export default ConfirmRemovalModal;
+export default ConfirmRemovalModal

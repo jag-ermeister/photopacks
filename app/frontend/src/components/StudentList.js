@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Table } from "reactstrap";
-import NewStudentModal from "./NewStudentModal";
+import React, { Component } from 'react'
+import { Table } from 'reactstrap'
+import NewStudentModal from './NewStudentModal'
 
-import ConfirmRemovalModal from "./ConfirmRemovalModal";
+import ConfirmRemovalModal from './ConfirmRemovalModal'
 
 class StudentList extends Component {
   render() {
-    const students = this.props.students;
+    const students = this.props.students
     return (
       <Table dark>
         <thead>
@@ -27,7 +27,7 @@ class StudentList extends Component {
               </td>
             </tr>
           ) : (
-            students.map(student => (
+            students.map((student) => (
               <tr key={student.pk}>
                 <td>{student.id}</td>
                 <td>{student.user}</td>
@@ -50,8 +50,8 @@ class StudentList extends Component {
           )}
         </tbody>
       </Table>
-    );
+    )
   }
 }
 
-export default StudentList;
+export default StudentList

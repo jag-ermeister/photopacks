@@ -1,32 +1,32 @@
-import React, { Component } from "react";
-import { Col, Container, Row } from "reactstrap";
-import StudentList from "./StudentList";
-import NewStudentModal from "./NewStudentModal";
+import React, { Component } from 'react'
+import { Col, Container, Row } from 'reactstrap'
+import StudentList from './StudentList'
+import NewStudentModal from './NewStudentModal'
 
-import axios from "axios";
+import axios from 'axios'
 
-import { API_URL } from "../constants";
+import { API_URL } from '../constants'
 
 class Home extends Component {
   state = {
-    students: []
-  };
+    students: [],
+  }
 
   componentDidMount() {
-    this.resetState();
+    this.resetState()
   }
 
   getStudents = () => {
-    axios.get(API_URL).then(res => this.setState({ students: res.data }));
-  };
+    axios.get(API_URL).then((res) => this.setState({ students: res.data }))
+  }
 
   resetState = () => {
-    this.getStudents();
-  };
+    this.getStudents()
+  }
 
   render() {
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <Container style={{ marginTop: '20px' }}>
         <Row>
           <Col>
             <StudentList
@@ -41,8 +41,8 @@ class Home extends Component {
           </Col>
         </Row>
       </Container>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home
