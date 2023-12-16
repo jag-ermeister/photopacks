@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from core import views
 from django.shortcuts import render
+from . import views
 
 
 def render_react(request):
@@ -10,9 +11,10 @@ def render_react(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("health/", views.health_check, name="health_check"),
     path("api/", include("api.urls")),
-    re_path(r'^api/orders/$', views.orders_list),
-    re_path(r'^api/orders/(?P<pk>[0-9]+)$', views.orders_detail),
+    # re_path(r'^api/orders/$', views.orders_list),
+    # re_path(r'^api/orders/(?P<pk>[0-9]+)$', views.orders_detail),
     re_path(r"^$", render_react),
     re_path(r"^(?:.*)/?$", render_react),
 ]
