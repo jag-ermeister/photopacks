@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import StudentList from './StudentList'
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 import axios from 'axios'
 
@@ -34,4 +35,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default withAuthenticator(Home)
