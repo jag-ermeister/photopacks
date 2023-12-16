@@ -138,6 +138,15 @@ COGNITO_AUDIENCE = ( # This is the Client ID
 )
 COGNITO_USER_MODEL = "core.User"
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "django_cognito_jwt.JSONWebTokenAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
