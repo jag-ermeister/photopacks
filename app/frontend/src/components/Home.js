@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Container, Row } from 'reactstrap'
 import StudentList from './StudentList'
-import NewStudentModal from './NewStudentModal'
 
 import axios from 'axios'
 
@@ -26,21 +24,12 @@ class Home extends Component {
 
   render() {
     return (
-      <Container style={{ marginTop: '20px' }}>
-        <Row>
-          <Col>
-            <StudentList
-              students={this.state.students}
-              resetState={this.resetState}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <NewStudentModal create={true} resetState={this.resetState} />
-          </Col>
-        </Row>
-      </Container>
+      <div style={{ marginTop: '20px' }}>
+        <StudentList
+          students={this.state.students}
+          resetState={this.resetState}
+        />
+      </div>
     )
   }
 }

@@ -1,7 +1,12 @@
+/* eslint-env node */
+
 module.exports = {
   env: {
     browser: true,
     es2021: true,
+  },
+  globals: {
+    process: 'readonly',
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
   overrides: [],
@@ -10,5 +15,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'react/prop-types': 'off',
+  },
 }
