@@ -1,6 +1,5 @@
 import React from 'react'
-import { Accordion } from "flowbite-react";
-
+import { Accordion } from 'flowbite-react'
 
 function FAQ() {
   return (
