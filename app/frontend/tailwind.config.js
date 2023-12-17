@@ -1,9 +1,70 @@
-/* eslint-env node */
+import colors from "tailwindcss/colors";
+import flowbite from "flowbite/plugin";
 
-module.exports = {
-  content: ['node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
+export default {
+  content: [
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite-react/lib/**/*.{js,ts}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./index.html",
+    "./index.js",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: colors.blue,
+      },
+      fontFamily: {
+        body: [
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "system-ui",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "Liberation Mono",
+          "Courier New",
+          "monospace",
+        ],
+        sans: [
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "system-ui",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
+      },
+      maxWidth: {
+        "2xs": "16rem",
+        "8xl": "90rem",
+      },
+    },
   },
-  plugins: [require('flowbite/plugin')],
-}
+  plugins: [flowbite],
+};
