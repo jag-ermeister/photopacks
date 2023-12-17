@@ -32,6 +32,13 @@ def prompt_pack():
 
 
 @pytest.fixture
+def create_prompt_pack(db):
+    def make_prompt_pack(**kwargs):
+        return PromptPack.objects.create(**kwargs)
+    return make_prompt_pack
+
+
+@pytest.fixture
 def order(prompt_pack_user, prompt_pack):
     return Order.objects.create(
         user=prompt_pack_user,

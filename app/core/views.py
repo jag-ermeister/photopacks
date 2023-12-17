@@ -1,11 +1,11 @@
 import boto3
 import os
-from rest_framework.response import Response
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
-from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_cognito_jwt import JSONWebTokenAuthentication
-from rest_framework.permissions import IsAuthenticated
 from .models import Order
 from .serializers import *
 
@@ -85,3 +85,8 @@ def orders_detail(request, pk):
     elif request.method == 'DELETE':
         order.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class PromptPackListView(generics.ListAPIView):
+    queryset = PromptPack.objects.all()
+    serializer_class = PromptPackSerializer

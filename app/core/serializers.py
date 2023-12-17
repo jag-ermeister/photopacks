@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Order
+from .models import Order, PromptPack
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -21,3 +21,9 @@ class OrderSerializer(serializers.ModelSerializer):
         )
         order.save()
         return order
+
+
+class PromptPackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PromptPack
+        fields = ['id', 'name', 'created_date', 'modified_date']
