@@ -34,27 +34,37 @@ function LoggedOutNavBar({ signOut }) {
   }
 
   return (
-    <Navbar fluid rounded>
-      <Navbar.Brand href="https://flowbite-react.com">
-        <img
-          src="/favicon.svg"
-          className="mr-3 h-6 sm:h-9"
-          alt="Photo Packs Logo"
-        />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          PhotoPacks.ai
-        </span>
-      </Navbar.Brand>
-
-      <Navbar.Collapse>
-        <Navbar.Link href="/home">Home</Navbar.Link>
-        <Navbar.Link href="/">Landing</Navbar.Link>
-      </Navbar.Collapse>
-      <div className="flex md:order-2">
-        <Button onClick={handleSignOut}>Sign Out</Button>
-        <Navbar.Toggle />
-      </div>
-    </Navbar>
+    <header>
+      <Navbar fluid>
+        <Navbar.Brand href="https://flowbite.com">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            className="mr-3 h-6 sm:h-9"
+            alt="Flowbite Logo"
+          />
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            PhotoPacks.AI
+          </span>
+        </Navbar.Brand>
+        <div className="flex items-center gap-3 lg:order-2">
+          <Button color="info" onClick={handleSignOut}>
+            Sign Out
+          </Button>
+          <Navbar.Toggle theme={{ icon: 'h-5 w-5 shrink-0' }} />
+        </div>
+        <Navbar.Collapse
+          theme={{
+            list: 'mt-4 flex flex-col lg:mt-0 lg:flex-row lg:space-x-8 lg:text-base lg:font-medium',
+          }}
+          className="lg:order-1"
+        >
+          <Navbar.Link active href="/home" className="rounded-lg">
+            Home
+          </Navbar.Link>
+          <Navbar.Link href="/">Landing</Navbar.Link>
+        </Navbar.Collapse>
+      </Navbar>
+    </header>
   )
 }
 

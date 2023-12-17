@@ -12,7 +12,7 @@ function LoggedOutNavBar() {
             alt="Flowbite Logo"
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
+            PhotoPacks.AI
           </span>
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-2">
@@ -34,14 +34,10 @@ function LoggedOutNavBar() {
           }}
           className="lg:order-1"
         >
-          <Navbar.Link active href="#" className="rounded-lg">
+          <Navbar.Link active href="/home" className="rounded-lg">
             Home
           </Navbar.Link>
-          <Navbar.Link href="#">Company</Navbar.Link>
-          <Navbar.Link href="#">Marketplace</Navbar.Link>
-          <Navbar.Link href="#">Features</Navbar.Link>
-          <Navbar.Link href="#">Team</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
+          <Navbar.Link href="/">Landing</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </header>
