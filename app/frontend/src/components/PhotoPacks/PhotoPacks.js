@@ -1,5 +1,5 @@
 import React from 'react'
-import PhotoPack from "./PhotoPack";
+import PhotoPack from './PhotoPack'
 
 function PhotoPacks() {
   return (
