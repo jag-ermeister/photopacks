@@ -4,6 +4,10 @@ import Landing from './pages/Landing'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import withAuthenticatedLayout from './components/hoc/withAuthenticatedLayout'
 import withUnauthenticatedLayout from './components/hoc/withUnauthenticatedLayout'
+import BrowsePacks from './pages/BrowsePacks'
+import BrowseOrders from './pages/BrowseOrders'
+import PackDetails from './pages/PackDetails'
+import OrderDetails from './pages/OrderDetails'
 
 function App() {
   const LandingWithoutAuth = withUnauthenticatedLayout(Landing)
@@ -15,6 +19,10 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingWithoutAuth />} />
           <Route path="/home" element={<HomeWithAuth />} />
+          <Route path="/packs" element={<BrowsePacks />} />
+          <Route path="/packs/:id" element={<PackDetails />} />
+          <Route path="/orders" element={<BrowseOrders />} />
+          <Route path="/orders/:id" element={<OrderDetails />} />
         </Routes>
       </div>
     </Router>
