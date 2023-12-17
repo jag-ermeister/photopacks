@@ -3,7 +3,7 @@ import flowbite from 'flowbite/plugin'
 
 export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    './src/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './node_modules/flowbite-react/lib/**/*.{js,ts}',
     './pages/**/*.{js,ts,jsx,tsx}',
