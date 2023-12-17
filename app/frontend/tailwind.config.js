@@ -2,6 +2,7 @@ import colors from 'tailwindcss/colors'
 import flowbite from 'flowbite/plugin'
 
 export default {
+  darkMode: 'class',
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
