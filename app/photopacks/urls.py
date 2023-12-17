@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("health/", views.health_check, name="health_check"),
     path("api/", include("api.urls")),
+    path("app/", include("payment.urls")),
     re_path(r'^api/orders/$', core_views.orders_list),
     re_path(r'^api/orders/(?P<pk>[0-9]+)$', core_views.orders_detail),
     re_path(r"^$", render_react),
