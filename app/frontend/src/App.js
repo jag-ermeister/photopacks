@@ -1,21 +1,19 @@
 import React from 'react'
-import Home from './components/Home'
-import Landing from './components/Landing'
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import Landing from './pages/Landing'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import withAuthenticatedLayout from './components/hoc/withAuthenticatedLayout'
+import withUnauthenticatedLayout from './components/hoc/withUnauthenticatedLayout'
 
 function App() {
+  const LandingWithoutAuth = withUnauthenticatedLayout(Landing)
   const HomeWithAuth = withAuthenticatedLayout(Home)
 
   return (
     <Router>
       <div>
-        <nav>
-          <Link to="/">Landing</Link>
-          <Link to="/home">Home</Link>
-        </nav>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<LandingWithoutAuth />} />
           <Route path="/home" element={<HomeWithAuth />} />
         </Routes>
       </div>

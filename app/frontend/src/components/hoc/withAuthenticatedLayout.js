@@ -5,10 +5,7 @@ import {
   useTheme,
   View,
 } from '@aws-amplify/ui-react'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import Cookies from 'js-cookie'
-import { Button } from 'flowbite-react'
+import LoggedInNavBar from '../NavBar/LoggedInNavBar'
 
 const withAuthenticatedLayout = (Component) => {
   const components = {
@@ -28,7 +25,6 @@ const withAuthenticatedLayout = (Component) => {
   }
 
   const Layout = ({ ...props }) => {
-    let navigate = useNavigate()
     const { tokens } = useTheme()
 
     const theme = {
@@ -59,46 +55,12 @@ const withAuthenticatedLayout = (Component) => {
       },
     }
 
-    const deleteAllCookies = () => {
-      const allCookies = Cookies.get()
-      for (let cookieName in allCookies) {
-        if (allCookies.hasOwnProperty(cookieName)) {
-          Cookies.remove(cookieName)
-        }
-      }
-    }
-
     return (
       <ThemeProvider theme={theme}>
         <Authenticator socialProviders={['google']} components={components}>
           {({ signOut, user }) => (
             <div>
-              <nav>
-                <Link to="/">Landing</Link>
-                <Link to="/home">Home</Link>
-                <Button
-                  onClick={async (e) => {
-                    e.preventDefault()
-                    // using setTimeout here because of this issue: https://github.com/aws-amplify/amplify-js/issues/10198#issuecomment-1213384095
-                    setTimeout(async () => {
-                      try {
-                        console.log('signing out!')
-                        await signOut() // Wait for signOut to complete
-                        localStorage.clear()
-                        deleteAllCookies()
-                        console.log('sign out complete')
-                        await navigate('/') // Then navigate to home page
-                        console.log('navigate to home page')
-                      } catch (error) {
-                        console.error('Error signing out: ', error)
-                      }
-                    })
-                  }}
-                  className="border-pretty-green border-solid border-2 text-black bg-white hover:bg-light-green active:bg-dark-green rounded-xl px-4 py-2 font-ubuntu font-medium"
-                >
-                  Sign Out
-                </Button>
-              </nav>
+              <LoggedInNavBar signOut={signOut} />
               <Component user={user} {...props} />
             </div>
           )}
