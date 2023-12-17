@@ -8,6 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { Button } from 'flowbite-react'
 
 const withAuthenticatedLayout = (Component) => {
   const components = {
@@ -75,7 +76,7 @@ const withAuthenticatedLayout = (Component) => {
               <nav>
                 <Link to="/">Landing</Link>
                 <Link to="/home">Home</Link>
-                <button
+                <Button
                   onClick={async (e) => {
                     e.preventDefault()
                     // using setTimeout here because of this issue: https://github.com/aws-amplify/amplify-js/issues/10198#issuecomment-1213384095
@@ -96,7 +97,7 @@ const withAuthenticatedLayout = (Component) => {
                   className="border-pretty-green border-solid border-2 text-black bg-white hover:bg-light-green active:bg-dark-green rounded-xl px-4 py-2 font-ubuntu font-medium"
                 >
                   Sign Out
-                </button>
+                </Button>
               </nav>
               <Component user={user} {...props} />
             </div>

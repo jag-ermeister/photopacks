@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker'
 import '@aws-amplify/ui-react/styles.css'
 import { Amplify } from 'aws-amplify'
 import awsExports from './aws-exports'
+import 'flowbite'
 
 Amplify.configure(awsExports)
 

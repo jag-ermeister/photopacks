@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import OrderList from './OrderList'
 
-import BackendClient from "../client/BackendClient";
+import BackendClient from '../client/BackendClient'
 
 class Home extends Component {
   state = {
