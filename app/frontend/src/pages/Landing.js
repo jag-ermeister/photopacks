@@ -1,9 +1,10 @@
 import React from 'react'
+import Hero from "../components/Hero/Hero";
 
 function Landing() {
   return (
     <div>
-      <h1>Welcome to Photo Packs</h1>
+      <Hero/>
     </div>
   )
 }
