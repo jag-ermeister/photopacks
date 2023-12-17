@@ -175,6 +175,12 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
 
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "SITE_URL"
+    value     = var.site_url
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
     name      = "ORDER_IMAGES_S3_BUCKET_NAME"
     value     = var.order_images_s3_bucket_name
   }
@@ -201,5 +207,23 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "RUNPOD_API_KEY"
     value     = var.runpod_api_key
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "STRIPE_SECRET_API_KEY"
+    value     = var.stripe_secret_api_key
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "STRIPE_PHOTO_PACK_PRICE_ID"
+    value     = var.stripe_photo_pack_price_id
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "STRIPE_WEBHOOK_SECRET"
+    value     = var.stripe_webhook_secret
   }
 }

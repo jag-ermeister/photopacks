@@ -18,6 +18,10 @@ variable api_url {
   type = string
 }
 
+variable site_url {
+  type = string
+}
+
 variable service_name {
   type = string
 }
@@ -100,5 +104,17 @@ variable sdxl_batch_job_defn_name {
 }
 
 variable order_images_s3_bucket_name {
+  type = string
+}
+
+variable stripe_secret_api_key {
+  type = string
+}
+
+variable stripe_photo_pack_price_id {
+  type = string
+}
+
+variable stripe_webhook_secret {
   type = string
 }

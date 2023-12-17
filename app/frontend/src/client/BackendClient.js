@@ -9,7 +9,7 @@ export default class BackendClient {
   }
 
   static async getOrders() {
-    const response = await fetch(`${API_URL}/orders/`, {
+    const response = await fetch(`${API_URL}/api/orders/`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${await this.getAuthToken()}`,
@@ -21,5 +21,24 @@ export default class BackendClient {
       throw new Error('Failed to retrieve orders')
     }
     return await response.json()
+  }
+
+  static async checkout(product) {
+    const response = await fetch(`${API_URL}/app/checkout`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${await this.getAuthToken()}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        product,
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to create checkout session')
+    }
+    const data = await response.json()
+    window.location.href = data.redirect_url
   }
 }

@@ -38,9 +38,6 @@ def stripe_webhook(request):
 @api_view(["POST"])
 def create_checkout_session(request):
     try:
-        serializer = ProductSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
         stripe.api_key = os.environ["STRIPE_SECRET_API_KEY"]
         checkout_session = stripe.checkout.Session.create(
             line_items=[
@@ -50,8 +47,8 @@ def create_checkout_session(request):
                 },
             ],
             mode="payment",
-            success_url=f"{os.environ['SITE_URL']}?success=true",
-            cancel_url=f"{os.environ['SITE_URL']}?canceled=true",
+            success_url=f"{os.environ['SITE_URL']}/upload?success=true",
+            cancel_url=f"{os.environ['SITE_URL']}/upload?canceled=true",
             automatic_tax={"enabled": True},  # TODO: do I actually want this?
             metadata={
                 "user_id": request.user.id,
