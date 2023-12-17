@@ -1,5 +1,6 @@
 import React from 'react'
 import LoggedOutNavBar from '../NavBar/LoggedOutNavBar'
+import Footer from '../Footer/Footer'
 
 const withUnauthenticatedLayout = (Component) => {
   const WrappedComponent = ({ ...props }) => {
@@ -9,6 +10,7 @@ const withUnauthenticatedLayout = (Component) => {
         <div>
           <Component {...props} />
         </div>
+        <Footer />
       </div>
     )
   }
