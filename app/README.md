@@ -15,6 +15,7 @@
 - Update requirements.txt: `pip freeze > requirements.txt`
 - Create super user: `python manage.py createsuperuser`
 - Super user -> username: `jgustine`, password: `password`
+- Seed packs: `python manage.py seedpacks`
 
 ### React
 - Install dependencies: `npm install`

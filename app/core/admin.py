@@ -70,6 +70,13 @@ class OrderAdmin(admin.ModelAdmin):
         elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
             AiService().submit_job_to_batch(obj)
 
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+
+        if not obj:
+            form.base_fields['user'].initial = request.user
+        return form
+
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "prompt_pack":
             kwargs["queryset"] = PromptPack.objects.order_by('name')
