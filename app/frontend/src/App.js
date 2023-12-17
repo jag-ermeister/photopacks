@@ -9,6 +9,7 @@ import BrowseOrders from './pages/BrowseOrders'
 import PackDetails from './pages/PackDetails'
 import OrderDetails from './pages/OrderDetails'
 import Purchase from './pages/Purchase'
+import Upload from './pages/Upload'
 
 function App() {
   const LandingWithoutAuth = withUnauthenticatedLayout(Landing)
@@ -25,6 +26,7 @@ function App() {
           <Route path="/orders" element={<BrowseOrders />} />
           <Route path="/orders/:id" element={<OrderDetails />} />
           <Route path="/purchase" element={<Purchase />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </div>
     </Router>
