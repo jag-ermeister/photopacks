@@ -1,8 +1,17 @@
 import pytest
 from django.contrib.auth import get_user_model
 from core.models import Order, PromptPack
+from rest_framework.test import APIClient
+
 
 User = get_user_model()
+
+
+@pytest.fixture
+def authenticated_client(prompt_pack_user):
+    client = APIClient()
+    client.force_authenticate(user=prompt_pack_user)
+    return client
 
 
 @pytest.fixture

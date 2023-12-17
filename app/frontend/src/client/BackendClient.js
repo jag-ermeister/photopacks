@@ -41,4 +41,22 @@ export default class BackendClient {
     const data = await response.json()
     window.location.href = data.redirect_url
   }
+
+  static async createOrder(createModelPayload) {
+    const response = await fetch(`${API_URL}/app/orders/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${await this.getAuthToken()}`,
+      },
+      body: JSON.stringify(createModelPayload),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(`Error ${response.status}: ${JSON.stringify(errorData)}`)
+    }
+
+    return await response.json()
+  }
 }

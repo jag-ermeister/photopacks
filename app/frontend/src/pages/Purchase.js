@@ -4,6 +4,11 @@ import BackendClient from '../client/BackendClient'
 function Purchase() {
   const handleButtonClick = async () => {
     try {
+      await BackendClient.createOrder({
+        subject_name: 'test',
+        prompt_pack: '7264bc01-7364-48e7-a428-e29f7c61c1b7',
+        model_type: 'man',
+      })
       await BackendClient.checkout()
     } catch (error) {
       console.error(error)
