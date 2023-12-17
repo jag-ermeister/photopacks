@@ -32,3 +32,14 @@ def test_prompt_pack_list(authenticated_client, create_prompt_pack):
     data = json.loads(response.content)
     assert data[0]['name'] == pack1.name
     assert data[1]['name'] == pack2.name
+
+
+@pytest.mark.django_db
+def test_prompt_pack_detail(authenticated_client, prompt_pack):
+    url = reverse('prompt-pack-detail', kwargs={'id': prompt_pack.id})
+
+    response = authenticated_client.get(url)
+
+    assert response.status_code == 200
+    assert response.data['id'] == str(prompt_pack.id)
+    assert response.data['name'] == prompt_pack.name

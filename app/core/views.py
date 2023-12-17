@@ -90,3 +90,9 @@ def orders_detail(request, pk):
 class PromptPackListView(generics.ListAPIView):
     queryset = PromptPack.objects.all()
     serializer_class = PromptPackSerializer
+
+
+class PromptPackDetailView(generics.RetrieveAPIView):
+    queryset = PromptPack.objects.all()
+    serializer_class = PromptPackSerializer
+    lookup_field = 'id'
