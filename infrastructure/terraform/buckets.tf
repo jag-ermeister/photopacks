@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "order_images" {
   cors_rule {
     allowed_headers = ["*"]
     allowed_methods = ["GET", "PUT", "HEAD"]
-    allowed_origins = [var.local_backend_url]
+    allowed_origins = [var.site_url, var.local_backend_url]
   }
 }
 

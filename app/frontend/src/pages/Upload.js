@@ -20,6 +20,9 @@ function Upload() {
   const [isUploading, setIsUploading] = useState(false)
   const [uploadFailureMessage, setUploadFailureMessage] = useState('')
 
+  console.log(imagesError)
+  console.log(isUploading)
+
   const validateModelName = (model_name) => {
     if (!model_name) {
       setModelNameError('Model name cannot be empty')
@@ -63,6 +66,7 @@ function Upload() {
       const fileReader = new FileReader()
       fileReader.onload = (e) => {
         //setThumbnailUrl(e.target.result);
+        console.log(e)
       }
       fileReader.readAsDataURL(files[0])
     } else {
