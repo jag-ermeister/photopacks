@@ -100,7 +100,6 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
       Auth.currentAuthenticatedUser()
         .then((currentUser) => {
           setUser(currentUser)
-          console.log(currentUser)
           setIsLoading(false)
         })
         .catch(() => {
@@ -110,7 +109,6 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
     }, [])
 
     if (isLoading) {
-      console.log('asdfasdf')
       return <div>Loading...</div>
     }
 

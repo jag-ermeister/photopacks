@@ -3,7 +3,7 @@ import os
 import uuid
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_cognito_jwt import JSONWebTokenAuthentication
@@ -89,6 +89,7 @@ def orders_detail(request, pk):
 class PromptPackListView(generics.ListAPIView):
     queryset = PromptPack.objects.all()
     serializer_class = PromptPackSerializer
+    permission_classes = [AllowAny]
 
 
 class PromptPackDetailView(generics.RetrieveAPIView):

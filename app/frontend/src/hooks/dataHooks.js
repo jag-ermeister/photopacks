@@ -3,7 +3,7 @@ import BackendClient from '../client/BackendClient'
 
 function usePacks() {
   const [promptPacks, setPromptPacks] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {

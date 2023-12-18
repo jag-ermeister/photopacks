@@ -5,8 +5,7 @@ import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 function OrderDetails() {
   let { id } = useParams()
 
-  // You can now use the `id` variable to fetch data or perform other actions
-  console.log(id) // Logs the id from the URL
+  console.log(id)
 
   return (
     <div>

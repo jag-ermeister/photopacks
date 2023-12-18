@@ -4,7 +4,6 @@ import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 
 function LoggedInNavBar({ signOut }) {
-  console.log(signOut)
   let navigate = useNavigate()
 
   const deleteAllCookies = () => {
@@ -26,7 +25,7 @@ function LoggedInNavBar({ signOut }) {
         localStorage.clear()
         deleteAllCookies()
         console.log('sign out complete')
-        await navigate('/') // Then navigate to home page
+        await navigate('/')
         console.log('navigate to home page')
       } catch (error) {
         console.error('Error signing out: ', error)

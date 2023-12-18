@@ -62,10 +62,8 @@ export default class BackendClient {
 
   static async getPacks() {
     const response = await fetch(`${API_URL}/app/packs/`, {
-      // Update the endpoint as necessary
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${await this.getAuthToken()}`,
         'Content-Type': 'application/json',
       },
     })
@@ -77,9 +75,7 @@ export default class BackendClient {
   }
 
   static async getPack(id) {
-    console.log('requesting')
     const response = await fetch(`${API_URL}/app/packs/${id}/`, {
-      // Ensure the URL matches your endpoint
       method: 'GET',
       headers: {
         Authorization: `Bearer ${await this.getAuthToken()}`,

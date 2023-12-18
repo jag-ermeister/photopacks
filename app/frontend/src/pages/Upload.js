@@ -21,7 +21,6 @@ function Upload() {
   const modelTypes = ['male', 'female', 'dog', 'cat']
 
   const onSubmit = async (data) => {
-    console.log(data)
     setIsUploading(true)
     setUploadError('')
 
