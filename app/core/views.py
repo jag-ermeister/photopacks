@@ -53,10 +53,8 @@ class S3PresignedUrlView(APIView):
 @api_view(['GET', 'POST'])
 def orders_list(request):
     if request.method == 'GET':
-        data = Order.objects.all()
-
+        data = Order.objects.filter(user=request.user)
         serializer = OrderSerializer(data, context={'request': request}, many=True)
-
         return Response(serializer.data)
 
     elif request.method == 'POST':

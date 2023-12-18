@@ -11,6 +11,7 @@ User = get_user_model()
 def authenticated_client(prompt_pack_user):
     client = APIClient()
     client.force_authenticate(user=prompt_pack_user)
+    client.user = prompt_pack_user
     return client
 
 
