@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function OrderDetails() {
   let { id } = useParams()
@@ -14,4 +15,4 @@ function OrderDetails() {
   )
 }
 
-export default OrderDetails
+export default withAuthenticatedLayout(OrderDetails, false)

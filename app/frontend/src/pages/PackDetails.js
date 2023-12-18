@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { usePack } from '../hooks/dataHooks'
+import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function PackDetails() {
   let { id } = useParams()
@@ -24,4 +25,4 @@ function PackDetails() {
   )
 }
 
-export default PackDetails
+export default withAuthenticatedLayout(PackDetails, true)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Navbar } from 'flowbite-react'
 
-function LoggedOutNavBar() {
+function LoggedOutNavBar({ onLoginClick }) {
   return (
     <header>
       <Navbar fluid>
@@ -20,6 +20,7 @@ function LoggedOutNavBar() {
             color="gray"
             href="#"
             className="border-0 hover:bg-gray-50 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+            onClick={onLoginClick}
           >
             Log in
           </Button>

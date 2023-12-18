@@ -1,5 +1,6 @@
 import React from 'react'
 import { useOrders } from '../hooks/dataHooks'
+import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function BrowseOrders() {
   const { orders, isLoading, error } = useOrders()
@@ -21,4 +22,4 @@ function BrowseOrders() {
   )
 }
 
-export default BrowseOrders
+export default withAuthenticatedLayout(BrowseOrders, false)

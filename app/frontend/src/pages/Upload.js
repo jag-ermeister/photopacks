@@ -4,6 +4,7 @@ import { useForm, Controller } from 'react-hook-form'
 import BackendClient from '../client/BackendClient'
 import { Spinner } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
+import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function Upload() {
   let { id: orderId } = useParams()
@@ -168,4 +169,4 @@ function Upload() {
   )
 }
 
-export default Upload
+export default withAuthenticatedLayout(Upload, false)

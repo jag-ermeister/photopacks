@@ -2,6 +2,7 @@ import React from 'react'
 import BackendClient from '../client/BackendClient'
 import { useParams } from 'react-router-dom'
 import { usePack } from '../hooks/dataHooks'
+import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function Purchase() {
   let { id } = useParams()
@@ -38,4 +39,4 @@ function Purchase() {
   )
 }
 
-export default Purchase
+export default withAuthenticatedLayout(Purchase, false)

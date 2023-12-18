@@ -3,7 +3,8 @@ import { Button, Navbar } from 'flowbite-react'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 
-function LoggedOutNavBar({ signOut }) {
+function LoggedInNavBar({ signOut }) {
+  console.log(signOut)
   let navigate = useNavigate()
 
   const deleteAllCookies = () => {
@@ -68,4 +69,4 @@ function LoggedOutNavBar({ signOut }) {
   )
 }
 
-export default LoggedOutNavBar
+export default LoggedInNavBar

@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Authenticator,
   ThemeProvider,
   useTheme,
   View,
 } from '@aws-amplify/ui-react'
+import { Auth, Hub } from 'aws-amplify'
 import LoggedInNavBar from '../NavBar/LoggedInNavBar'
+import LoggedOutNavBar from '../NavBar/LoggedOutNavBar'
 
-const withAuthenticatedLayout = (Component) => {
+const withAuthenticatedLayout = (Component, bypassAuth = false) => {
   const components = {
     Header() {
       const { tokens } = useTheme()
@@ -25,6 +27,45 @@ const withAuthenticatedLayout = (Component) => {
   }
 
   const Layout = ({ ...props }) => {
+    const [user, setUser] = useState(null)
+    const [isAuthRequired, setIsAuthRequired] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+
+    const triggerLogin = () => {
+      setIsAuthRequired(true)
+    }
+
+    useEffect(() => {
+      let unsubscribe
+
+      if (!bypassAuth) {
+        const checkUser = async () => {
+          try {
+            await Auth.currentAuthenticatedUser()
+            setIsAuthRequired(false)
+          } catch (error) {
+            setIsAuthRequired(true)
+          }
+        }
+        checkUser()
+      }
+
+      return () => {
+        if (unsubscribe) unsubscribe()
+      }
+    }, [])
+
+    useEffect(() => {
+      const listener = (data) => {
+        if (data.payload.event === 'signOut') {
+          setIsAuthRequired(false)
+        }
+      }
+
+      Hub.listen('auth', listener)
+      return () => Hub.remove('auth', listener)
+    }, [])
+
     const { tokens } = useTheme()
 
     const theme = {
@@ -55,13 +96,53 @@ const withAuthenticatedLayout = (Component) => {
       },
     }
 
+    useEffect(() => {
+      Auth.currentAuthenticatedUser()
+        .then((currentUser) => {
+          setUser(currentUser)
+          console.log(currentUser)
+          setIsLoading(false)
+        })
+        .catch(() => {
+          setUser(null)
+          setIsLoading(false)
+        })
+    }, [])
+
+    if (isLoading) {
+      console.log('asdfasdf')
+      return <div>Loading...</div>
+    }
+
+    if (bypassAuth && !isAuthRequired) {
+      // Bypass authentication check for specific components
+      return (
+        <ThemeProvider theme={theme}>
+          <div>
+            {user ? (
+              <LoggedInNavBar
+                signOut={async () => {
+                  await Auth.signOut()
+                  window.location.href = '/'
+                }}
+              />
+            ) : (
+              <LoggedOutNavBar onLoginClick={triggerLogin} />
+            )}
+            <Component {...props} user={user} />
+          </div>
+        </ThemeProvider>
+      )
+    }
+
+    // Default behavior with authentication check
     return (
       <ThemeProvider theme={theme}>
         <Authenticator socialProviders={['google']} components={components}>
-          {({ signOut, user }) => (
+          {({ signOut }) => (
             <div>
               <LoggedInNavBar signOut={signOut} />
-              <Component user={user} {...props} />
+              <Component {...props} user={user} />
             </div>
           )}
         </Authenticator>

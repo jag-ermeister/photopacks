@@ -1,5 +1,6 @@
 import React from 'react'
 import PhotoPacks from '../components/PhotoPacks/PhotoPacks'
+import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function BrowsePacks() {
   return (
@@ -10,4 +11,4 @@ function BrowsePacks() {
   )
 }
 
-export default BrowsePacks
+export default withAuthenticatedLayout(BrowsePacks, true)
