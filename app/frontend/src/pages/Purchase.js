@@ -13,12 +13,12 @@ function Purchase() {
 
   const handleButtonClick = async () => {
     try {
-      await BackendClient.createOrder({
+      const order = await BackendClient.createOrder({
         subject_name: 'test',
         prompt_pack: id,
         model_type: 'man',
       })
-      await BackendClient.checkout()
+      await BackendClient.checkout(order.id)
     } catch (error) {
       console.error(error)
     }

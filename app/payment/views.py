@@ -6,6 +6,7 @@ from django.http import JsonResponse
 import stripe
 import os
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +39,12 @@ def stripe_webhook(request):
 @api_view(["POST"])
 def create_checkout_session(request):
     try:
+        data = json.loads(request.body)
+
+        order_id = data.get("order_id", None)
+        if not order_id:
+            return Response({"message": "order_id not provided"}, status=400)
+
         stripe.api_key = os.environ["STRIPE_SECRET_API_KEY"]
         checkout_session = stripe.checkout.Session.create(
             line_items=[
@@ -47,11 +54,12 @@ def create_checkout_session(request):
                 },
             ],
             mode="payment",
-            success_url=f"{os.environ['SITE_URL']}/upload?success=true",
-            cancel_url=f"{os.environ['SITE_URL']}/upload?canceled=true",
+            success_url=f"{os.environ['SITE_URL']}/upload/{order_id}?success=true",
+            cancel_url=f"{os.environ['SITE_URL']}/upload/{order_id}?canceled=true",
             automatic_tax={"enabled": True},  # TODO: do I actually want this?
             metadata={
                 "user_id": request.user.id,
+                "order_id": order_id,
             },
         )
     except Exception as e:

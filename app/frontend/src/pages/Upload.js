@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import BackendClient from '../client/BackendClient'
 import SelectPhotosButton from '../components/Buttons/SelectPhotoButton'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
+import { useParams } from 'react-router-dom'
 
 /*
 This page should allow the user to upload images and then they will be redirected to the orders page
  */
 function Upload() {
+  let { id: orderId } = useParams()
+
   const [selectedModelType, setSelectedModelType] = useState(null)
   const [selectedImages, setSelectedImages] = useState([])
   const [modelNameError, setModelNameError] = useState('')
@@ -88,7 +91,7 @@ function Upload() {
     setIsUploading(true)
     try {
       const presignedResponse = await BackendClient.getPresignedUrls(
-        model_name,
+        orderId,
         images
       )
       const uploadResponse = await BackendClient.uploadTrainingPhotos(

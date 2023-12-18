@@ -23,7 +23,7 @@ export default class BackendClient {
     return await response.json()
   }
 
-  static async checkout(product) {
+  static async checkout(orderId) {
     const response = await fetch(`${API_URL}/app/checkout`, {
       method: 'POST',
       headers: {
@@ -31,7 +31,7 @@ export default class BackendClient {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        product,
+        order_id: orderId,
       }),
     })
 
@@ -93,9 +93,9 @@ export default class BackendClient {
     return await response.json()
   }
 
-  static async getPresignedUrls(model_name, images) {
+  static async getPresignedUrls(order_id, images) {
     const formData = new FormData()
-    formData.append('model_name', model_name)
+    formData.append('order_id', order_id)
     for (let i = 0; i < images.length; i++) {
       formData.append('image_names', images[i].name)
     }
@@ -107,7 +107,7 @@ export default class BackendClient {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model_name,
+        order_id,
         image_names: Array.from(formData.getAll('image_names')),
       }),
     })
