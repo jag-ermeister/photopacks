@@ -5,7 +5,7 @@ function LoggedOutNavBar({ onLoginClick }) {
   return (
     <header>
       <Navbar fluid>
-        <Navbar.Brand href="https://flowbite.com">
+        <Navbar.Brand href="/">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="mr-3 h-6 sm:h-9"
@@ -35,10 +35,9 @@ function LoggedOutNavBar({ onLoginClick }) {
           }}
           className="lg:order-1"
         >
-          <Navbar.Link active href="/home" className="rounded-lg">
-            Home
+          <Navbar.Link active href="/packs" className="rounded-lg">
+            Packs
           </Navbar.Link>
-          <Navbar.Link href="/">Landing</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </header>

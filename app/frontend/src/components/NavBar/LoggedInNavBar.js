@@ -59,10 +59,12 @@ function LoggedInNavBar({ signOut }) {
           }}
           className="lg:order-1"
         >
-          <Navbar.Link active href="/home" className="rounded-lg">
-            Home
+          <Navbar.Link active href="/packs" className="rounded-lg">
+            Packs
           </Navbar.Link>
-          <Navbar.Link href="/">Landing</Navbar.Link>
+          <Navbar.Link active href="/orders" className="rounded-lg">
+            Orders
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </header>
