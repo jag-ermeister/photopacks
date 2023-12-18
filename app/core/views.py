@@ -1,5 +1,6 @@
 import boto3
 import os
+import uuid
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
@@ -44,7 +45,7 @@ class S3PresignedUrlView(APIView):
             image_urls[image_name] = presigned_url
 
         return Response(
-            {"model_id": model_id, "presigned_urls": image_urls},
+            {"order_id": order_id, "presigned_urls": image_urls},
             status=status.HTTP_201_CREATED,
         )
 

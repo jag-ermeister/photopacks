@@ -18,5 +18,6 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'no-prototype-builtins': 'off',
+    'no-unused-vars': 'warn',
   },
 }

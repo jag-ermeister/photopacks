@@ -92,4 +92,37 @@ export default class BackendClient {
     }
     return await response.json()
   }
+
+  static async getPresignedUrls(model_name, images) {
+    const formData = new FormData()
+    formData.append('model_name', model_name)
+    for (let i = 0; i < images.length; i++) {
+      formData.append('image_names', images[i].name)
+    }
+
+    const response = await fetch(`${API_URL}/app/presigned_urls`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${await this.getAuthToken()}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model_name,
+        image_names: Array.from(formData.getAll('image_names')),
+      }),
+    })
+    return await response.json()
+  }
+
+  static async uploadTrainingPhotos(response, model_name, images) {
+    const fetchPromises = Array.from(images).map(async (image) => {
+      const presigned_url = response.presigned_urls[image.name]
+      let blobData = new Blob([image], { type: 'image/jpeg' })
+      return await fetch(presigned_url, {
+        method: 'PUT',
+        body: blobData,
+      })
+    })
+    return await Promise.all(fetchPromises)
+  }
 }
