@@ -25,7 +25,7 @@ function App() {
           <Route path="/packs/:id" element={<PackDetails />} />
           <Route path="/orders" element={<BrowseOrders />} />
           <Route path="/orders/:id" element={<OrderDetails />} />
-          <Route path="/purchase" element={<Purchase />} />
+          <Route path="/purchase/:id" element={<Purchase />} />
           <Route path="/upload" element={<Upload />} />
         </Routes>
       </div>

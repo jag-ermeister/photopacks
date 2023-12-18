@@ -1,7 +1,13 @@
 import React from 'react'
-import PhotoPack from './PhotoPack'
+import PhotoPackCard from './PhotoPackCard'
+import { usePacks } from '../../hooks/dataHooks'
 
 function PhotoPacks() {
+  const { promptPacks, isLoading, error } = usePacks()
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error}</div>
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
@@ -15,12 +21,9 @@ function PhotoPacks() {
           </p>
         </div>
         <div className="space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
-          <PhotoPack />
-          <PhotoPack />
-          <PhotoPack />
-          <PhotoPack />
-          <PhotoPack />
-          <PhotoPack />
+          {promptPacks.map((pack) => (
+            <PhotoPackCard key={pack.id} id={pack.id} name={pack.name} />
+          ))}
         </div>
       </div>
     </section>
