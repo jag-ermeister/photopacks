@@ -1,10 +1,22 @@
-import React from 'react'
-import { Button, Navbar } from 'flowbite-react'
-import Cookies from 'js-cookie'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { Button, Navbar } from 'flowbite-react'
+import { Auth } from 'aws-amplify'
 
-function LoggedInNavBar({ signOut }) {
+function NavBar({ onLoginClick }) {
   let navigate = useNavigate()
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    Auth.currentAuthenticatedUser()
+      .then((currentUser) => {
+        setUser(currentUser)
+      })
+      .catch(() => {
+        setUser(null)
+      })
+  }, [])
 
   const deleteAllCookies = () => {
     const allCookies = Cookies.get()
@@ -21,7 +33,7 @@ function LoggedInNavBar({ signOut }) {
     setTimeout(async () => {
       try {
         console.log('signing out!')
-        await signOut() // Wait for signOut to complete
+        await Auth.signOut()
         localStorage.clear()
         deleteAllCookies()
         console.log('sign out complete')
@@ -47,10 +59,20 @@ function LoggedInNavBar({ signOut }) {
           </span>
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-2">
-          <Button color="info" onClick={handleSignOut}>
-            Sign Out
-          </Button>
-          <Navbar.Toggle theme={{ icon: 'h-5 w-5 shrink-0' }} />
+          {user ? (
+            <>
+              <Button color="info" onClick={handleSignOut}>
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button color="gray" onClick={onLoginClick}>
+                Log in
+              </Button>
+              <Button color="info">Get started</Button>
+            </>
+          )}
         </div>
         <Navbar.Collapse
           theme={{
@@ -61,13 +83,15 @@ function LoggedInNavBar({ signOut }) {
           <Navbar.Link active href="/packs" className="rounded-lg">
             Packs
           </Navbar.Link>
-          <Navbar.Link active href="/orders" className="rounded-lg">
-            Orders
-          </Navbar.Link>
+          {user && (
+            <Navbar.Link active href="/orders" className="rounded-lg">
+              Orders
+            </Navbar.Link>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </header>
   )
 }
 
-export default LoggedInNavBar
+export default NavBar
