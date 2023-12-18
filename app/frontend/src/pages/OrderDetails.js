@@ -5,11 +5,10 @@ import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 function OrderDetails() {
   let { id } = useParams()
 
-  console.log(id)
-
   return (
     <div>
       <h1>Order Details</h1>
+      <h2>Order ID: {id}</h2>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useOrders } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
+import { Link } from 'react-router-dom'
 
 function BrowseOrders() {
   const { orders, isLoading, error } = useOrders()
@@ -14,7 +15,9 @@ function BrowseOrders() {
       <ul>
         {orders.map((order) => (
           <li key={order.id}>
-            {order.id} - {order.subject_name} - {order.model_type}
+            <Link to={`/orders/${order.id}`}>
+              {order.id} - {order.subject_name} - {order.model_type}
+            </Link>
           </li>
         ))}
       </ul>
