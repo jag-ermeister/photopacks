@@ -8,6 +8,7 @@ import {
 import { Auth, Hub } from 'aws-amplify'
 import NavBar from '../NavBar/NavBar'
 import getTheme from './authenticationTheme'
+import Footer from '../Footer/Footer'
 
 const withAuthenticatedLayout = (Component, bypassAuth = false) => {
   const components = {
@@ -87,6 +88,7 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
           <div>
             <NavBar onLoginClick={triggerLogin} />
             <Component {...props} user={user} />
+            <Footer />
           </div>
         </ThemeProvider>
       )
@@ -100,6 +102,7 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
             <div>
               <NavBar onLoginClick={triggerLogin} />
               <Component {...props} user={user} />
+              <Footer />
             </div>
           )}
         </Authenticator>
