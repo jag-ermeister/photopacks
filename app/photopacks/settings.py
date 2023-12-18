@@ -44,7 +44,6 @@ CSRF_TRUSTED_ORIGINS = ["https://*.ngrok.io", "https://*.photopacks.ai", "https:
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -53,7 +52,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'corsheaders',
-    'core'
+    'core',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
