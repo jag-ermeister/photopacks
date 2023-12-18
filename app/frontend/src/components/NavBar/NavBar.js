@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { Button, Navbar } from 'flowbite-react'
 import { Auth } from 'aws-amplify'
+import {STATIC_ROOT} from "../../constants";
 
 function NavBar({ onLoginClick }) {
   let navigate = useNavigate()
@@ -45,18 +46,19 @@ function NavBar({ onLoginClick }) {
     })
   }
 
+  console.log(`${STATIC_ROOT}/title_logo.svg`)
   return (
     <header>
       <Navbar fluid>
         <Navbar.Brand href="/">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={`${STATIC_ROOT}/title_logo.svg`}
             className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
+            alt="PhotoPacks.AI Logo"
           />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            PhotoPacks.AI
-          </span>
+          {/*<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">*/}
+          {/*  PhotoPacks.AI*/}
+          {/*</span>*/}
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-2">
           {user ? (
