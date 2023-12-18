@@ -49,4 +49,29 @@ function usePack(id) {
   return { pack, isLoading, error }
 }
 
-export { usePacks, usePack }
+function useOrders() {
+  const [orders, setOrders] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    async function fetchOrders() {
+      setIsLoading(true)
+      try {
+        const data = await BackendClient.getOrders()
+        setOrders(data)
+        setError(null)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchOrders()
+  }, [])
+
+  return { orders, isLoading, error }
+}
+
+export { usePacks, usePack, useOrders }
