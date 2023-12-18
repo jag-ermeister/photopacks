@@ -1,250 +1,170 @@
 import React, { useState } from 'react'
-import BackendClient from '../client/BackendClient'
-import SelectPhotosButton from '../components/Buttons/SelectPhotoButton'
-import PrimaryButton from '../components/Buttons/PrimaryButton'
 import { useParams } from 'react-router-dom'
+import { useForm, Controller } from 'react-hook-form'
+import BackendClient from '../client/BackendClient'
+import { Spinner } from 'flowbite-react'
+import { useNavigate } from 'react-router-dom'
 
-/*
-This page should allow the user to upload images and then they will be redirected to the orders page
- */
 function Upload() {
   let { id: orderId } = useParams()
-
-  const [selectedModelType, setSelectedModelType] = useState(null)
-  const [selectedImages, setSelectedImages] = useState([])
-  const [modelNameError, setModelNameError] = useState('')
-  const [selectedImageCount, setSelectedImageCount] = useState(0)
-
-  const [imagesError, setImagesError] = useState('')
-  const [selectedModelTypeError, setSelectedModelTypeError] = useState(null)
   const [isUploading, setIsUploading] = useState(false)
-  const [uploadFailureMessage, setUploadFailureMessage] = useState('')
+  const [uploadError, setUploadError] = useState('')
+  const navigate = useNavigate()
 
-  console.log(imagesError)
-  console.log(isUploading)
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    setValue,
+  } = useForm()
+  const modelTypes = ['male', 'female', 'dog', 'cat']
 
-  const validateModelName = (model_name) => {
-    if (!model_name) {
-      setModelNameError('Model name cannot be empty')
-      return false
-    } else {
-      setModelNameError('')
-      return true
-    }
-  }
-
-  const validateImages = (images) => {
-    if (images.length !== 10) {
-      setImagesError('Please upload 10 images')
-      return false
-    } else {
-      setImagesError('')
-      return true
-    }
-  }
-
-  const validateModelType = (selectedModelType) => {
-    if (!selectedModelType) {
-      setSelectedModelTypeError(true)
-      return false
-    } else {
-      setImagesError(null)
-      return true
-    }
-  }
-  const handleModelNameChange = (event) => {
-    validateModelName(event.target.value)
-  }
-
-  const handleImagesChange = (event) => {
-    const files = event.target.files
-    validateImages(event.target.files)
-    setSelectedImages(files)
-    setSelectedImageCount(files.length)
-
-    if (files.length > 0) {
-      const fileReader = new FileReader()
-      fileReader.onload = (e) => {
-        //setThumbnailUrl(e.target.result);
-        console.log(e)
-      }
-      fileReader.readAsDataURL(files[0])
-    } else {
-      //setThumbnailUrl(null);
-    }
-  }
-
-  const handleSubmit = async (event) => {
-    console.log('!!!!!!!!!!!!!!!!!!')
-    event.preventDefault()
-
-    const model_name = event.target.elements.model_name.value
-    const images = selectedImages
-
-    const isModelNameValid = validateModelName(model_name)
-    console.log('model name is good')
-    const isImagesValid = validateImages(images)
-    console.log('images are good')
-    const isModelTypeValid = validateModelType(selectedModelType)
-    console.log('model type is good')
-
-    if (!isModelNameValid || !isImagesValid || !isModelTypeValid) {
-      return
-    }
-
+  const onSubmit = async (data) => {
+    console.log(data)
     setIsUploading(true)
+    setUploadError('')
+
     try {
       const presignedResponse = await BackendClient.getPresignedUrls(
         orderId,
-        images
+        data.files
       )
       const uploadResponse = await BackendClient.uploadTrainingPhotos(
         presignedResponse,
-        model_name,
-        images
+        data.modelName,
+        data.files
       )
       const allResponsesOk = uploadResponse.every((response) => response.ok)
 
       if (allResponsesOk) {
-        setUploadFailureMessage('')
+        navigate('/orders')
       } else {
-        setUploadFailureMessage('Failed to upload photos. Please try again.')
-        throw new Error('Failed to create model')
+        setUploadError('Some or all files failed to upload')
       }
     } catch (error) {
-      console.error(error)
+      console.error('Upload error:', error)
+      setUploadError('An error occurred during the upload.')
     } finally {
       setIsUploading(false)
     }
   }
 
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files)
+    setValue('files', files)
+  }
+
   return (
-    <div>
-      <h1>Upload</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-1 mt-8">
-          <div className="font-medium font-ubuntu">Name your model</div>
-          <label
-            className="font-regular font-montserrat font-light mb-2"
-            htmlFor="model_name"
-          >
-            <div>Enter the first name of your subject (e.g. Jeremy)</div>
-          </label>
-          <input
-            id="model_name"
-            type="text"
-            name="model_name"
-            className="w-full rounded-xl bg-light-purple px-4 py-4 border-0 font-montserrat font-light"
-            placeholder="Name of model"
-            onChange={handleModelNameChange}
-          />
-          {modelNameError && (
-            <div className="mt-1 text-red-600 font-montserrat font-light">
-              {modelNameError}
-            </div>
-          )}
-        </div>
-        <div>
-          <div className="font-medium font-ubuntu mt-8 mb-1">
-            Choose your model type
-          </div>
-          <div className="font-montserrat font-light">
-            It helps create better images
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              marginTop: '12px',
-            }}
-          >
-            <div
-              className="w-full px-2 py-2 text-center font-medium font-ubuntu rounded-xl cursor-pointer hover:bg-light-green mr-2"
-              style={{
-                background: selectedModelType === 'man' ? '#37FFB0' : '#fff',
-                color: selectedModelType === 'man' ? '#000' : '#000',
-                border: '2px solid #37FFB0',
-              }}
-              onClick={() => setSelectedModelType('man')}
-            >
-              Male
-            </div>
-
-            <div
-              className="w-full px-2 py-2 text-center font-medium font-ubuntu rounded-xl cursor-pointer mr-2"
-              style={{
-                background: selectedModelType === 'woman' ? '#37FFB0' : '#fff',
-                color: selectedModelType === 'woman' ? '#000' : '#000',
-                border: '2px solid #37FFB0',
-                textAlign: 'center',
-              }}
-              onClick={() => setSelectedModelType('woman')}
-            >
-              Female
-            </div>
-
-            <div
-              className="w-full px-2 py-2 text-center font-medium font-ubuntu rounded-xl cursor-pointer mr-2"
-              style={{
-                background: selectedModelType === 'dog' ? '#37FFB0' : '#fff',
-                color: selectedModelType === 'dog' ? '#000' : '#000',
-                border: '2px solid #37FFB0',
-                textAlign: 'center',
-              }}
-              onClick={() => setSelectedModelType('dog')}
-            >
-              Dog
-            </div>
-
-            <div
-              className="w-full px-2 py-2 text-center font-medium font-ubuntu rounded-xl cursor-pointer mr-2"
-              style={{
-                background: selectedModelType === 'cat' ? '#37FFB0' : '#fff',
-                color: selectedModelType === 'cat' ? '#000' : '#000',
-                border: '2px solid #37FFB0',
-                textAlign: 'center',
-              }}
-              onClick={() => setSelectedModelType('cat')}
-            >
-              Cat
-            </div>
-          </div>
-          {selectedModelTypeError && (
-            <div className="mt-2 text-red-600 font-montserrat font-light">
-              Must include a model type
-            </div>
-          )}
-        </div>
-
-        {uploadFailureMessage && (
-          <div className="bg-light-red font-montserrat font-light rounded-xl text-black text-center py-6 px-4 mt-6 flex items-center">
-            <img
-              className="mr-2"
-              height="16"
-              width="16"
-              src="/images/info_icon.png"
-              alt="go"
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="max-w-md mx-auto my-8 p-4"
+    >
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Model Name:
+        </label>
+        <Controller
+          name="modelName"
+          control={control}
+          rules={{ required: 'Model name is required.' }}
+          render={({ field }) => (
+            <input
+              {...field}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            {uploadFailureMessage}
+          )}
+        />
+        {errors.modelName && (
+          <div className="text-red-500 text-xs italic">
+            {errors.modelName.message}
           </div>
         )}
+      </div>
 
-        <SelectPhotosButton onChange={handleImagesChange} />
-        {selectedImageCount > 0 && (
-          <div className="font-medium font-ubuntu text-xl my-4 flex items-center">
-            {selectedImageCount} {selectedImageCount === 1 ? 'photo' : 'photos'}{' '}
-            selected
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Model Type:
+        </label>
+        <Controller
+          name="modelType"
+          control={control}
+          rules={{ required: 'Model type is required.' }}
+          render={({ field }) => (
+            <div className="flex flex-wrap gap-2">
+              {modelTypes.map((type) => (
+                <button
+                  key={type}
+                  type="button"
+                  className={`py-2 px-4 border rounded ${
+                    field.value === type
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-200'
+                  }`}
+                  onClick={() => field.onChange(type)}
+                >
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </button>
+              ))}
+            </div>
+          )}
+        />
+        {errors.modelType && (
+          <div className="text-red-500 text-xs italic">
+            {errors.modelType.message}
           </div>
         )}
+      </div>
 
-        <PrimaryButton type="submit" className="mt-6 w-full my-2 rounded-full">
-          <div className="font-ubuntu font-medium text-base leading-tight">
-            Create my model
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Upload Photos:
+        </label>
+        <Controller
+          name="files"
+          control={control}
+          rules={{
+            required: 'Please upload photos.',
+            validate: (files) =>
+              (files?.length >= 5 && files?.length <= 10) ||
+              'Please select between 5 and 10 photos.',
+          }}
+          render={() => (
+            <input
+              type="file"
+              multiple
+              onChange={handleFileChange}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-200 file:text-gray-700 hover:file:bg-gray-300"
+            />
+          )}
+        />
+        {errors.files && (
+          <div className="text-red-500 text-xs italic">
+            {errors.files.message}
           </div>
-          <div className="text-xs leading-tight">20 GPU min</div>
-        </PrimaryButton>
-      </form>
-    </div>
+        )}
+      </div>
+
+      <div className="flex justify-center items-center">
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          disabled={isUploading}
+        >
+          {isUploading ? (
+            <>
+              <Spinner />
+              <span className="ml-2">Uploading...</span>
+            </>
+          ) : (
+            'Submit'
+          )}
+        </button>
+      </div>
+
+      {uploadError && (
+        <div className="text-red-500 text-xs italic my-2">{uploadError}</div>
+      )}
+    </form>
   )
 }
 
