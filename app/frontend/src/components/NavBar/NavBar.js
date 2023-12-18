@@ -48,7 +48,7 @@ function NavBar({ onLoginClick }) {
   return (
     <header>
       <Navbar fluid>
-        <Navbar.Brand href="https://flowbite.com">
+        <Navbar.Brand href="/">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="mr-3 h-6 sm:h-9"

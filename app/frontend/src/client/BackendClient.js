@@ -78,7 +78,6 @@ export default class BackendClient {
     const response = await fetch(`${API_URL}/app/packs/${id}/`, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${await this.getAuthToken()}`,
         'Content-Type': 'application/json',
       },
     })

@@ -96,3 +96,4 @@ class PromptPackDetailView(generics.RetrieveAPIView):
     queryset = PromptPack.objects.all()
     serializer_class = PromptPackSerializer
     lookup_field = 'id'
+    permission_classes = [AllowAny]
