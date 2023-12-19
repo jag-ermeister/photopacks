@@ -49,6 +49,7 @@ RUN pip install huggingface-hub==0.15.1 --root-user-action=ignore
 RUN pip install invisible-watermark==0.2.0  --root-user-action=ignore
 RUN pip install open-clip-torch==2.20.0 --root-user-action=ignore
 RUN pip install protobuf==3.20.3 --root-user-action=ignore
+RUN pip install yolov5==7.0.10 --root-user-action=ignore
 
 
 ARG AWS_ACCESS_KEY_ID
@@ -72,6 +73,8 @@ RUN cd kohya_ss \
   && git checkout sd-scripts-dev \
   && git checkout 39bb319d4cac05d7da054ee726f86061e629574d \
   && pip install -e . --root-user-action=ignore
+
+COPY ./yolov5x.pt /app/yolov5x.pt
 
 WORKDIR /app/kohya_ss
 

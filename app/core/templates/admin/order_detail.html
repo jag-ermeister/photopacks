@@ -16,4 +16,15 @@
       {% endif %}
   </div>
 
+  <div class="model-image">
+    <h2>Cropped Images</h2>
+      {% if original.cropped_image_urls %}
+        {% for url in original.cropped_image_urls %}
+          <img src="{{ url }}" alt="Cropped Image" style="width:300px; height:auto;">
+        {% endfor %}
+      {% else %}
+        No cropped images available.
+      {% endif %}
+  </div>
+
 {% endblock %}

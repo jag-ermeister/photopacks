@@ -6,7 +6,7 @@ from io import BytesIO
 from zipfile import ZipFile
 
 
-def upload_images_to_s3(order_id, order_images_s3_bucket_name):
+def upload_images_to_s3(order_id, images_to_upload_directory, bucket_directory, order_images_s3_bucket_name):
     print("Uploading images...")
 
     s3 = boto3.client(
@@ -15,17 +15,16 @@ def upload_images_to_s3(order_id, order_images_s3_bucket_name):
         aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
     )
 
-    inference_results_path = "/app/kohya_ss/inference_results"
     image_urls = []
-    for file_name in os.listdir(inference_results_path):
+    for file_name in os.listdir(images_to_upload_directory):
         if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
-            image_path = os.path.join(inference_results_path, file_name)
+            image_path = os.path.join(images_to_upload_directory, file_name)
             with Image.open(image_path) as image:
                 buffer = BytesIO()
                 image.save(buffer, "jpeg")
                 buffer.seek(0)
                 unique_file_name = f"{str(uuid.uuid4())}.jpg"
-                key = f"{order_id}/inference_results/{unique_file_name}"
+                key = f"{order_id}/{bucket_directory}/{unique_file_name}"
                 s3.put_object(Body=buffer, Bucket=order_images_s3_bucket_name, Key=key)
                 image_url = (
                     f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"

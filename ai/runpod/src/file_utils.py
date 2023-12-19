@@ -2,7 +2,7 @@ import os
 import shutil
 
 
-def create_required_folders(model_type):
+def create_required_folders(model_type, download_training_image_dir):
     token_word = "ohwx"
     class_word = model_type
     training_repeats = 40
@@ -14,9 +14,12 @@ def create_required_folders(model_type):
     training_dir = f'{training_root_dir}/{training_repeats}_{token_word} {class_word}'
     reg_dir = f'{regularization_root_dir}/1_{class_word}'
 
-    # back to parent folder
+    if os.path.exists(download_training_image_dir) == False:
+      os.makedirs(download_training_image_dir)
+      print(f'{download_training_image_dir} Created.')
+    else:
+      print(f'{download_training_image_dir} already exists.')
 
-    import os
     if os.path.exists(training_dir) == False:
       os.makedirs(training_dir)
       print(f'{training_dir} Created.')

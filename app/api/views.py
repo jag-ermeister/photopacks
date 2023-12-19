@@ -15,11 +15,13 @@ def update_order(request, order_id):
 
     order = Order.objects.get(id=order_id)
     order.inference_image_urls = request_body["image_urls"]
+    order.cropped_image_urls = request_body["cropped_image_urls"]
     order.zip_file_url = request_body["zip_url"]
     order.is_success = True
     order.save()
 
     return HttpResponse()
+
 
 @csrf_exempt
 def runpod_webhook(request, order_id):
@@ -42,6 +44,7 @@ def runpod_webhook(request, order_id):
     else:
         # I think this might happen on a cancellation
         order.is_success = False
+        order.error_message = "Cancelled"
         order.save()
 
     return HttpResponse()

@@ -97,6 +97,7 @@ class Order(models.Model):
     error_message = models.TextField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
     training_image_urls = models.JSONField(blank=True, null=True)
+    cropped_image_urls = models.JSONField(blank=True, null=True)
     inference_image_urls = models.JSONField(blank=True, null=True)
     zip_file_url = models.URLField(null=True, blank=True)
     runpod_webhook_time = models.DateTimeField(null=True, blank=True)
