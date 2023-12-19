@@ -4,8 +4,8 @@ function Hero() {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="px-4 py-8 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white tracking-tight">
-          Your Dream Vacation
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-primary-700 md:text-5xl lg:text-6xl dark:text-white tracking-tight">
+          {"Create Your Perfect Picture With AI".toUpperCase()}
         </h1>
         <p className="mb-8 font-light text-gray-500 md:text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
           Here at Flowbite we compare a wide range of destinations, flights and
