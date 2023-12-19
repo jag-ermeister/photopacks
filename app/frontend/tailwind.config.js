@@ -12,9 +12,13 @@ export default {
     './index.js',
   ],
   theme: {
+    colors: {
+      cyan: colors.pink,
+      blue: colors.pink,
+    },
     extend: {
       colors: {
-        primary: colors.blue,
+        primary: colors.pink,
       },
       fontFamily: {
         body: [
