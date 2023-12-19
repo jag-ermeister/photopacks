@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import os
+from django.utils.log import DEFAULT_LOGGING
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -171,3 +172,5 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+DEFAULT_LOGGING["handlers"]["console"]["filters"] = []
