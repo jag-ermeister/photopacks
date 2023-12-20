@@ -32,7 +32,7 @@ class Kohya:
         cmd = [
             "accelerate",
             "launch",
-            "--num_cpu_threads_per_process=2",
+            "--num_cpu_threads_per_process=4",
             "./sdxl_train.py",
             "--pretrained_model_name_or_path=stabilityai/stable-diffusion-xl-base-1.0",
             "--train_data_dir=/app/kohya_ss/training_images",
@@ -47,7 +47,7 @@ class Kohya:
             "--max_data_loader_n_workers=0",
             "--learning_rate=1e-05",
             "--lr_scheduler=constant",
-            "--train_batch_size=2",
+            "--train_batch_size=1",
             f"--max_train_steps={num_steps}",
             "--mixed_precision=bf16",
             "--save_precision=bf16",
@@ -74,7 +74,7 @@ class Kohya:
             "--vae=/app/weights/sdxl_vae.safetensors",
             "--sample_sampler=euler_a",
             "--sample_prompts=prompts.txt",
-            "--sample_every_n_steps=8000"
+            "--sample_every_n_steps=10000"
         ]
 
         def stream_reader(stream, logger, is_stderr=False):
