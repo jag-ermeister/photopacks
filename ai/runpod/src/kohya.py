@@ -70,7 +70,7 @@ class Kohya:
             "--learning_rate_te1",
             "3e-6",
             "--learning_rate_te2",
-            "0.0",
+            "3e-6",
             "--vae=/app/weights/sdxl_vae.safetensors",
             "--sample_sampler=euler_a",
             "--sample_prompts=prompts.txt",
