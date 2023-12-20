@@ -3,6 +3,8 @@ import BackendClient from '../client/BackendClient'
 import { useParams } from 'react-router-dom'
 import { usePack } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
+import { Button } from 'flowbite-react'
+import {Badge} from 'flowbite-react'
 
 function Purchase() {
   let { id } = useParams()
@@ -26,16 +28,23 @@ function Purchase() {
   }
 
   return (
-    <div>
-      <h1>Purchase</h1>
-      <h2>{pack.name}</h2>
-      <button
-        onClick={handleButtonClick}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Buy (Go to Stripe)
-      </button>
-    </div>
+    <section className="bg-white dark:bg-gray-900">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
+          <div className="flex align-top justify-between w-full">
+              <div className="flex gap-6">
+                  <div className="leading-none text-6xl font-extrabold">YOUR ORDER</div>
+                  <Badge color="info" size="lg" className="mt-2">Poop</Badge>
+              </div>
+              <Button
+                  pill
+                  onClick={handleButtonClick}
+                  color="info"
+              >
+                  Buy (Go to Stripe)
+            </Button>
+          </div>
+      </div>
+    </section>
   )
 }
 
