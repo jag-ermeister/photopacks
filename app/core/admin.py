@@ -52,23 +52,24 @@ class OrderAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
 
-        # Process each file uploaded
-        images = request.FILES.getlist('training_images')
-        image_urls = []
-        for image in images:
-            image_url = AiService().upload_to_s3(image, obj.id)
-            image_urls.append(image_url)
+        if not change: # Only run this on initial model create
+            # Process each file uploaded
+            images = request.FILES.getlist('training_images')
+            image_urls = []
+            for image in images:
+                image_url = AiService().upload_to_s3(image, obj.id)
+                image_urls.append(image_url)
 
-        # Save the URLs to the model's field, consider appending if existing data
-        if image_urls:
-            existing_urls = obj.training_image_urls if obj.training_image_urls else []
-            obj.training_image_urls = existing_urls + image_urls
-            obj.save()
+            # Save the URLs to the model's field, consider appending if existing data
+            if image_urls:
+                existing_urls = obj.training_image_urls if obj.training_image_urls else []
+                obj.training_image_urls = existing_urls + image_urls
+                obj.save()
 
-        if obj.fulfillment_service == Order.FulfillmentService.RUNPOD.value:
-            AiService().submit_job_to_runpod(obj)
-        elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
-            AiService().submit_job_to_batch(obj)
+            if obj.fulfillment_service == Order.FulfillmentService.RUNPOD.value:
+                AiService().submit_job_to_runpod(obj)
+            elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
+                AiService().submit_job_to_batch(obj)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
