@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { Button, Navbar } from 'flowbite-react'
 import { Auth } from 'aws-amplify'
-import {STATIC_ROOT} from "../../constants";
+import { STATIC_ROOT } from '../../constants'
 
 function NavBar({ onLoginClick }) {
   let navigate = useNavigate()
@@ -72,7 +72,9 @@ function NavBar({ onLoginClick }) {
               <Button pill color="gray" onClick={onLoginClick}>
                 Log in
               </Button>
-              <Button pill color="info">Get started</Button>
+              <Button pill color="info">
+                Get started
+              </Button>
             </>
           )}
         </div>

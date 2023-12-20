@@ -1,5 +1,5 @@
 import React from 'react'
-import {STATIC_ROOT} from "../../constants";
+import { STATIC_ROOT } from '../../constants'
 
 function Footer() {
   return (
@@ -12,7 +12,11 @@ function Footer() {
                 href="#"
                 className="mb-2 flex items-center text-2xl font-semibold text-gray-900 dark:text-white sm:mb-0"
               >
-                <img src={`${STATIC_ROOT}/Logo.svg`} alt="PhotoPacks.AI logo" className="h-8" />
+                <img
+                  src={`${STATIC_ROOT}/Logo.svg`}
+                  alt="PhotoPacks.AI logo"
+                  className="h-8"
+                />
                 <span className="ml-4">PhotoPacks.AI</span>
               </a>
               <ul className="mt-5 flex space-x-6">

@@ -428,7 +428,10 @@ function Features() {
               </ul>
             </div>
             <div className="flex items-center gap-4">
-              <Button pill className="[&>span]:items-center [&>span]:px-5 [&>span]:py-2.5">
+              <Button
+                pill
+                className="[&>span]:items-center [&>span]:px-5 [&>span]:py-2.5"
+              >
                 Start building
                 <svg
                   aria-hidden="true"

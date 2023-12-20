@@ -3,29 +3,29 @@ import flowbite from 'flowbite/plugin'
 import flowbiteTypography from 'flowbite-typography'
 
 const primaryColors = {
-  '50': '#FBE3ED',
-  '100': '#F5BAD3',
-  '200': '#F08DB6',
-  '300': '#EB5E99',
-  '400': '#E73982',
-  '500': '#E5056B',
-  '600': '#D40567',
-  '700': '#EB5E99',
-  '800': '#A8065D',
-  '900': '#820653',
+  50: '#FBE3ED',
+  100: '#F5BAD3',
+  200: '#F08DB6',
+  300: '#EB5E99',
+  400: '#E73982',
+  500: '#E5056B',
+  600: '#D40567',
+  700: '#EB5E99',
+  800: '#A8065D',
+  900: '#820653',
 }
 
 const secondaryColors = {
-  '50': '#FFFEE6',
-  '100': '#FEFAC0',
-  '200': '#FDF695',
-  '300': '#FCF267',
-  '400': '#F9EE3E',
-  '500': '#F6E900',
-  '600': '#FFDD01',
-  '700': '#FFC400',
-  '800': '#FFAB00',
-  '900': '#FF7E00',
+  50: '#FFFEE6',
+  100: '#FEFAC0',
+  200: '#FDF695',
+  300: '#FCF267',
+  400: '#F9EE3E',
+  500: '#F6E900',
+  600: '#FFDD01',
+  700: '#FFC400',
+  800: '#FFAB00',
+  900: '#FF7E00',
 }
 
 export default {
@@ -51,7 +51,7 @@ export default {
     extend: {
       colors: {
         primary: primaryColors,
-        secondary: secondaryColors
+        secondary: secondaryColors,
       },
       fontFamily: {
         body: [
@@ -105,7 +105,7 @@ export default {
       },
       button: {
         borderRadius: '9999px',
-      }
+      },
     },
   },
   plugins: [flowbite, flowbiteTypography],
