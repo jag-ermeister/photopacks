@@ -84,7 +84,7 @@ function LearnHowItWorks() {
           <p className="text-center">
             <a
               href="#"
-              className="inline-flex items-center font-medium text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-400"
+              className="inline-flex items-center font-medium text-primary-600 hover:text-primary-700 dark:text-primary-700 dark:hover:text-primary-400"
             >
               Learn what makes Flowbite different&nbsp;
               <svg

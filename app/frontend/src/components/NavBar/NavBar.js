@@ -69,10 +69,10 @@ function NavBar({ onLoginClick }) {
             </>
           ) : (
             <>
-              <Button color="gray" onClick={onLoginClick}>
+              <Button pill color="gray" onClick={onLoginClick}>
                 Log in
               </Button>
-              <Button color="info">Get started</Button>
+              <Button pill color="info">Get started</Button>
             </>
           )}
         </div>

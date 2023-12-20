@@ -25,7 +25,7 @@ function FAQ() {
                     Check out this guide to learn how to&nbsp;
                     <a
                       href="#"
-                      className="text-primary-600 hover:underline dark:text-primary-500"
+                      className="text-primary-600 hover:underline dark:text-primary-700"
                     >
                       get started
                     </a>
@@ -48,7 +48,7 @@ function FAQ() {
                     Check out the&nbsp;
                     <a
                       href="#"
-                      className="text-primary-600 hover:underline dark:text-primary-500"
+                      className="text-primary-600 hover:underline dark:text-primary-700"
                     >
                       Figma design system
                     </a>
@@ -81,7 +81,7 @@ function FAQ() {
                     <li>
                       <a
                         href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-500"
+                        className="text-primary-600 hover:underline dark:text-primary-700"
                       >
                         Flowbite Pro
                       </a>
@@ -89,7 +89,7 @@ function FAQ() {
                     <li>
                       <a
                         href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-500"
+                        className="text-primary-600 hover:underline dark:text-primary-700"
                       >
                         Tailwind UI
                       </a>
@@ -121,7 +121,7 @@ function FAQ() {
                     <li>
                       <a
                         href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-500"
+                        className="text-primary-600 hover:underline dark:text-primary-700"
                       >
                         Flowbite Pro
                       </a>
@@ -129,7 +129,7 @@ function FAQ() {
                     <li>
                       <a
                         href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-500"
+                        className="text-primary-600 hover:underline dark:text-primary-700"
                       >
                         Tailwind UI
                       </a>
