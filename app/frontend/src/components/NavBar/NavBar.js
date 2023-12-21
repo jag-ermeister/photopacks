@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { Button, Navbar } from 'flowbite-react'
 import { Auth } from 'aws-amplify'
 import { STATIC_ROOT } from '../../constants'
 
 function NavBar({ onLoginClick }) {
-  let navigate = useNavigate()
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -38,7 +36,7 @@ function NavBar({ onLoginClick }) {
         localStorage.clear()
         deleteAllCookies()
         console.log('sign out complete')
-        await navigate('/')
+        window.location.href = '/';
         console.log('navigate to home page')
       } catch (error) {
         console.error('Error signing out: ', error)
