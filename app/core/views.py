@@ -67,12 +67,16 @@ def orders_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def orders_detail(request, pk):
     try:
         order = Order.objects.get(pk=pk)
     except Order.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = OrderSerializer(order, context={'request': request})
+        return Response(serializer.data)
 
     if request.method == 'PUT':
         serializer = OrderSerializer(order, data=request.data, context={'request': request})

@@ -23,6 +23,21 @@ export default class BackendClient {
     return await response.json()
   }
 
+  static async getOrder(id) {
+    const response = await fetch(`${API_URL}/app/orders/${id}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${await this.getAuthToken()}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to retrieve orders')
+    }
+    return await response.json()
+  }
+
   static async checkout(orderId) {
     const response = await fetch(`${API_URL}/app/checkout`, {
       method: 'POST',

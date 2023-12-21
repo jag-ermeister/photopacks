@@ -5,11 +5,21 @@ from .models import Order, PromptPack
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'user', 'subject_name', 'model_type', 'prompt_pack', 'is_processing', 'is_success', 'created_date', 'modified_date')
+        fields = (
+            'id',
+            'user',
+            'subject_name',
+            'model_type',
+            'prompt_pack',
+            'is_processing',
+            'is_success',
+            'inference_image_urls',
+            'created_date',
+            'modified_date'
+        )
         extra_kwargs = {'user': {'read_only': True}}
 
     def create(self, validated_data):
-
         user = self.context['request'].user
         order = Order(
             user=user,

@@ -74,4 +74,29 @@ function useOrders() {
   return { orders, isLoading, error }
 }
 
-export { usePacks, usePack, useOrders }
+function useOrder(id) {
+  const [order, setOrder] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    async function fetchOrder() {
+      setIsLoading(true)
+      try {
+        const data = await BackendClient.getOrder(id)
+        setOrder(data)
+        setError(null)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchOrder()
+  }, [])
+
+  return { order, isLoading, error }
+}
+
+export { usePacks, usePack, useOrders, useOrder }
