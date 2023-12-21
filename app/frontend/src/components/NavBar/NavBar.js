@@ -36,7 +36,7 @@ function NavBar({ onLoginClick }) {
         localStorage.clear()
         deleteAllCookies()
         console.log('sign out complete')
-        window.location.href = '/';
+        window.location.href = '/'
         console.log('navigate to home page')
       } catch (error) {
         console.error('Error signing out: ', error)

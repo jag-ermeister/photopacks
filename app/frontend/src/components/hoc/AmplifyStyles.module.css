@@ -1,7 +1,9 @@
 .amplifyScoped :global(.amplify-button--primary) {
-    background-color: var(--amplify-components-button-primary-background-color) !important;
+  background-color: var(
+    --amplify-components-button-primary-background-color
+  ) !important;
 }
 
 .amplifyScoped :global(.amplify-button--primary):hover {
-    background-color: #A8065D !important;
+  background-color: #a8065d !important;
 }

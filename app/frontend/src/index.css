@@ -14,5 +14,8 @@ So that the amplify font styles do not overwrite my own
  */
 html,
 [data-amplify-theme] {
-  font-family: 'Sora','ui-sans-serif','system-ui','-apple-system','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+  font-family: 'Sora', 'ui-sans-serif', 'system-ui', '-apple-system',
+    'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans',
+    'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 }

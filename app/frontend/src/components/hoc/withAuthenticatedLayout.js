@@ -9,8 +9,8 @@ import { Auth, Hub } from 'aws-amplify'
 import NavBar from '../NavBar/NavBar'
 import getTheme from './authenticationTheme'
 import Footer from '../Footer/Footer'
-import {STATIC_ROOT} from "../../constants";
-import styles from './AmplifyStyles.module.css';
+import { STATIC_ROOT } from '../../constants'
+import styles from './AmplifyStyles.module.css'
 
 const withAuthenticatedLayout = (Component, bypassAuth = false) => {
   const components = {
@@ -99,7 +99,11 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
     // Default behavior with authentication check
     return (
       <ThemeProvider theme={theme}>
-        <Authenticator socialProviders={['google']} components={components} className={styles.amplifyScoped} >
+        <Authenticator
+          socialProviders={['google']}
+          components={components}
+          className={styles.amplifyScoped}
+        >
           {() => (
             <div>
               <NavBar onLoginClick={triggerLogin} />
