@@ -43,11 +43,6 @@ export default {
       cyan: primaryColors,
       blue: primaryColors,
     },
-    // fontFamily: {
-    //     body: [
-    //         'Sora'
-    //     ]
-    // },
     extend: {
       colors: {
         primary: primaryColors,
@@ -102,9 +97,6 @@ export default {
       maxWidth: {
         '2xs': '16rem',
         '8xl': '90rem',
-      },
-      button: {
-        borderRadius: '9999px',
       },
     },
   },
