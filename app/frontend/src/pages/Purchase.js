@@ -12,6 +12,8 @@ function Purchase() {
 
   const { pack, isLoading, error } = usePack(id)
 
+  console.log(pack)
+
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
 
