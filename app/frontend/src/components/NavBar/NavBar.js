@@ -46,7 +46,6 @@ function NavBar({ onLoginClick }) {
     })
   }
 
-  console.log(`${STATIC_ROOT}/title_logo.svg`)
   return (
     <header>
       <Navbar fluid>
