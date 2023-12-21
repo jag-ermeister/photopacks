@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { usePack } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { Button, Badge, Card, Alert } from 'flowbite-react'
-import { HiInformationCircle } from 'react-icons/hi'
+import { HiInformationCircle, HiOutlineArrowRight } from 'react-icons/hi'
 import PhotoPacks from '../components/PhotoPacks/PhotoPacks'
 
 function Purchase() {
@@ -44,7 +44,8 @@ function Purchase() {
               </Badge>
             </div>
             <Button pill onClick={handleButtonClick} color="info">
-              Buy (Go to Stripe)
+              Proceed to payment
+              <HiOutlineArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
 
