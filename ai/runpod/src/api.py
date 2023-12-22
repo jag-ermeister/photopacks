@@ -8,6 +8,7 @@ def notify_backend(order_id, inference_image_urls, cropped_image_urls, zip_url, 
         "image_urls": inference_image_urls,
         "cropped_image_urls": cropped_image_urls,
         "zip_url": zip_url,
+        "prompts": prompts
     }
 
     print("Sending inference results to API...")

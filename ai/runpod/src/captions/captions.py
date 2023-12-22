@@ -1,6 +1,7 @@
 import vertexai
 from vertexai.vision_models import ImageTextModel, Image
 from google.oauth2 import service_account
+from breed_list import dog_breed_list
 import logging
 import os
 
@@ -35,9 +36,23 @@ def analyze_captions(captions):
     single_color_count = 0
     color_found = ""
     for caption in captions:
-        words = caption.split()
+        words = caption.lower().split()
         for i in range(len(words)):
+            breed_found = False
+
+            # Check if the current word is "dog"
             if words[i] == "dog":
+                breed_found = True
+
+            # Check for breed names of varying lengths
+            if not breed_found:
+                for j in range(i, min(i + 5, len(words))):  # Adjust '5' to the max length of breed name
+                    breed_candidate = ' '.join(words[i:j + 1]).strip()
+                    if breed_candidate in dog_breed_list:
+                        breed_found = True
+                        break  # Break if a breed is found
+
+            if breed_found:
                 # Check if the preceding word is a color
                 if i > 0 and words[i - 1] in color_words:
                     # Check for single or multiple colors
@@ -46,9 +61,9 @@ def analyze_captions(captions):
                     else:
                         single_color_count += 1
                         color_found = words[i - 1]
+                    break  # Break after a color check
                 else:
                     return ""  # No color found
-                break  # Break after checking each caption for the word "dog"
 
     # Decide based on the count
     if single_color_count >= 4:
