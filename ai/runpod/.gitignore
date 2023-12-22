@@ -1,3 +1,4 @@
 regularization_images/
 yolov5x.pt
 mimic-dev-391917-f58102d4a50c.json
+__pycache__/

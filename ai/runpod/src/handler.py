@@ -6,7 +6,7 @@ from s3 import upload_images_to_s3, download_training_photos, upload_zip_to_s3
 from api import notify_backend
 from cropper import Cropper
 from modify_prompts import modify_prompts
-from captions import get_adjective
+from captions.captions import get_adjective
 
 
 def handler(job):
@@ -50,7 +50,7 @@ def handler(job):
         order_images_s3_bucket_name
     )
     zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name)
-    notify_backend(order_id, inference_image_urls, cropped_image_urls, zip_url, results_url)
+    notify_backend(order_id, inference_image_urls, cropped_image_urls, zip_url, results_url, prompts)
 
     return f"Hello, {order_id}, you rock!"
 
