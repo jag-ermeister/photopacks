@@ -36,4 +36,4 @@ class OrderSerializer(serializers.ModelSerializer):
 class PromptPackSerializer(serializers.ModelSerializer):
     class Meta:
         model = PromptPack
-        fields = ['id', 'name', 'created_date', 'modified_date']
+        fields = ['id', 'display_name', 'preview_image', 'pack_type', 'created_date', 'modified_date']

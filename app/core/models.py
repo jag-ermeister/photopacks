@@ -36,14 +36,30 @@ class User(AbstractUser):
 
 
 class PromptPack(models.Model):
+    class PackType(Enum):
+        MAN = "man"
+        WOMAN = "woman"
+        DOG = "dog"
+        CAT = "cat"
+
+        def __str__(self):
+            return self.value
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=240, unique=True)
+    internal_name = models.CharField(max_length=240, unique=True)
+    display_name = models.CharField(max_length=240, default="")
+    preview_image = models.CharField(max_length=240, default="")
+    pack_type = models.CharField(
+        max_length=20,
+        choices=[(item.value, item.name) for item in PackType],
+        default=PackType.MAN.value
+    )
     prompts = models.JSONField()
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.internal_name
 
 
 class Order(models.Model):

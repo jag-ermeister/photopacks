@@ -101,9 +101,18 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 class PromptPackAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('id', 'internal_name')
     ordering = ('-created_date',)
     exclude = ('prompts',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
     def pretty_prompts(self, obj):
         pretty_json = json.dumps(obj.prompts, indent=4, sort_keys=True)
@@ -117,7 +126,7 @@ class PromptPackAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return self.readonly_fields + ('name', 'pretty_prompts',)
+            return self.readonly_fields + ('pretty_prompts',)
         return self.readonly_fields
 
 

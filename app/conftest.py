@@ -27,7 +27,10 @@ def prompt_pack_user():
 @pytest.fixture
 def prompt_pack():
     return PromptPack.objects.create(
-        name="Test Prompt Pack",
+        internal_name="Test Prompt Pack",
+        display_name="Prompt Pack",
+        preview_image="image.jpeg",
+        pack_type=PromptPack.PackType.MAN.value,
         prompts=["prompt 1", "prompt 2"]
     )
 

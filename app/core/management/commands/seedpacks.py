@@ -10,37 +10,98 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         PromptPack.objects.update_or_create(
-            name="Holiday Pack 1",
+            internal_name="Holiday 1 - Dog",
+            display_name="Christmas Dog",
+            pack_type=PromptPack.PackType.DOG.value,
+            preview_image="christmas_dog.png",
             defaults={'prompts': holiday_pack_1}
         )
 
         PromptPack.objects.update_or_create(
-            name="Holiday Pack 2",
+            internal_name="Holiday 2 - Dog",
+            display_name="Christmas Dog",
+            pack_type=PromptPack.PackType.DOG.value,
+            preview_image="christmas_dog.png",
             defaults={'prompts': holiday_pack_2}
         )
 
         PromptPack.objects.update_or_create(
-            name="Holiday Pack 3",
+            internal_name="Holiday 3 - Dog",
+            display_name="Christmas Dog",
+            pack_type=PromptPack.PackType.DOG.value,
+            preview_image="christmas_dog.png",
             defaults={'prompts': holiday_pack_3}
         )
 
         PromptPack.objects.update_or_create(
-            name="Sci-Fi Pack 1",
+            internal_name="Holiday 1 - Cat",
+            display_name="Christmas Cat",
+            pack_type=PromptPack.PackType.CAT.value,
+            preview_image="christmas_cat.png",
+            defaults={'prompts': holiday_pack_1}
+        )
+
+        PromptPack.objects.update_or_create(
+            internal_name="Holiday 2 - Cat",
+            display_name="Christmas Cat",
+            pack_type=PromptPack.PackType.CAT.value,
+            preview_image="christmas_cat.png",
+            defaults={'prompts': holiday_pack_2}
+        )
+
+        PromptPack.objects.update_or_create(
+            internal_name="Holiday 3 - Cat",
+            display_name="Christmas Cat",
+            pack_type=PromptPack.PackType.CAT.value,
+            preview_image="christmas_cat.png",
+            defaults={'prompts': holiday_pack_3}
+        )
+
+        PromptPack.objects.update_or_create(
+            internal_name="Sci-Fi - Man",
+            display_name="Sci Fi",
+            pack_type=PromptPack.PackType.MAN.value,
+            preview_image="scifi_man.jpeg",
             defaults={'prompts': scifi_pack_1}
         )
 
         PromptPack.objects.update_or_create(
-            name="Fantasy Pack 1",
+            internal_name="Sci-Fi - Woman",
+            display_name="Sci Fi",
+            pack_type=PromptPack.PackType.WOMAN.value,
+            preview_image="scifi_woman.jpeg",
+            defaults={'prompts': scifi_pack_1}
+        )
+
+        PromptPack.objects.update_or_create(
+            internal_name="Fantasy - Man",
+            display_name="Fantasy",
+            pack_type=PromptPack.PackType.MAN.value,
+            preview_image="fantasy_man.jpeg",
             defaults={'prompts': fantasy_pack_1}
         )
 
         PromptPack.objects.update_or_create(
-            name="Photoshoot Pack 1",
+            internal_name="Photoshoot - Woman",
+            display_name="Photoshoot",
+            pack_type=PromptPack.PackType.WOMAN.value,
+            preview_image="photoshoot_woman.jpeg",
             defaults={'prompts': photoshoot_pack_1}
         )
 
         PromptPack.objects.update_or_create(
-            name="Abstract Pack 1",
+            internal_name="Abstract - Man",
+            display_name="Abstract",
+            pack_type=PromptPack.PackType.MAN.value,
+            preview_image="abstract_man.jpeg",
+            defaults={'prompts': abstract_pack_1}
+        )
+
+        PromptPack.objects.update_or_create(
+            internal_name="Abstract - Woman",
+            display_name="Abstract",
+            pack_type=PromptPack.PackType.WOMAN.value,
+            preview_image="abstract_woman.jpeg",
             defaults={'prompts': abstract_pack_1}
         )
 
