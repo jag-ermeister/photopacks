@@ -6,6 +6,8 @@ WORKDIR /app
 
 COPY ./regularization_images /app/regularization_images
 COPY ./weights /app/weights
+COPY ./yolov5x.pt /app/yolov5x.pt
+COPY ./mimic-dev-391917-f58102d4a50c.json /app/mimic-dev-391917-f58102d4a50c.json
 
 #--- Optional: System dependencies ---
 ENV DEBIAN_FRONTEND=noninteractive
@@ -50,6 +52,9 @@ RUN pip install invisible-watermark==0.2.0  --root-user-action=ignore
 RUN pip install open-clip-torch==2.20.0 --root-user-action=ignore
 RUN pip install protobuf==3.20.3 --root-user-action=ignore
 RUN pip install yolov5==7.0.10 --root-user-action=ignore
+# These two are for image captioning
+RUN pip install google-cloud-aiplatform==1.38.1 --root-user-action=ignore
+RUN pip install google-auth==2.25.2 --root-user-action=ignore
 
 
 ARG AWS_ACCESS_KEY_ID
@@ -73,8 +78,6 @@ RUN cd kohya_ss \
   && git checkout sd-scripts-dev \
   && git checkout 39bb319d4cac05d7da054ee726f86061e629574d \
   && pip install -e . --root-user-action=ignore
-
-COPY ./yolov5x.pt /app/yolov5x.pt
 
 WORKDIR /app/kohya_ss
 

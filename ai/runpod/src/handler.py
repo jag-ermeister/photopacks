@@ -5,6 +5,8 @@ from kohya import Kohya
 from s3 import upload_images_to_s3, download_training_photos, upload_zip_to_s3
 from api import notify_backend
 from cropper import Cropper
+from modify_prompts import modify_prompts
+from captions import get_adjective
 
 
 def handler(job):
@@ -21,11 +23,14 @@ def handler(job):
     print(job_input)
 
     print_gpu_memory()
+
     training_download_directory = '/app/downloaded_training_images'
     training_dir = create_required_folders(model_type, training_download_directory)
     download_training_photos(order_id, training_download_directory, order_images_s3_bucket_name)
     Cropper().auto_zoom(training_download_directory, training_dir, model_type)
     move_image_files(model_type)
+    color = get_adjective(training_dir, model_type)
+    prompts = modify_prompts(prompts, color, model_type)
 
     kohya = Kohya()
     kohya.enable_accelerator()

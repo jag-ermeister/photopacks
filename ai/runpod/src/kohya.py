@@ -105,14 +105,13 @@ class Kohya:
     def execute_inference(self, model_type, prompts, images_per_prompt):
         logger.info("Executing inference...")
         for prompt in prompts:
-            modified_prompt = prompt.replace("MODELNAME", f"ohwx {model_type}")
             cmd = [
                 "python",
                 "sdxl_gen_img.py",
                 "--ckpt",
                 "/app/kohya_ss/trained_models/24GB_Best.safetensors",
                 "--prompt",
-                f"{modified_prompt}",
+                f"{prompt}",
                 "--images_per_prompt",
                 f"{images_per_prompt}",
                 "--outdir",
