@@ -21,7 +21,7 @@ function PhotoPacks() {
         </div>
         <div className="space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
           {promptPacks.map((pack) => (
-            <PhotoPackCard key={pack.id} id={pack.id} name={pack.name} />
+            <PhotoPackCard key={pack.id} pack={pack} />
           ))}
         </div>
       </div>

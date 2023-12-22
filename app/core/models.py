@@ -37,10 +37,10 @@ class User(AbstractUser):
 
 class PromptPack(models.Model):
     class PackType(Enum):
-        MAN = "man"
-        WOMAN = "woman"
-        DOG = "dog"
-        CAT = "cat"
+        MAN = "Man"
+        WOMAN = "Woman"
+        DOG = "Dog"
+        CAT = "Cat"
 
         def __str__(self):
             return self.value
