@@ -1,7 +1,7 @@
 import vertexai
 from vertexai.vision_models import ImageTextModel, Image
 from google.oauth2 import service_account
-from breed_list import dog_breed_list
+from .breed_list import dog_breed_list
 import logging
 import os
 
@@ -30,12 +30,26 @@ def get_image_caption(image_path):
     return captions[0]
 
 
+def strip_breed_from_captions(captions):
+    modified_captions = []
+    for caption in captions:
+        for breed in dog_breed_list:
+            # Check if the breed is in the caption
+            if breed.lower() in caption.lower():
+                # Replace the breed with 'dog'
+                modified_captions.append(caption.replace(breed, "dog"))
+            else:
+                modified_captions.append(caption)
+    return modified_captions
+
+
 def analyze_captions(captions):
+    modified_captions = strip_breed_from_captions(captions)
     color_words = {'white', 'black', 'brown', 'gray', 'tan', 'golden'}
 
     single_color_count = 0
     color_found = ""
-    for caption in captions:
+    for caption in modified_captions:
         words = caption.split()
         for i in range(len(words)):
             if words[i] == "dog":
