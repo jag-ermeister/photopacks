@@ -30,6 +30,33 @@ def get_image_caption(image_path):
     return captions[0]
 
 
+def get_captions(training_image_dir):
+    files = os.listdir(training_image_dir)
+
+    captions = []
+    last_exception = None
+    for image_file in files:
+        if len(captions) >= 5:
+            break
+
+        image_path = os.path.join(training_image_dir, image_file)
+        try:
+            caption = get_image_caption(image_path)
+            captions.append(caption)
+        except Exception as e:
+            logger.info('An error occurred while trying to generate a caption. We will continue.')
+            logger.info(e)
+            last_exception = e
+
+    if len(captions) < 5:
+        error_message = "We could not retrieve at least 5 captions."
+        if last_exception is not None:
+            error_message += f" Last error: {last_exception}"
+        raise Exception(error_message)
+
+    return captions
+
+
 def strip_breed_from_captions(captions):
     modified_captions = []
     for caption in captions:
@@ -73,19 +100,14 @@ def analyze_captions(captions):
 def get_adjective(training_image_dir, model_type):
     if model_type == "dog":
         logger.info("This is a model of a dog. We will attempt to identify solid colors...")
-        files = os.listdir(training_image_dir)
-        first_five_images = files[:5]
 
         try:
-            captions = []
-            for image_file in first_five_images:
-                image_path = os.path.join(training_image_dir, image_file)
-                caption = get_image_caption(image_path)
-                captions.append(caption)
+            captions = get_captions(training_image_dir)
             color = analyze_captions(captions)
             return color
         except Exception as e:
             logger.info('An error occurred while trying to identify the color of the dog.')
+            logger.info(e)
             raise e
     else:
         return ""
