@@ -80,7 +80,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "prompt_pack":
-            kwargs["queryset"] = PromptPack.objects.order_by('name')
+            kwargs["queryset"] = PromptPack.objects.order_by('internal_name')
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
