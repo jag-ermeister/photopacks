@@ -27,7 +27,6 @@ function PhotoPackCard({ pack }) {
           src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
           alt="product image"
         />
-
         <div className="absolute bottom-0 left-0 mb-4 ml-2">
           <Badge color="gray" size="sm" className="text-xs font-semibold">
             {pack.pack_type}
