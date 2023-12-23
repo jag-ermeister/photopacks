@@ -6,25 +6,37 @@ import { useNavigate } from 'react-router-dom'
 
 function PhotoPackCard({ pack }) {
   let navigate = useNavigate()
+
+  const handleCardClick = () => {
+    navigate(`/packs/${pack.id}`)
+  }
+
+  const handleBuyClick = (e) => {
+    e.stopPropagation() // Prevents the card's click event from firing
+    navigate(`/purchase/${pack.id}`)
+  }
+
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 px-8 ">
+    <div
+      className="w-full max-w-sm group cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="relative">
-        <a href="#">
-          <img
-            className="pt-8 pb-2 rounded-t-lg"
-            src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-            alt="product image"
-          />
-        </a>
+        <img
+          className="pt-8 pb-2 rounded-t-lg"
+          src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+          alt="product image"
+        />
+
         <div className="absolute bottom-0 left-0 mb-4 ml-2">
           <Badge color="gray" size="sm" className="text-xs font-semibold">
             {pack.pack_type}
           </Badge>
         </div>
       </div>
-      <div className="pb-5">
+      <div className="flex flex-col gap-3">
         <div className="flex items-center pb-2 gap-2 mt-0.5">
-          <Badge color="yellow" size="sm" className="text-xs font-semibold">
+          <Badge color="gray" size="sm" className="text-xs font-semibold">
             Trending
           </Badge>
           <Badge color="gray" size="sm" className="text-xs font-semibold">
@@ -32,11 +44,11 @@ function PhotoPackCard({ pack }) {
           </Badge>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-gray-900 dark:text-white">
+          <span className="text-3xl font-bold text-gray-900 dark:text-white group-hover:underline">
             {pack.display_name}
           </span>
           <Button
-            onClick={() => navigate(`/purchase/${pack.id}`)}
+            onClick={handleBuyClick}
             pill
             color="custom"
             theme={{
