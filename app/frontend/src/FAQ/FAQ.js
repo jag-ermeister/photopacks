@@ -6,135 +6,59 @@ function FAQ() {
     <div className="dark">
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-          <h2 className="mb-6 text-center text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white lg:mb-8 lg:text-4xl">
-            Frequently asked questions
+          <h2 className="mb-6 text-center text-3xl font-extrabold tracking-tight text-secondary-700 dark:text-secondary-700 lg:mb-8 lg:text-6xl">
+            FAQ
           </h2>
           <div className="mx-auto max-w-screen-md">
             <Accordion flush>
               <Accordion.Panel>
                 <Accordion.Title className="bg-transparent dark:bg-transparent">
-                  Can I use Flowbite in open-source projects?
+                  What photos should I upload?
                 </Accordion.Title>
                 <Accordion.Content>
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    Flowbite is an open-source library of interactive components
-                    built on top of Tailwind CSS including buttons, dropdowns,
-                    modals, navbars, and more.
-                  </p>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Check out this guide to learn how to&nbsp;
-                    <a
-                      href="#"
-                      className="text-primary-600 hover:underline dark:text-primary-700"
-                    >
-                      get started
-                    </a>
-                    &nbsp;and start developing websites even faster with
-                    components on top of Tailwind CSS.
+                    Go for variety. Use photos with good lighting, diverse
+                    facial expressions and backgrounds. Photos should be cropped
+                    close to your face or body, but don’t cut of a part of your
+                    head. High quality photos make for high quality generations.
                   </p>
                 </Accordion.Content>
               </Accordion.Panel>
               <Accordion.Panel>
                 <Accordion.Title className="bg-transparent dark:bg-transparent">
-                  Is there a Figma file available?
+                  What file formats do you accept?
                 </Accordion.Title>
                 <Accordion.Content>
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    Flowbite is first conceptualized and designed using the
-                    Figma software so everything you see in the library has a
-                    design equivalent in our Figma file.
-                  </p>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Check out the&nbsp;
-                    <a
-                      href="#"
-                      className="text-primary-600 hover:underline dark:text-primary-700"
-                    >
-                      Figma design system
-                    </a>
-                    &nbsp;based on the utility classes from Tailwind CSS and
-                    components from Flowbite.
+                    We accept jpeg and png file formats.
                   </p>
                 </Accordion.Content>
               </Accordion.Panel>
               <Accordion.Panel>
                 <Accordion.Title className="bg-transparent dark:bg-transparent">
-                  What are the differences between Flowbite and Tailwind UI?
+                  What do you do with my data?
                 </Accordion.Title>
                 <Accordion.Content>
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    The main difference is that the core components from
-                    Flowbite are open source under the MIT license, whereas
-                    Tailwind UI is a paid product. Another difference is that
-                    Flowbite relies on smaller and standalone components,
-                    whereas Tailwind UI offers sections of pages.
+                    PhotoPacks.AI will never sell your data. We use your photos
+                    to train our AI models to learn about your photo subject.
+                    The images you upload and generate are only available to you
+                    and will never be shared publicly without your explicit
+                    consent. The images that are generated are yours to do with
+                    whatever you wish.
                   </p>
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    However, we actually recommend using both Flowbite, Flowbite
-                    Pro, and even Tailwind UI as there is no technical reason
-                    stopping you from using the best of two worlds.
-                  </p>
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    Learn more about these technologies:
-                  </p>
-                  <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
-                    <li>
-                      <a
-                        href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-700"
-                      >
-                        Flowbite Pro
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-700"
-                      >
-                        Tailwind UI
-                      </a>
-                    </li>
-                  </ul>
                 </Accordion.Content>
               </Accordion.Panel>
               <Accordion.Panel>
                 <Accordion.Title className="bg-transparent dark:bg-transparent">
-                  What about browser support?
+                  How long does it take?
                 </Accordion.Title>
                 <Accordion.Content>
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    The main difference is that the core components from
-                    Flowbite are open source under the MIT license, whereas
-                    Tailwind UI is a paid product. Another difference is that
-                    Flowbite relies on smaller and standalone components,
-                    whereas Tailwind UI offers sections of pages.
+                    You will receive your photos in 24 hours or less. Often
+                    times you will receive your photos much quicker, depending
+                    on the capacity of our AI-learning servers.
                   </p>
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    However, we actually recommend using both Flowbite, Flowbite
-                    Pro, and even Tailwind UI as there is no technical reason
-                    stopping you from using the best of two worlds.
-                  </p>
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    Learn more about these technologies:
-                  </p>
-                  <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
-                    <li>
-                      <a
-                        href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-700"
-                      >
-                        Flowbite Pro
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="text-primary-600 hover:underline dark:text-primary-700"
-                      >
-                        Tailwind UI
-                      </a>
-                    </li>
-                  </ul>
                 </Accordion.Content>
               </Accordion.Panel>
             </Accordion>
