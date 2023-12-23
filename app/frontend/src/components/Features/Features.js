@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Tabs } from 'flowbite-react'
+import { Tabs } from 'flowbite-react'
 import { STATIC_ROOT } from '../../constants'
 
 function Features() {
