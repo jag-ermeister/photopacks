@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def notify_backend(order_id, inference_image_urls, cropped_image_urls, zip_url, results_url):
+def notify_backend(order_id, inference_image_urls, cropped_image_urls, zip_url, results_url, prompts):
     request = {
         "order_id": order_id,
         "image_urls": inference_image_urls,
