@@ -12,12 +12,12 @@ function Features() {
             theme={{
               tablist: {
                 tabitem: {
-                  base: 'flex mx-6 items-center relative justify-center rounded-t-lg p-2 text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 focus:ring-4 focus:ring-gray-300 focus:outline-none',
+                  base: 'flex mx-6 items-center relative justify-center rounded-t-lg p-2 text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 focus:outline-none',
                   styles: {
                     pills: {
                       active: {
-                        on: '!ring-0 rounded-lg bg-gray-900 text-gray-900 text-white dark:text-white dark:bg-gray-800',
-                        off: '!ring-0 rounded-lg bg-gray-100 text-gray-500 dark:text-gray-400 dark:bg-gray-800',
+                        on: 'rounded-lg bg-gray-900 text-gray-900 text-white dark:text-white dark:bg-gray-800',
+                        off: 'rounded-lg bg-gray-100 text-gray-500 dark:text-gray-400 dark:bg-gray-800',
                       },
                     },
                   },
@@ -29,7 +29,7 @@ function Features() {
               active
               title={
                 <>
-                  <span className="absolute -bottom-8 text-gray-500 dark:text-gray-400 font-medium text-base">
+                  <span className="text-gray-500 dark:text-gray-400 font-medium text-base">
                     Women
                   </span>
                 </>
@@ -136,7 +136,7 @@ function Features() {
             <Tabs.Item
               title={
                 <>
-                  <span className="absolute -bottom-8 text-gray-500 dark:text-gray-400 font-medium text-base">
+                  <span className="text-gray-500 dark:text-gray-400 font-medium text-base">
                     Men
                   </span>
                 </>
