@@ -36,7 +36,7 @@ class Kohya:
             "./sdxl_train.py",
             "--pretrained_model_name_or_path=stabilityai/stable-diffusion-xl-base-1.0",
             "--train_data_dir=/app/kohya_ss/training_images",
-            "--reg_data_dir=/app/kohya_ss/reg_images",
+            # "--reg_data_dir=/app/kohya_ss/reg_images",
             "--resolution=1024,1024",
             "--output_dir=trained_models",
             "--logging_dir=logs",

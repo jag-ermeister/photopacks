@@ -9,6 +9,6 @@ docker build \
   --build-arg AWS_S3_REGION_NAME="$AWS_S3_REGION_NAME" \
   -t sdxl:latest \
   -f Dockerfile .
-docker tag sdxl:latest jgustine/photo-pack-generation-image:40
-docker push jgustine/photo-pack-generation-image:40
+docker tag sdxl:latest jgustine/photo-pack-generation-image:41
+docker push jgustine/photo-pack-generation-image:41
 
