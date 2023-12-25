@@ -124,7 +124,7 @@ export default class BackendClient {
     return await response.json()
   }
 
-  static async uploadTrainingPhotos(response, model_name, images) {
+  static async uploadTrainingPhotos(response, images) {
     const fetchPromises = Array.from(images).map(async (image) => {
       const presigned_url = response.presigned_urls[image.name]
       let blobData = new Blob([image], { type: 'image/jpeg' })

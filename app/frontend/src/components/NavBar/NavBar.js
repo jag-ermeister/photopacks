@@ -60,7 +60,7 @@ function NavBar({ onLoginClick }) {
         <div className="flex items-center gap-3 lg:order-2">
           {user ? (
             <>
-              <Button color="info" onClick={handleSignOut}>
+              <Button pill color="info" onClick={handleSignOut}>
                 Sign Out
               </Button>
             </>
