@@ -7,20 +7,32 @@ import { useNavigate } from 'react-router-dom'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { STATIC_ROOT } from '../constants'
 import { HiOutlineArrowUp } from 'react-icons/hi'
+import { useOrder } from '../hooks/dataHooks'
 
 function Upload() {
   let { id: orderId } = useParams()
+  const { order, isLoading, error } = useOrder(orderId)
   const [isUploading, setIsUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
   const [selectedFiles, setSelectedFiles] = useState([])
   const navigate = useNavigate()
-
   const {
     handleSubmit,
     control,
     formState: { errors },
     setValue,
   } = useForm()
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error}</div>
+
+  const packs = [
+    order.prompt_pack_1,
+    order.prompt_pack_2,
+    order.prompt_pack_3,
+    order.prompt_pack_4,
+    order.prompt_pack_5,
+  ].filter((pack) => pack !== undefined && pack !== null)
 
   const onSubmit = async (data) => {
     setIsUploading(true)
@@ -76,22 +88,21 @@ function Upload() {
       </h2>
       <div>Order #{orderId}</div>
       <div className="flex justify-center gap-4">
-        <Card className="max-w-sm" imgSrc="/images/blog/image-4.jpg" horizontal>
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Christmas
-          </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
-            100 image pack
-          </p>
-        </Card>
-        <Card className="max-w-sm" imgSrc="/images/blog/image-4.jpg" horizontal>
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Christmas
-          </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
-            100 image pack
-          </p>
-        </Card>
+        {packs.map((pack) => (
+          <Card
+            className="max-w-sm"
+            imgSrc={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+            horizontal
+            key={pack.id}
+          >
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {pack.display_name}
+            </h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              100 image pack
+            </p>
+          </Card>
+        ))}
       </div>
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 py-8 text-center sm:py-16 lg:px-6">

@@ -9,11 +9,20 @@ User = get_user_model()
 
 
 @pytest.mark.django_db
-def test_create_order(authenticated_client, prompt_pack):
+def test_create_order(authenticated_client, prompt_pack, create_prompt_pack):
+    pack2 = create_prompt_pack(internal_name="Pack 2", display_name="Pack 2", prompts=["prompt 1", "prompt 2"])
+    pack3 = create_prompt_pack(internal_name="Pack 3", display_name="Pack 3", prompts=["prompt 1", "prompt 2"])
+    pack4 = create_prompt_pack(internal_name="Pack 4", display_name="Pack 4", prompts=["prompt 1", "prompt 2"])
+    pack5 = create_prompt_pack(internal_name="Pack 5", display_name="Pack 5", prompts=["prompt 1", "prompt 2"])
+
     url = reverse('orders_list')
     data = {
         'subject_name': 'test',
         'prompt_pack_1': prompt_pack.id,
+        'prompt_pack_2': pack2.id,
+        'prompt_pack_3': pack3.id,
+        'prompt_pack_4': pack4.id,
+        'prompt_pack_5': pack5.id,
         'model_type': 'man',
     }
 
@@ -21,6 +30,19 @@ def test_create_order(authenticated_client, prompt_pack):
 
     assert response.status_code == 201
     assert 'id' in response.data
+
+
+@pytest.mark.django_db
+def test_get_orders(authenticated_client, order, prompt_pack):
+    url = reverse('order_detail', kwargs={'pk': str(order.id)})
+    response = authenticated_client.get(url)
+
+    assert response.status_code == 200
+    assert response.data['id'] == str(order.id)
+    assert response.data['prompt_pack_1']['id'] == str(prompt_pack.id)
+    assert response.data['prompt_pack_1']['display_name'] == prompt_pack.display_name
+    assert response.data['prompt_pack_1']['preview_image'] == prompt_pack.preview_image
+    assert response.data['prompt_pack_1']['pack_type'] == prompt_pack.pack_type
 
 
 @pytest.mark.django_db
