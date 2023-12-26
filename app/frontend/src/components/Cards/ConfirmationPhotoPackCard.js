@@ -32,7 +32,7 @@ function ConfirmationPackCard({ pack, handleBuyClicked }) {
             {pack.display_name}
           </span>
           <Button
-            onClick={() => handleBuyClicked(pack.id)}
+            onClick={() => handleBuyClicked(pack)}
             pill
             color="custom"
             theme={{
@@ -43,7 +43,7 @@ function ConfirmationPackCard({ pack, handleBuyClicked }) {
             }}
           >
             <HiShoppingCart className="mr-2 h-5 w-5" />
-            Buy $9.99
+            Add to Order $4.99
           </Button>
         </div>
       </div>

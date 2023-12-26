@@ -1,20 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BackendClient from '../client/BackendClient'
 import { useParams } from 'react-router-dom'
 import { usePack } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { Button, Badge, Card, Alert } from 'flowbite-react'
-import { HiInformationCircle, HiOutlineArrowRight } from 'react-icons/hi'
+import {
+  HiInformationCircle,
+  HiOutlineArrowRight,
+  HiMinusCircle,
+} from 'react-icons/hi'
 import { STATIC_ROOT } from '../constants'
 import ConfirmationPhotoPacks from '../components/Sections/ConfirmationPhotoPacks'
 
 function Confirmation() {
   let { id } = useParams()
+  const [extraPacks, setExtraPacks] = useState([])
 
   const { pack, isLoading, error } = usePack(id)
 
-  const handleBuyClicked = (packId) => {
-    console.log(packId)
+  const handleBuyClicked = (packToBuy) => {
+    if (extraPacks.length >= 4) {
+      return
+    }
+    const isDuplicate =
+      extraPacks.some((extraPack) => extraPack.id === packToBuy.id) ||
+      packToBuy.id === pack.id
+    if (!isDuplicate) {
+      setExtraPacks([...extraPacks, packToBuy])
+    }
+  }
+
+  const handleRemoveClicked = (packToRemove) => {
+    const updatedPacks = extraPacks.filter(
+      (pack) => pack.id !== packToRemove.id
+    )
+    setExtraPacks(updatedPacks)
   }
 
   if (isLoading) return <div>Loading...</div>
@@ -22,11 +42,17 @@ function Confirmation() {
 
   const handleButtonClick = async () => {
     try {
-      const order = await BackendClient.createOrder({
-        subject_name: 'test',
+      let orderData = {
         prompt_pack_1: id,
-        model_type: 'man',
+        model_type: pack.pack_type.toLowerCase(),
+      }
+
+      extraPacks.forEach((pack, index) => {
+        const key = `prompt_pack_${index + 2}`
+        orderData[key] = pack.id
       })
+
+      const order = await BackendClient.createOrder(orderData)
       await BackendClient.checkout(order.id)
     } catch (error) {
       console.error(error)
@@ -82,6 +108,51 @@ function Confirmation() {
                 </div>
               </div>
             </Card>
+            {extraPacks.map((pack) => (
+              <Card
+                className="max-w-full md:max-w-full"
+                key={pack.id}
+                imgSrc={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+                theme={{
+                  root: {
+                    children:
+                      'flex h-full flex-col justify-center gap-4 p-6  w-full',
+                  },
+                }}
+                horizontal
+              >
+                <div className="flex justify-between w-full">
+                  <div className="w-full">
+                    <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {pack.display_name}
+                    </h5>
+                    <p className="font-normal text-gray-500 dark:text-gray-400">
+                      100 image pack
+                    </p>
+                    <Button
+                      onClick={() => handleRemoveClicked(pack)}
+                      pill
+                      color="info"
+                      className="mt-4"
+                      theme={{
+                        color: {
+                          custom:
+                            'text-primary-700 bg-white border border-primary-200 enabled:hover:bg-primary-50 enabled:hover:text-cyan-700 :ring-cyan-700 focus:text-cyan-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:enabled:hover:text-white dark:enabled:hover:bg-gray-700 focus:ring-2',
+                        },
+                      }}
+                    >
+                      Remove
+                      <HiMinusCircle className="ml-2 h-5 w-5" />
+                    </Button>
+                  </div>
+                  <div className="leading-tight text-2xl font-bold my-auto">
+                    <div>
+                      <s>$9.99</s>&nbsp;$4.99
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
