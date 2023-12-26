@@ -3,15 +3,15 @@ import { STATIC_ROOT } from '../../constants'
 
 function Hero() {
   return (
-    <section className="bg-white dark:bg-gray-900">
-      <div className="px-4 py-8 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+    <section className="bg-white dark:bg-gray-900 min-h-screen">
+      <div className="flex flex-col h-full my-auto px-0 py-4 md:px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12 justify-center align-center">
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl font-extrabold tracking-tight leading-none text-primary-700 md:text-5xl lg:text-6xl dark:text-white tracking-tight">
             {'Create Your Perfect'.toUpperCase()}
           </h1>
           <div className="flex justify-center">
             <img
-              className="rounded-t-lg"
+              className=""
               src={`${STATIC_ROOT}/hero_placeholder.png`}
               alt="product image"
             />
