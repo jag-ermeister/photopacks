@@ -103,22 +103,22 @@ function Upload() {
               <div className="mb-6 inline-flex gap-4 h-24 w-24 items-center justify-center rounded-lg">
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/Robot.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_good_1.jpg`}
                   alt="product image"
                 />
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/Robot.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_good_2.jpg`}
                   alt="product image"
                 />
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/Robot.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_good_3.jpg`}
                   alt="product image"
                 />
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/Robot.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_good_4.jpg`}
                   alt="product image"
                 />
               </div>
@@ -126,30 +126,31 @@ function Upload() {
                 Good Photos
               </h3>
               <p className="mb-4">
-                Sit back and relax while our AI learns the unique charms of your
-                chosen subject and generates one-of-a-kind images.
+                Provide many headshots and several full-body shots. Photos
+                should be fairly high resolution, well lit, and from a variety
+                of angles.
               </p>
             </div>
             <div>
               <div className="mb-6 inline-flex gap-4 h-24 w-24 items-center justify-center rounded-lg">
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/100.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_bad_1.jpg`}
                   alt="product image"
                 />
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/100.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_bad_2.jpg`}
                   alt="product image"
                 />
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/100.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_bad_3.jpg`}
                   alt="product image"
                 />
                 <img
                   className="pt-8 pb-2 rounded-t-lg"
-                  src={`${STATIC_ROOT}/icons/100.svg`}
+                  src={`${STATIC_ROOT}/tips/tips_bad_4.jpg`}
                   alt="product image"
                 />
               </div>
@@ -157,8 +158,8 @@ function Upload() {
                 Bad Photos
               </h3>
               <p className="mb-4">
-                In ~ 6 hours, your images will be ready to post, share, print,
-                or turn into treasures. We&apos;ll notify you!
+                Do not use photos with other people! Also avoid photos with
+                harsh shadows, sunglasses, poor color contrast, and partial faces.
               </p>
             </div>
           </div>
