@@ -91,8 +91,12 @@ class Order(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    subject_name = models.CharField(max_length=240)
-    prompt_pack = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders")
+    subject_name = models.CharField(max_length=240, null=True, blank=True)
+    prompt_pack_1 = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders_prompt_pack_1")
+    prompt_pack_2 = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders_prompt_pack_2", null=True, blank=True)
+    prompt_pack_3 = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders_prompt_pack_3", null=True, blank=True)
+    prompt_pack_4 = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders_prompt_pack_4", null=True, blank=True)
+    prompt_pack_5 = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders_prompt_pack_5", null=True, blank=True)
     model_type = models.CharField(
         max_length=20,
         choices=[(item.value, item.name) for item in ModelType],

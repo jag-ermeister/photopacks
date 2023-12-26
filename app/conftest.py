@@ -47,7 +47,7 @@ def order(prompt_pack_user, prompt_pack):
     return Order.objects.create(
         user=prompt_pack_user,
         subject_name="Jeremy",
-        prompt_pack=prompt_pack,
+        prompt_pack_1=prompt_pack,
         model_type=Order.ModelType.MAN.value,
         speed_type=Order.SpeedType.FAST.value,
         fulfillment_service=Order.FulfillmentService.RUNPOD.value,

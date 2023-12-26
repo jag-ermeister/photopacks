@@ -13,7 +13,7 @@ def test_create_order(authenticated_client, prompt_pack):
     url = reverse('orders_list')
     data = {
         'subject_name': 'test',
-        'prompt_pack': prompt_pack.id,
+        'prompt_pack_1': prompt_pack.id,
         'model_type': 'man',
     }
 
@@ -26,14 +26,14 @@ def test_create_order(authenticated_client, prompt_pack):
 @pytest.mark.django_db
 def test_get_orders_list(authenticated_client, prompt_pack):
     authenticated_user = authenticated_client.user
-    Order.objects.create(user=authenticated_user, subject_name='Order 1', prompt_pack=prompt_pack, model_type='man')
-    Order.objects.create(user=authenticated_user, subject_name='Order 2', prompt_pack=prompt_pack, model_type='man')
+    Order.objects.create(user=authenticated_user, subject_name='Order 1', prompt_pack_1=prompt_pack, model_type='man')
+    Order.objects.create(user=authenticated_user, subject_name='Order 2', prompt_pack_1=prompt_pack, model_type='man')
 
     unauthenticated_user = User.objects.create(username='otheruser', cognito_id='test_id')
     Order.objects.create(
         user=unauthenticated_user,
         subject_name='Order 3',
-        prompt_pack=prompt_pack,
+        prompt_pack_1=prompt_pack,
         model_type='man'
     )
 
