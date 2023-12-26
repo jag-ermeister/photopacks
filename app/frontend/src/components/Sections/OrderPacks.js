@@ -1,5 +1,5 @@
 import React from 'react'
-import OrderPackCard from './OrderPackCard'
+import OrderPackCard from '../Cards/OrderPackCard'
 
 function OrderPacks({ orders }) {
   return (

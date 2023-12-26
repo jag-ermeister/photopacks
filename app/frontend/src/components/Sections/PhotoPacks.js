@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import PhotoPackCard from './PhotoPackCard'
+import PhotoPackCard from '../Cards/PhotoPackCard'
 import { usePacks } from '../../hooks/dataHooks'
 import { Tabs } from 'flowbite-react'
 

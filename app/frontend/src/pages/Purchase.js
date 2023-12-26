@@ -5,7 +5,7 @@ import { usePack } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { Button, Badge, Card, Alert } from 'flowbite-react'
 import { HiInformationCircle, HiOutlineArrowRight } from 'react-icons/hi'
-import PhotoPacks from '../components/PhotoPacks/PhotoPacks'
+import PhotoPacks from '../components/Sections/PhotoPacks'
 
 function Purchase() {
   let { id } = useParams()

@@ -54,7 +54,7 @@ function NavBar({ onLoginClick }) {
             alt="PhotoPacks.AI Logo"
           />
           {/*<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">*/}
-          {/*  PhotoPacks.AI*/}
+          {/*  Cards.AI*/}
           {/*</span>*/}
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-2">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useOrders } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
-import OrderPacks from '../components/PhotoPacks/OrderPacks'
+import OrderPacks from '../components/Sections/OrderPacks'
 
 function BrowseOrders() {
   const { orders, isLoading, error } = useOrders()
