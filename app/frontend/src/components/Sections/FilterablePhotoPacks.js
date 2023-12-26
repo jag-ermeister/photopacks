@@ -25,9 +25,9 @@ function FilterablePhotoPacks() {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-        <div className="mb-8 lg:mb-16">
-          <div className="flex justify-between">
-            <h2 className="mb-4 text-6xl font-extrabold tracking-tight text-primary-700 dark:text-white">
+        <div className="mb-0 md:mb-16">
+          <div className="flex flex-col md:flex-row justify-between">
+            <h2 className="mb-4 text-4xl md:text-6xl font-extrabold tracking-tight text-primary-700 dark:text-white">
               {'Photo Packs'.toUpperCase()}
             </h2>
             <Tabs.Group
@@ -38,7 +38,7 @@ function FilterablePhotoPacks() {
               theme={{
                 tablist: {
                   tabitem: {
-                    base: 'flex mx-6 items-center relative justify-center rounded-t-lg p-2 text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 focus:outline-none',
+                    base: 'flex mx-2 md:mx-6 items-center relative justify-center rounded-t-lg p-2 text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 focus:outline-none',
                     styles: {
                       pills: {
                         active: {
@@ -103,7 +103,7 @@ function FilterablePhotoPacks() {
               />
             </Tabs.Group>
           </div>
-          <p className="text-gray-500 dark:text-gray-400 sm:text-xl">
+          <p className="text-gray-500 dark:text-gray-400 sm:text-xl hidden md:block">
             100 images in each pack. One time payment. No subscription.
           </p>
         </div>

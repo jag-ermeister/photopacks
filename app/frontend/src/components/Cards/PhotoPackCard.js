@@ -18,7 +18,7 @@ function PhotoPackCard({ pack }) {
 
   return (
     <div
-      className="w-full max-w-sm group cursor-pointer"
+      className="w-full max-w-lg group cursor-pointer"
       onClick={handleCardClick}
     >
       <div className="relative">

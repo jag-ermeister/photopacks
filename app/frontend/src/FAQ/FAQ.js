@@ -6,10 +6,10 @@ function FAQ() {
     <div className="dark">
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
-          <h2 className="mb-6 text-center text-3xl font-extrabold tracking-tight text-secondary-700 dark:text-secondary-700 lg:mb-8 lg:text-6xl">
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-secondary-700 dark:text-secondary-600 lg:mb-8 lg:text-6xl">
             FAQ
           </h2>
-          <div className="mx-auto max-w-screen-md">
+          <div className="mx-auto max-w-screen-xl">
             <Accordion flush>
               <Accordion.Panel>
                 <Accordion.Title className="bg-transparent dark:bg-transparent">
