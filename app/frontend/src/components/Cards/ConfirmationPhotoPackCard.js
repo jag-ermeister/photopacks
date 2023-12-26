@@ -43,7 +43,7 @@ function ConfirmationPackCard({ pack, handleBuyClicked }) {
             }}
           >
             <HiShoppingCart className="mr-2 h-5 w-5" />
-            Add to Order $4.99
+            Add $4.99
           </Button>
         </div>
       </div>

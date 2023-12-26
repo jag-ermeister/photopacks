@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BackendClient from '../client/BackendClient'
 import { useParams } from 'react-router-dom'
-import { usePack } from '../hooks/dataHooks'
+import { usePacks } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { Button, Badge, Card, Alert } from 'flowbite-react'
 import {
@@ -14,40 +14,48 @@ import ConfirmationPhotoPacks from '../components/Sections/ConfirmationPhotoPack
 
 function Confirmation() {
   let { id } = useParams()
-  const [extraPacks, setExtraPacks] = useState([])
+  const [addedPacks, setAddedPacks] = useState([])
+  const { promptPacks, isLoading, error } = usePacks()
 
-  const { pack, isLoading, error } = usePack(id)
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error: {error}</div>
+
+  const mainPack = promptPacks.find((pack) => pack.id === id)
+  const addablePacks = promptPacks.filter((pack) => {
+    return (
+      pack.id !== id &&
+      !addedPacks.includes(pack) &&
+      pack.pack_type === mainPack.pack_type
+    )
+  })
 
   const handleBuyClicked = (packToBuy) => {
-    if (extraPacks.length >= 4) {
+    if (addedPacks.length >= 4) {
       return
     }
     const isDuplicate =
-      extraPacks.some((extraPack) => extraPack.id === packToBuy.id) ||
-      packToBuy.id === pack.id
+      addedPacks.some((extraPack) => extraPack.id === packToBuy.id) ||
+      packToBuy.id === mainPack.id
     if (!isDuplicate) {
-      setExtraPacks([...extraPacks, packToBuy])
+      setAddedPacks([...addedPacks, packToBuy])
     }
   }
 
   const handleRemoveClicked = (packToRemove) => {
-    const updatedPacks = extraPacks.filter(
+    const updatedPacks = addedPacks.filter(
       (pack) => pack.id !== packToRemove.id
     )
-    setExtraPacks(updatedPacks)
+    setAddedPacks(updatedPacks)
   }
-
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
 
   const handleButtonClick = async () => {
     try {
       let orderData = {
         prompt_pack_1: id,
-        model_type: pack.pack_type.toLowerCase(),
+        model_type: mainPack.pack_type.toLowerCase(),
       }
 
-      extraPacks.forEach((pack, index) => {
+      addedPacks.forEach((pack, index) => {
         const key = `prompt_pack_${index + 2}`
         orderData[key] = pack.id
       })
@@ -69,7 +77,7 @@ function Confirmation() {
                 YOUR ORDER
               </div>
               <Badge color="info" size="lg" className="mt-2">
-                {pack.pack_type}
+                {mainPack.pack_type}
               </Badge>
             </div>
             <Button pill onClick={handleButtonClick} color="info">
@@ -85,7 +93,7 @@ function Confirmation() {
             </div>
             <Card
               className="max-w-full md:max-w-full"
-              imgSrc={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              imgSrc={`${STATIC_ROOT}/packs/${mainPack.preview_image}`}
               theme={{
                 root: {
                   children:
@@ -97,7 +105,7 @@ function Confirmation() {
               <div className="flex justify-between w-full">
                 <div className="w-full">
                   <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {pack.display_name}
+                    {mainPack.display_name}
                   </h5>
                   <p className="font-normal text-gray-500 dark:text-gray-400">
                     100 image pack
@@ -108,7 +116,7 @@ function Confirmation() {
                 </div>
               </div>
             </Card>
-            {extraPacks.map((pack) => (
+            {addedPacks.map((pack) => (
               <Card
                 className="max-w-full md:max-w-full"
                 key={pack.id}
@@ -161,11 +169,13 @@ function Confirmation() {
         <div className="flex flex-col gap-12 mx-auto max-w-screen-xl px-4 pb-8 pt-0 sm:pb-16 sm:pt-0 lg:px-6">
           <div className="flex flex-col gap-6">
             <div className="leading-tight text-4xl font-bold">
-              SAME DOG,{' '}
+              SAME {mainPack.pack_type.toUpperCase()},{' '}
               <span className="text-primary-700">MORE PACKS, MORE SAVINGS</span>
             </div>
             <div className="text-3xl font-normal">
-              <div>Add a Pack for the Same Dog for ONLY $1 MILLION</div>
+              <div>
+                Add a Pack for the Same {mainPack.pack_type} for ONLY $1 MILLION
+              </div>
               <div>Additional Packs, Priced at Just $4.99 Each</div>
             </div>
             <Alert
@@ -184,7 +194,7 @@ function Confirmation() {
             </Alert>
           </div>
           <ConfirmationPhotoPacks
-            pack_type={pack.pack_type}
+            promptPacks={addablePacks}
             handleBuyClicked={handleBuyClicked}
           />
         </div>
