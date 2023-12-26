@@ -29,6 +29,8 @@ function Confirmation() {
     )
   })
 
+  const totalCost = 9.99 + 4.99 * addedPacks.length
+
   const handleBuyClicked = (packToBuy) => {
     if (addedPacks.length >= 4) {
       return
@@ -89,7 +91,7 @@ function Confirmation() {
           <div className="flex flex-col gap-4">
             <div className="flex justify-between leading-none text-3xl font-bold">
               <div>Summary</div>
-              <div>Total $9.99</div>
+              <div>Total ${totalCost}</div>
             </div>
             <Card
               className="max-w-full md:max-w-full"
