@@ -2,25 +2,10 @@ import React from 'react'
 import { STATIC_ROOT } from '../../constants'
 import { Badge, Button } from 'flowbite-react'
 import { HiShoppingCart } from 'react-icons/hi'
-import { useNavigate } from 'react-router-dom'
 
-function PhotoPackCard({ pack }) {
-  let navigate = useNavigate()
-
-  const handleCardClick = () => {
-    navigate(`/packs/${pack.id}`)
-  }
-
-  const handleBuyClick = (e) => {
-    e.stopPropagation() // Prevents the card's click event from firing
-    navigate(`/confirmation/${pack.id}`)
-  }
-
+function ConfirmationPackCard({ pack, handleBuyClicked }) {
   return (
-    <div
-      className="w-full max-w-sm group cursor-pointer"
-      onClick={handleCardClick}
-    >
+    <div className="w-full max-w-sm group cursor-pointer">
       <div className="relative">
         <img
           className="pt-8 pb-2 rounded-t-lg"
@@ -47,7 +32,7 @@ function PhotoPackCard({ pack }) {
             {pack.display_name}
           </span>
           <Button
-            onClick={handleBuyClick}
+            onClick={() => handleBuyClicked(pack.id)}
             pill
             color="custom"
             theme={{
@@ -66,4 +51,4 @@ function PhotoPackCard({ pack }) {
   )
 }
 
-export default PhotoPackCard
+export default ConfirmationPackCard

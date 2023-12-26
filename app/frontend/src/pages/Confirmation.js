@@ -8,12 +8,14 @@ import { HiInformationCircle, HiOutlineArrowRight } from 'react-icons/hi'
 import { STATIC_ROOT } from '../constants'
 import ConfirmationPhotoPacks from '../components/Sections/ConfirmationPhotoPacks'
 
-function Purchase() {
+function Confirmation() {
   let { id } = useParams()
 
   const { pack, isLoading, error } = usePack(id)
 
-  console.log(pack)
+  const handleBuyClicked = (packId) => {
+    console.log(packId)
+  }
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
@@ -110,11 +112,14 @@ function Purchase() {
               Each Added Pack Features the Same Subject
             </Alert>
           </div>
-          <ConfirmationPhotoPacks pack_type={pack.pack_type} />
+          <ConfirmationPhotoPacks
+            pack_type={pack.pack_type}
+            handleBuyClicked={handleBuyClicked}
+          />
         </div>
       </section>
     </>
   )
 }
 
-export default withAuthenticatedLayout(Purchase, false)
+export default withAuthenticatedLayout(Confirmation, false)
