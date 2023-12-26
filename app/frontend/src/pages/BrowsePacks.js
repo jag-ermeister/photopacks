@@ -1,11 +1,11 @@
 import React from 'react'
-import PhotoPacks from '../components/Sections/PhotoPacks'
+import FilterablePhotoPacks from '../components/Sections/FilterablePhotoPacks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function BrowsePacks() {
   return (
     <div>
-      <PhotoPacks />
+      <FilterablePhotoPacks />
     </div>
   )
 }

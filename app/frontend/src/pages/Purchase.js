@@ -5,7 +5,8 @@ import { usePack } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { Button, Badge, Card, Alert } from 'flowbite-react'
 import { HiInformationCircle, HiOutlineArrowRight } from 'react-icons/hi'
-import PhotoPacks from '../components/Sections/PhotoPacks'
+import { STATIC_ROOT } from '../constants'
+import ConfirmationPhotoPacks from '../components/Sections/ConfirmationPhotoPacks'
 
 function Purchase() {
   let { id } = useParams()
@@ -21,7 +22,7 @@ function Purchase() {
     try {
       const order = await BackendClient.createOrder({
         subject_name: 'test',
-        prompt_pack: id,
+        prompt_pack_1: id,
         model_type: 'man',
       })
       await BackendClient.checkout(order.id)
@@ -40,7 +41,7 @@ function Purchase() {
                 YOUR ORDER
               </div>
               <Badge color="info" size="lg" className="mt-2">
-                Poop
+                {pack.pack_type}
               </Badge>
             </div>
             <Button pill onClick={handleButtonClick} color="info">
@@ -56,7 +57,7 @@ function Purchase() {
             </div>
             <Card
               className="max-w-full md:max-w-full"
-              imgSrc="/images/blog/image-4.jpg"
+              imgSrc={`${STATIC_ROOT}/packs/${pack.preview_image}`}
               theme={{
                 root: {
                   children:
@@ -68,7 +69,7 @@ function Purchase() {
               <div className="flex justify-between w-full">
                 <div className="w-full">
                   <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    Christmas
+                    {pack.display_name}
                   </h5>
                   <p className="font-normal text-gray-500 dark:text-gray-400">
                     100 image pack
@@ -109,7 +110,7 @@ function Purchase() {
               Each Added Pack Features the Same Subject
             </Alert>
           </div>
-          <PhotoPacks />
+          <ConfirmationPhotoPacks pack_type={pack.pack_type} />
         </div>
       </section>
     </>

@@ -159,7 +159,8 @@ function Upload() {
               </h3>
               <p className="mb-4">
                 Do not use photos with other people! Also avoid photos with
-                harsh shadows, sunglasses, poor color contrast, and partial faces.
+                harsh shadows, sunglasses, poor color contrast, and partial
+                faces.
               </p>
             </div>
           </div>

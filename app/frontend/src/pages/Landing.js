@@ -1,6 +1,6 @@
 import React from 'react'
 import Hero from '../components/Sections/Hero'
-import PhotoPacks from '../components/Sections/PhotoPacks'
+import FilterablePhotoPacks from '../components/Sections/FilterablePhotoPacks'
 import LearnHowItWorks from '../components/Sections/LearnHowItWorks'
 import Features from '../components/Sections/Features'
 import FAQ from '../FAQ/FAQ'
@@ -14,7 +14,7 @@ function Landing() {
     <div>
       <Hero />
       <HeroBanner />
-      <PhotoPacks />
+      <FilterablePhotoPacks />
       <LearnHowItWorks />
       <Features />
       <AboutSection />

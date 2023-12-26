@@ -3,7 +3,7 @@ import PhotoPackCard from '../Cards/PhotoPackCard'
 import { usePacks } from '../../hooks/dataHooks'
 import { Tabs } from 'flowbite-react'
 
-function PhotoPacks() {
+function FilterablePhotoPacks() {
   let tabMap = new Map()
   tabMap.set(0, 'All')
   tabMap.set(1, 'Man')
@@ -117,4 +117,4 @@ function PhotoPacks() {
   )
 }
 
-export default PhotoPacks
+export default FilterablePhotoPacks
