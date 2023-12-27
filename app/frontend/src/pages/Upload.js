@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import BackendClient from '../client/BackendClient'
-import { Button, Card, Spinner } from 'flowbite-react'
+import { Badge, Button, Card, Spinner } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { STATIC_ROOT } from '../constants'
@@ -82,11 +82,15 @@ function Upload() {
 
   return (
     <div>
-      {' '}
-      <h2 className="mb-4 leading-none text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-        {'Upload Your Photos'.toUpperCase()}
-      </h2>
-      <div>Order #{orderId}</div>
+      <div className="flex items-center justify-center">
+        <div className="text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          {'Upload Your Photos'.toUpperCase()}&nbsp;&nbsp;
+        </div>
+        <Badge color="info" size="lg">
+          {order.model_type}
+        </Badge>
+      </div>
+      <div className="text-center font-semibold my-8">Order #{orderId}</div>
       <div className="flex justify-center gap-4">
         {packs.map((pack) => (
           <Card
@@ -178,9 +182,9 @@ function Upload() {
         </div>
       </section>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-auto my-8 p-4">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Upload Photos:
+        <div className="mb-4 text-center">
+          <label className="block text-primary-700 text-3xl font-bold mb-2">
+            Upload:
           </label>
           <Controller
             name="files"
@@ -192,14 +196,28 @@ function Upload() {
                 'Please select between 5 and 10 photos.',
             }}
             render={() => (
-              <input
-                type="file"
-                multiple
-                onChange={handleFileChange}
-                className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-200 file:text-gray-700 hover:file:bg-gray-300"
-              />
+              <>
+                <label
+                  htmlFor="file-upload"
+                  className="cursor-pointer bg-primary-500 text-white py-2 px-4 rounded inline-block hover:bg-primary-600"
+                >
+                  Choose files
+                </label>
+                <input
+                  id="file-upload"
+                  type="file"
+                  multiple
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </>
             )}
           />
+          <div className="text-sm text-gray-500 mt-2">
+            {selectedFiles.length === 0
+              ? 'No photos selected'
+              : `${selectedFiles.length} photo(s) selected`}
+          </div>
           {errors.files && (
             <div className="text-red-500 text-xs italic">
               {errors.files.message}
@@ -207,11 +225,13 @@ function Upload() {
           )}
         </div>
 
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-          {renderImagePreviews()}
-        </div>
+        <section>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+            {renderImagePreviews()}
+          </div>
+        </section>
 
-        <section className="bg-white dark:bg-gray-900">
+        <section className="bg-gray-50 dark:bg-gray-900">
           <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div className="bg-white rounded-lg shadow lg:griddark:bg-gray-800">
               <div className="col-span-2 p-6 lg:p-8">
@@ -275,7 +295,54 @@ function Upload() {
           </div>
         </section>
 
-        <div className="flex justify-center items-center">
+        <section className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+          <div className="flex items-center mb-3">
+            <Controller
+              name="affirmation"
+              control={control}
+              rules={{ required: 'You must affirm before submitting.' }}
+              render={({ field }) => (
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                  {...field}
+                />
+              )}
+            />
+            <label
+              htmlFor="affirmation"
+              className="ml-2 text-sm font-medium text-gray-700"
+            >
+              I affirm that:
+            </label>
+            {errors.affirmation && (
+              <div className="text-red-500 text-xs italic ml-2">
+                {errors.affirmation.message}
+              </div>
+            )}
+          </div>
+
+          <ul className="list-disc pl-5">
+            <li>I have read the tips and warnings above;</li>
+            <li>
+              I have read and agree to the PhotoPacks.AI Terms and Conditions;
+            </li>
+            <li>
+              The content uploaded is an animal or a natural person over the age
+              of 18;
+            </li>
+            <li>
+              The content uploaded does not infringe on the privacy or
+              intellectual property rights of any third party;
+            </li>
+            <li>
+              We use and manage your personal information in accordance with our
+              Privacy Policy.
+            </li>
+          </ul>
+        </section>
+
+        <div className="mt-8 flex justify-center items-center">
           <Button type="submit" pill color="info" disabled={isUploading}>
             {isUploading ? (
               <>
