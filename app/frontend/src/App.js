@@ -17,7 +17,10 @@ function App() {
           <Route path="/packs" element={<BrowsePacks />} />
           <Route path="/packs/:id" element={<PackDetails />} />
           <Route path="/orders" element={<BrowseOrders />} />
-          <Route path="/orders/:id" element={<OrderDetails />} />
+          <Route
+            path="/orders/:orderId/packs/:packId"
+            element={<OrderDetails />}
+          />
           <Route path="/confirmation/:id" element={<Confirmation />} />
           <Route path="/upload/:id" element={<Upload />} />
         </Routes>

@@ -24,6 +24,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'prompt_pack_5',
             'is_processing',
             'is_success',
+            'zip_file_url',
             'inference_image_urls',
             'created_date',
             'modified_date'

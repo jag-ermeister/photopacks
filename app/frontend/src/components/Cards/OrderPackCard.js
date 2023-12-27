@@ -24,7 +24,9 @@ function OrderPackCard({ order }) {
         <div className="flex items-center justify-between mt-4">
           {order.is_success && (
             <Button
-              onClick={() => navigate(`/orders/${order.id}`)}
+              onClick={() =>
+                navigate(`/orders/${order.id}/packs/${order.prompt_pack.id}`)
+              }
               pill
               color="info"
               theme={{
@@ -39,7 +41,9 @@ function OrderPackCard({ order }) {
           )}
           {!order.is_success && (
             <Button
-              onClick={() => navigate(`/orders/${order.id}`)}
+              onClick={() =>
+                navigate(`/orders/${order.id}/packs/${order.prompt_pack.id}`)
+              }
               disabled
               pill
               color="custom"
