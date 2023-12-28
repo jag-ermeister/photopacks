@@ -5,7 +5,7 @@ function AboutSection() {
   return (
     <section className="flex md:flex-row flex-col">
       <div className="bg-gray-900 w-full px-4 py-8 sm:py-16 lg:px-16 text-white">
-        <div className="flex flex-col gap-8 md:gap-16 max-w-xl px-6 ml-auto">
+        <div className="flex flex-col gap-8 md:gap-16 max-w-xl px-2 md:px-6 ml-auto">
           <div className="leading-tight text-2xl md:text-4xl font-light">
             We use{' '}
             <span className="text-secondary-600">SDXL with Dreambooth</span> to
@@ -17,9 +17,28 @@ function AboutSection() {
             <span className="text-secondary-600">high resolution images</span>{' '}
             and capture the details that lesser technologies just can’t obtain.
           </div>
-          <a href="#" className="font-medium text-primary-700 hover:underline">
-            Learn what makes PhotoPacks.AI different
-          </a>
+          <div>
+            <a
+              href="#"
+              title=""
+              className="inline-flex items-center text-base font-medium text-primary-700 hover:underline dark:text-primary-500"
+            >
+              Learn what makes PhotoPacks.AI different
+              <svg
+                aria-hidden="true"
+                className="ml-1.5 h-8 w-8"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+          </div>
           <div className="flex">
             <Button pill size="xl" color="light">
               Get Started
@@ -29,7 +48,7 @@ function AboutSection() {
       </div>
       <div className="bg-secondary-600 w-full px-4 py-8 text-center sm:py-16 lg:px-16 text-primary-700">
         <div className="flex flex-col gap-16 max-w-xl px-6 mr-auto my-auto h-full justify-center">
-          <div className="leading-tight text-5xl md:text-6xl font-extrabold text-capitalize">
+          <div className="leading-tight text-4xl md:text-6xl font-extrabold text-capitalize">
             SHARPER, REALER, AND MORE AUTHENTICALLY{' '}
             <span className="text-white">YOU</span>
           </div>

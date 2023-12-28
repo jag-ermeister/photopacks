@@ -4,7 +4,7 @@ import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 
 function BrowsePacks() {
   return (
-    <div>
+    <div className="my-8">
       <FilterablePhotoPacks />
     </div>
   )

@@ -6,7 +6,7 @@ function LearnHowItWorks() {
     <div className="dark">
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 py-8 text-center sm:py-16 lg:px-6 text-white">
-          <h2 className="mb-4 text-5xl font-extrabold tracking-tight text-primary-700">
+          <h2 className="mb-4 text-4xl md:text-5xl font-extrabold tracking-tight text-primary-700">
             {'Your People, Your Pets, Your Portraits'.toUpperCase()}
           </h2>
           <p className="sm:text-xl lg:px-48">

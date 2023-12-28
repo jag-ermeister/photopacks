@@ -28,7 +28,7 @@ function PhotoPackCard({ pack }) {
           alt="product image"
         />
         <div className="absolute bottom-0 left-0 mb-4 ml-2">
-          <Badge color="gray" size="sm" className="text-xs font-semibold">
+          <Badge color="dark" size="sm" className="text-xs font-semibold">
             {pack.pack_type}
           </Badge>
         </div>
@@ -43,7 +43,7 @@ function PhotoPackCard({ pack }) {
           </Badge>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900 dark:text-white group-hover:underline">
+          <span className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white group-hover:underline">
             {pack.display_name}
           </span>
           <Button

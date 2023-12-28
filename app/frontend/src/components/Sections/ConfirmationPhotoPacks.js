@@ -4,8 +4,8 @@ import ConfirmationPhotoPackCard from '../Cards/ConfirmationPhotoPackCard'
 function ConfirmationPhotoPacks({ promptPacks, handleBuyClicked }) {
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-screen-xl px-4 lg:px-6">
-        <div className="space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
+      <div className="mx-auto max-w-screen-xl px-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {promptPacks.map((pack) => (
             <ConfirmationPhotoPackCard
               key={pack.id}

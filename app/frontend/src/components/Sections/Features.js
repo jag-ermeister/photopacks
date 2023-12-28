@@ -41,7 +41,7 @@ function Features() {
                     <h2 className="text-4xl font-bold leading-tight text-gray-900 dark:text-white sm:text-4xl">
                       The picture-perfect photo shoot, without the price tag
                     </h2>
-                    <p className="mt-4 text-2xl font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
+                    <p className="mt-4 text-xl md:text-2xl font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
                       Elevate your glow and shine with scenic backdrops,
                       artistic expression, and great lighting.
                     </p>
@@ -119,7 +119,7 @@ function Features() {
                       Photo Packs
                       <svg
                         aria-hidden="true"
-                        className="ml-1.5 h-5 w-5"
+                        className="ml-1.5 h-8 w-8"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -255,7 +255,7 @@ function Features() {
           </div>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-8 lg:mt-20 lg:grid-cols-2 lg:gap-16">
-          <div className="hidden lg:block">
+          <div>
             <img src={`${STATIC_ROOT}/feature_cat.png`} alt="" />
           </div>
           <div className="space-y-4 sm:space-y-6 lg:space-y-8">
@@ -264,7 +264,7 @@ function Features() {
                 Purr-fectly captured, because your fur baby doesn&apos;t always
                 sit still
               </h2>
-              <p className="mt-4 text-2xl font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
+              <p className="mt-4 text-xl md:text-2xl font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
                 Let our tech handle the lively antics and turn them into
                 timeless treasures.
               </p>
@@ -362,7 +362,7 @@ function Features() {
                 Photo Packs
                 <svg
                   aria-hidden="true"
-                  className="ml-1.5 h-5 w-5"
+                  className="ml-1.5 h-8 w-8"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"

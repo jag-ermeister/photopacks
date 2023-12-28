@@ -5,15 +5,15 @@ import { HiShoppingCart } from 'react-icons/hi'
 
 function ConfirmationPackCard({ pack, handleBuyClicked }) {
   return (
-    <div className="w-full max-w-sm group cursor-pointer">
+    <div className="w-full group cursor-pointer">
       <div className="relative">
         <img
-          className="pt-8 pb-2 rounded-t-lg"
+          className="pt-4 pb-2"
           src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
           alt="product image"
         />
         <div className="absolute bottom-0 left-0 mb-4 ml-2">
-          <Badge color="gray" size="sm" className="text-xs font-semibold">
+          <Badge color="dark" size="sm" className="text-xs font-semibold">
             {pack.pack_type}
           </Badge>
         </div>
@@ -28,7 +28,7 @@ function ConfirmationPackCard({ pack, handleBuyClicked }) {
           </Badge>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900 dark:text-white group-hover:underline">
+          <span className="text-2xl font-bold text-gray-900 dark:text-white group-hover:underline">
             {pack.display_name}
           </span>
           <Button

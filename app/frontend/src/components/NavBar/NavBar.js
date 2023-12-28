@@ -9,12 +9,12 @@ function NavBar({ onLoginClick }) {
 
   useEffect(() => {
     Auth.currentAuthenticatedUser()
-      .then((currentUser) => {
-        setUser(currentUser)
-      })
-      .catch(() => {
-        setUser(null)
-      })
+        .then((currentUser) => {
+          setUser(currentUser)
+        })
+        .catch(() => {
+          setUser(null)
+        })
   }, [])
 
   const deleteAllCookies = () => {
@@ -45,59 +45,59 @@ function NavBar({ onLoginClick }) {
   }
 
   return (
-    <header>
-      <Navbar fluid rounded>
-        <Navbar.Brand href="/">
-          <img
-            src={`${STATIC_ROOT}/title_logo.svg`}
-            className="mr-3 h-6 sm:h-9"
-            alt="PhotoPacks.AI Logo"
-          />
-        </Navbar.Brand>
-        <div className="flex md:order-2">
-          {user ? (
-            <>
-              <Button pill color="info" onClick={handleSignOut}>
-                Sign Out
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button pill color="gray" onClick={() => onLoginClick('signIn')}>
-                Log in
-              </Button>
-              <Button
-                pill
-                color="info"
-                className="hidden md:block md:ml-4"
-                onClick={() => onLoginClick('signUp')}
-              >
-                Get started
-              </Button>
-            </>
-          )}
-          <Navbar.Toggle />
-        </div>
-        <Navbar.Collapse>
-          <Navbar.Link
-            active
-            href="/packs"
-            className="bg-transparent text-primary-700"
-          >
-            Packs
-          </Navbar.Link>
-          {user && (
+      <header>
+        <Navbar fluid rounded>
+          <Navbar.Brand href="/">
+            <img
+                src={`${STATIC_ROOT}/title_logo.svg`}
+                className="mr-3 h-6 sm:h-9"
+                alt="PhotoPacks.AI Logo"
+            />
+          </Navbar.Brand>
+          <div className="flex md:order-2">
+            {user ? (
+                <>
+                  <Button pill color="info" onClick={handleSignOut}>
+                    Sign Out
+                  </Button>
+                </>
+            ) : (
+                <>
+                  <Button pill color="gray" onClick={() => onLoginClick('signIn')}>
+                    Log in
+                  </Button>
+                  <Button
+                      pill
+                      color="info"
+                      className="hidden md:block md:ml-4"
+                      onClick={() => onLoginClick('signUp')}
+                  >
+                    Get started
+                  </Button>
+                </>
+            )}
+            <Navbar.Toggle />
+          </div>
+          <Navbar.Collapse>
             <Navbar.Link
-              active
-              href="/orders"
-              className="bg-transparent text-primary-700"
+                active
+                href="/packs"
+                className="bg-transparent text-primary-700"
             >
-              Orders
+              Packs
             </Navbar.Link>
-          )}
-        </Navbar.Collapse>
-      </Navbar>
-    </header>
+            {user && (
+                <Navbar.Link
+                    active
+                    href="/orders"
+                    className="bg-transparent text-primary-700"
+                >
+                  Orders
+                </Navbar.Link>
+            )}
+          </Navbar.Collapse>
+        </Navbar>
+      </header>
   )
 }
 
