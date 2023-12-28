@@ -17,7 +17,7 @@ const awsmobile = {
       'profile',
       'aws.cognito.signin.user.admin',
     ],
-    redirectSignIn: 'https://dev.photopacks.ai/home/',
+    redirectSignIn: 'https://dev.photopacks.ai/',
     redirectSignOut: 'https://dev.photopacks.ai/',
     responseType: 'code',
   },
