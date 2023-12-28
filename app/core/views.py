@@ -61,8 +61,7 @@ def orders_list(request):
     elif request.method == 'POST':
         serializer = OrderSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
-            order = serializer.save(user=request.user)
-            AiService().submit_job(order)
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         print(serializer.errors)
@@ -83,7 +82,8 @@ def orders_detail(request, pk):
     elif request.method == 'PATCH':
         serializer = OrderSerializer(order, data=request.data, context={'request': request}, partial=True)
         if serializer.is_valid():
-            serializer.save()
+            order = serializer.save()
+            AiService().submit_job(order)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

@@ -10,19 +10,7 @@ User = get_user_model()
 
 
 @pytest.mark.django_db
-@patch('requests.post')
-def test_create_order(mock_post, authenticated_client, prompt_pack, create_prompt_pack, monkeypatch):
-    mock_post.return_value.status_code = 201
-    mock_post.return_value.json.return_value = {"success": True}
-
-    monkeypatch.setenv('AWS_ACCESS_KEY_ID', 'test_access_key_id')
-    monkeypatch.setenv('AWS_SECRET_ACCESS_KEY', 'test_secret_access_key')
-    monkeypatch.setenv('AWS_S3_REGION_NAME', 'us-east-1')
-    monkeypatch.setenv('RUNPOD_JOB_SUBMIT_URL', 'https://runpod.io/fake-url')
-    monkeypatch.setenv('RUNPOD_API_KEY', 'test_runpod_api_key')
-    monkeypatch.setenv('API_URL', 'https://fakephotopacks.ai')
-    monkeypatch.setenv('ORDER_IMAGES_S3_BUCKET_NAME', 'fake-bucket-name')
-
+def test_create_order(authenticated_client, prompt_pack, create_prompt_pack):
     pack2 = create_prompt_pack(internal_name="Pack 2", display_name="Pack 2", prompts=["prompt 3", "prompt 4"])
     pack3 = create_prompt_pack(internal_name="Pack 3", display_name="Pack 3", prompts=["prompt 5", "prompt 6"])
     pack4 = create_prompt_pack(internal_name="Pack 4", display_name="Pack 4", prompts=["prompt 7", "prompt 8"])
@@ -44,6 +32,37 @@ def test_create_order(mock_post, authenticated_client, prompt_pack, create_promp
     assert response.status_code == 201
     assert 'id' in response.data
 
+
+@pytest.mark.django_db
+@patch('requests.post')
+def test_patch_order(mock_post, authenticated_client, order, create_prompt_pack, monkeypatch):
+    mock_post.return_value.status_code = 201
+    mock_post.return_value.json.return_value = {"success": True}
+
+    monkeypatch.setenv('AWS_ACCESS_KEY_ID', 'test_access_key_id')
+    monkeypatch.setenv('AWS_SECRET_ACCESS_KEY', 'test_secret_access_key')
+    monkeypatch.setenv('AWS_S3_REGION_NAME', 'us-east-1')
+    monkeypatch.setenv('RUNPOD_JOB_SUBMIT_URL', 'https://runpod.io/fake-url')
+    monkeypatch.setenv('RUNPOD_API_KEY', 'test_runpod_api_key')
+    monkeypatch.setenv('API_URL', 'https://fakephotopacks.ai')
+    monkeypatch.setenv('ORDER_IMAGES_S3_BUCKET_NAME', 'fake-bucket-name')
+
+    order.prompt_pack_2 = create_prompt_pack(internal_name="Pack 2", display_name="Pack 2", prompts=["prompt 3", "prompt 4"])
+    order.prompt_pack_3 = create_prompt_pack(internal_name="Pack 3", display_name="Pack 3", prompts=["prompt 5", "prompt 6"])
+    order.prompt_pack_4 = create_prompt_pack(internal_name="Pack 4", display_name="Pack 4", prompts=["prompt 7", "prompt 8"])
+    order.prompt_pack_5 = create_prompt_pack(internal_name="Pack 5", display_name="Pack 5", prompts=["prompt 9", "prompt 10"])
+    order.save()
+
+    url = reverse('order_detail', kwargs={'pk': str(order.id)})
+    training_image_urls = ["new_image_url1.jpg", "new_image_url2.jpg"]
+    response = authenticated_client.patch(url, {
+        "training_image_urls": training_image_urls
+    }, format='json')
+
+    assert response.status_code == 200
+    updated_order = Order.objects.get(pk=order.id)
+    assert updated_order.training_image_urls == training_image_urls
+
     # assert on request body to runpod
     kwargs = mock_post.call_args.kwargs
     request_body = kwargs.get('json', {})
@@ -61,19 +80,6 @@ def test_create_order(mock_post, authenticated_client, prompt_pack, create_promp
         'prompt 9',
         'prompt 10',
     ]
-
-
-@pytest.mark.django_db
-def test_patch_order(authenticated_client, order):
-    url = reverse('order_detail', kwargs={'pk': str(order.id)})
-    training_image_urls = ["new_image_url1.jpg", "new_image_url2.jpg"]
-    response = authenticated_client.patch(url, {
-        "training_image_urls": training_image_urls
-    }, format='json')
-
-    assert response.status_code == 200
-    updated_order = Order.objects.get(pk=order.id)
-    assert updated_order.training_image_urls == training_image_urls
 
 
 @pytest.mark.django_db
