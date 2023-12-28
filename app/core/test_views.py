@@ -1,3 +1,4 @@
+from unittest.mock import patch
 import json
 import pytest
 from django.urls import reverse
@@ -9,11 +10,23 @@ User = get_user_model()
 
 
 @pytest.mark.django_db
-def test_create_order(authenticated_client, prompt_pack, create_prompt_pack):
-    pack2 = create_prompt_pack(internal_name="Pack 2", display_name="Pack 2", prompts=["prompt 1", "prompt 2"])
-    pack3 = create_prompt_pack(internal_name="Pack 3", display_name="Pack 3", prompts=["prompt 1", "prompt 2"])
-    pack4 = create_prompt_pack(internal_name="Pack 4", display_name="Pack 4", prompts=["prompt 1", "prompt 2"])
-    pack5 = create_prompt_pack(internal_name="Pack 5", display_name="Pack 5", prompts=["prompt 1", "prompt 2"])
+@patch('requests.post')
+def test_create_order(mock_post, authenticated_client, prompt_pack, create_prompt_pack, monkeypatch):
+    mock_post.return_value.status_code = 201
+    mock_post.return_value.json.return_value = {"success": True}
+
+    monkeypatch.setenv('AWS_ACCESS_KEY_ID', 'test_access_key_id')
+    monkeypatch.setenv('AWS_SECRET_ACCESS_KEY', 'test_secret_access_key')
+    monkeypatch.setenv('AWS_S3_REGION_NAME', 'us-east-1')
+    monkeypatch.setenv('RUNPOD_JOB_SUBMIT_URL', 'https://runpod.io/fake-url')
+    monkeypatch.setenv('RUNPOD_API_KEY', 'test_runpod_api_key')
+    monkeypatch.setenv('API_URL', 'https://fakephotopacks.ai')
+    monkeypatch.setenv('ORDER_IMAGES_S3_BUCKET_NAME', 'fake-bucket-name')
+
+    pack2 = create_prompt_pack(internal_name="Pack 2", display_name="Pack 2", prompts=["prompt 3", "prompt 4"])
+    pack3 = create_prompt_pack(internal_name="Pack 3", display_name="Pack 3", prompts=["prompt 5", "prompt 6"])
+    pack4 = create_prompt_pack(internal_name="Pack 4", display_name="Pack 4", prompts=["prompt 7", "prompt 8"])
+    pack5 = create_prompt_pack(internal_name="Pack 5", display_name="Pack 5", prompts=["prompt 9", "prompt 10"])
 
     url = reverse('orders_list')
     data = {
@@ -30,6 +43,24 @@ def test_create_order(authenticated_client, prompt_pack, create_prompt_pack):
 
     assert response.status_code == 201
     assert 'id' in response.data
+
+    # assert on request body to runpod
+    kwargs = mock_post.call_args.kwargs
+    request_body = kwargs.get('json', {})
+    assert request_body['input']['order_id'] == response.data['id']
+    assert request_body['input']['model_type'] == 'man'
+    assert request_body['input']['prompts'] == [
+        'prompt 1',
+        'prompt 2',
+        'prompt 3',
+        'prompt 4',
+        'prompt 5',
+        'prompt 6',
+        'prompt 7',
+        'prompt 8',
+        'prompt 9',
+        'prompt 10',
+    ]
 
 
 @pytest.mark.django_db

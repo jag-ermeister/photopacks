@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from django_cognito_jwt import JSONWebTokenAuthentication
 from .models import Order
 from .serializers import *
+from .services import AiService
 
 
 class S3PresignedUrlView(APIView):
@@ -60,7 +61,8 @@ def orders_list(request):
     elif request.method == 'POST':
         serializer = OrderSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
-            serializer.save(user=request.user)
+            order = serializer.save(user=request.user)
+            AiService().submit_job(order)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         print(serializer.errors)

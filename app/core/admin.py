@@ -52,7 +52,7 @@ class OrderAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
 
-        if not change: # Only run this on initial model create
+        if not change:  # Only run this on initial model create
             # Process each file uploaded
             images = request.FILES.getlist('training_images')
             image_urls = []
@@ -66,10 +66,7 @@ class OrderAdmin(admin.ModelAdmin):
                 obj.training_image_urls = existing_urls + image_urls
                 obj.save()
 
-            if obj.fulfillment_service == Order.FulfillmentService.RUNPOD.value:
-                AiService().submit_job_to_runpod(obj)
-            elif obj.fulfillment_service == Order.FulfillmentService.BATCH.value:
-                AiService().submit_job_to_batch(obj)
+            AiService().submit_job(obj)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)

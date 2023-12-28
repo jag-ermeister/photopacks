@@ -4,6 +4,7 @@ import uuid
 import json
 import requests
 from django.conf import settings
+from .models import Order
 
 
 class AiService:
@@ -34,7 +35,13 @@ class AiService:
 
         return f"https://{bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{object_name}"
 
-    def submit_job_to_batch(self, order):
+    def submit_job(self, order):
+        if order.fulfillment_service == Order.FulfillmentService.RUNPOD.value:
+            self._submit_job_to_runpod(order)
+        elif order.fulfillment_service == Order.FulfillmentService.BATCH.value:
+            self._submit_job_to_batch(order)
+
+    def _submit_job_to_batch(self, order):
         _ = self.batch_client.submit_job(
             jobName=f"generation_{order.id}",
             jobQueue=(
@@ -50,7 +57,13 @@ class AiService:
             },
         )
 
-    def submit_job_to_runpod(self, order):
+    def _submit_job_to_runpod(self, order):
+        prompts = []
+        for i in range(1, 6):
+            prompt_pack = getattr(order, f'prompt_pack_{i}')
+            if prompt_pack:
+                prompts.extend(prompt_pack.prompts)
+
         response = requests.post(
             os.environ["RUNPOD_JOB_SUBMIT_URL"],
             json={
@@ -60,7 +73,7 @@ class AiService:
                     "order_images_s3_bucket_name": os.environ["ORDER_IMAGES_S3_BUCKET_NAME"],
                     "model_type": order.model_type,
                     "num_steps": order.speed_type,
-                    "prompts": order.prompt_pack.prompts,
+                    "prompts": prompts,
                     "images_per_prompt": order.images_per_prompt,
                 },
                 "webhook": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}/runpod'
