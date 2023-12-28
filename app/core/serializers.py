@@ -25,6 +25,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'is_processing',
             'is_success',
             'zip_file_url',
+            'training_image_urls',
             'inference_image_urls',
             'created_date',
             'modified_date'

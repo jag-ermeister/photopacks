@@ -1,5 +1,4 @@
 import React from 'react'
-import { STATIC_ROOT } from '../../constants'
 import { Button } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import { Ring } from '@uiball/loaders'
@@ -9,11 +8,20 @@ function OrderPackCard({ order }) {
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 px-8 ">
       <a href="#">
-        <img
-          className="pt-8 pb-2 rounded-t-lg"
-          src={`${STATIC_ROOT}/packs/${order.prompt_pack.preview_image}`}
-          alt="product image"
-        />
+        {order.is_success && (
+          <img
+            className="pt-8 pb-2 rounded-t-lg"
+            src={order.inference_image_urls[0]}
+            alt="product image"
+          />
+        )}
+        {!order.is_success && (
+          <img
+            className="pt-8 pb-2 rounded-t-lg"
+            src={order.training_image_urls[0]}
+            alt="product image"
+          />
+        )}
       </a>
       <div className="pb-5">
         <div className="text-sm text-gray-500">Order #{order.id}</div>
