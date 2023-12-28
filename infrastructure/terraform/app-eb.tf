@@ -229,6 +229,12 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
 
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "STRIPE_ADDITIONAL_PACK_PRICE_ID"
+    value     = var.stripe_additional_pack_price_id
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
     name      = "STRIPE_WEBHOOK_SECRET"
     value     = var.stripe_webhook_secret
   }

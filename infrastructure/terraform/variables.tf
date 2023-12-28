@@ -115,6 +115,10 @@ variable stripe_photo_pack_price_id {
   type = string
 }
 
+variable stripe_additional_pack_price_id {
+  type = string
+}
+
 variable stripe_webhook_secret {
   type = string
 }

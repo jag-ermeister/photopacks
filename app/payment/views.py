@@ -7,6 +7,7 @@ import stripe
 import os
 import logging
 import json
+from core.models import Order
 
 logger = logging.getLogger(__name__)
 
@@ -45,14 +46,29 @@ def create_checkout_session(request):
         if not order_id:
             return Response({"message": "order_id not provided"}, status=400)
 
+        try:
+            order = Order.objects.get(id=order_id)
+        except Order.DoesNotExist as e:
+            logger.info(e)
+            return Response({"message": "Order not found"}, status=404)
+
+        line_items = [
+            {
+                "price": os.environ["STRIPE_PHOTO_PACK_PRICE_ID"],
+                "quantity": 1,
+            },
+        ]
+
+        for pack in [order.prompt_pack_2, order.prompt_pack_3, order.prompt_pack_4, order.prompt_pack_5]:
+            if pack is not None:
+                line_items.append({
+                    "price": os.environ["STRIPE_ADDITIONAL_PACK_PRICE_ID"],
+                    "quantity": 1,
+                })
+
         stripe.api_key = os.environ["STRIPE_SECRET_API_KEY"]
         checkout_session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    "price": os.environ["STRIPE_PHOTO_PACK_PRICE_ID"],
-                    "quantity": 1,
-                },
-            ],
+            line_items=line_items,
             mode="payment",
             success_url=f"{os.environ['SITE_URL']}/upload/{order_id}?success=true",
             cancel_url=f"{os.environ['SITE_URL']}/upload/{order_id}?canceled=true",
