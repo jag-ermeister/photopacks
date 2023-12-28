@@ -64,6 +64,19 @@ def test_create_order(mock_post, authenticated_client, prompt_pack, create_promp
 
 
 @pytest.mark.django_db
+def test_patch_order(authenticated_client, order):
+    url = reverse('order_detail', kwargs={'pk': str(order.id)})
+    training_image_urls = ["new_image_url1.jpg", "new_image_url2.jpg"]
+    response = authenticated_client.patch(url, {
+        "training_image_urls": training_image_urls
+    }, format='json')
+
+    assert response.status_code == 200
+    updated_order = Order.objects.get(pk=order.id)
+    assert updated_order.training_image_urls == training_image_urls
+
+
+@pytest.mark.django_db
 def test_get_orders(authenticated_client, order, prompt_pack):
     url = reverse('order_detail', kwargs={'pk': str(order.id)})
     response = authenticated_client.get(url)

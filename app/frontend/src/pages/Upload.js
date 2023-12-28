@@ -50,6 +50,7 @@ function Upload() {
       const allResponsesOk = uploadResponse.every((response) => response.ok)
 
       if (allResponsesOk) {
+        await BackendClient.updateOrder(orderId, presignedResponse)
         navigate(`/orders?success_order=${orderId}`)
       } else {
         setUploadError('Some or all files failed to upload')

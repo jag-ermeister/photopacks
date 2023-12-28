@@ -69,7 +69,7 @@ def orders_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'PATCH', 'DELETE'])
 def orders_detail(request, pk):
     try:
         order = Order.objects.get(pk=pk)
@@ -80,11 +80,11 @@ def orders_detail(request, pk):
         serializer = OrderSerializer(order, context={'request': request})
         return Response(serializer.data)
 
-    if request.method == 'PUT':
-        serializer = OrderSerializer(order, data=request.data, context={'request': request})
+    elif request.method == 'PATCH':
+        serializer = OrderSerializer(order, data=request.data, context={'request': request}, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
