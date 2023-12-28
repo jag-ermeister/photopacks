@@ -138,10 +138,10 @@ export default class BackendClient {
 
   static async updateOrder(id, presignedResponse) {
     const image_urls = Object.values(presignedResponse.presigned_urls).map(
-        (url) => {
-          return url.split('?')[0];
-        }
-    );
+      (url) => {
+        return url.split('?')[0]
+      }
+    )
     return await fetch(`${API_URL}/app/orders/${id}`, {
       method: 'PATCH',
       headers: {
@@ -151,6 +151,6 @@ export default class BackendClient {
       body: JSON.stringify({
         training_image_urls: image_urls,
       }),
-    });
+    })
   }
 }

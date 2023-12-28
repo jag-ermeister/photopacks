@@ -46,18 +46,15 @@ function NavBar({ onLoginClick }) {
 
   return (
     <header>
-      <Navbar fluid>
+      <Navbar fluid rounded>
         <Navbar.Brand href="/">
           <img
             src={`${STATIC_ROOT}/title_logo.svg`}
             className="mr-3 h-6 sm:h-9"
             alt="PhotoPacks.AI Logo"
           />
-          {/*<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">*/}
-          {/*  Cards.AI*/}
-          {/*</span>*/}
         </Navbar.Brand>
-        <div className="flex items-center gap-3 lg:order-2">
+        <div className="flex md:order-2">
           {user ? (
             <>
               <Button pill color="info" onClick={handleSignOut}>
@@ -74,18 +71,22 @@ function NavBar({ onLoginClick }) {
               </Button>
             </>
           )}
+          <Navbar.Toggle />
         </div>
-        <Navbar.Collapse
-          theme={{
-            list: 'mt-4 flex flex-col lg:mt-0 lg:flex-row lg:space-x-8 lg:text-base lg:font-medium',
-          }}
-          className="lg:order-1"
-        >
-          <Navbar.Link active href="/packs" className="rounded-lg">
+        <Navbar.Collapse>
+          <Navbar.Link
+            active
+            href="/packs"
+            className="bg-transparent text-primary-700"
+          >
             Packs
           </Navbar.Link>
           {user && (
-            <Navbar.Link active href="/orders" className="rounded-lg">
+            <Navbar.Link
+              active
+              href="/orders"
+              className="bg-transparent text-primary-700"
+            >
               Orders
             </Navbar.Link>
           )}
