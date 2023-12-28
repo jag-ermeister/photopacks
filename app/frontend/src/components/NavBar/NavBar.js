@@ -63,10 +63,15 @@ function NavBar({ onLoginClick }) {
             </>
           ) : (
             <>
-              <Button pill color="gray" onClick={onLoginClick}>
+              <Button pill color="gray" onClick={() => onLoginClick('signIn')}>
                 Log in
               </Button>
-              <Button pill color="info">
+              <Button
+                pill
+                color="info"
+                className="hidden md:block md:ml-4"
+                onClick={() => onLoginClick('signUp')}
+              >
                 Get started
               </Button>
             </>

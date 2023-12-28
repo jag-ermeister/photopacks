@@ -29,10 +29,13 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
     const [user, setUser] = useState(null)
     const [isAuthRequired, setIsAuthRequired] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [action, setAction] = useState(null)
+
     const { tokens } = useTheme()
     const theme = getTheme(tokens)
 
-    const triggerLogin = () => {
+    const triggerLogin = (action) => {
+      setAction(action)
       setIsAuthRequired(true)
     }
 
@@ -44,6 +47,7 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
           try {
             await Auth.currentAuthenticatedUser()
             setIsAuthRequired(false)
+            setAction(null)
           } catch (error) {
             setIsAuthRequired(true)
           }
@@ -60,6 +64,7 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
       const listener = (data) => {
         if (data.payload.event === 'signOut') {
           setIsAuthRequired(false)
+          setAction(null)
         }
       }
 
@@ -100,6 +105,7 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
     return (
       <ThemeProvider theme={theme}>
         <Authenticator
+          initialState={action}
           socialProviders={['google']}
           components={components}
           className={styles.amplifyScoped}
