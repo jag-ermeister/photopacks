@@ -82,66 +82,71 @@ function Upload() {
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-center">
-        <div className="text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+    <div className="my-8 md:my-24 flex flex-col gap-8 md:gap-12 w-full">
+      <div className="flex flex-col md:flex-row items-center justify-center mx-auto max-w-screen-xl mx-8">
+        <div className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white text-center md:text-left mb-4 md:mb-0">
           {'Upload Your Photos'.toUpperCase()}&nbsp;&nbsp;
         </div>
         <Badge color="info" size="lg">
           {order.model_type}
         </Badge>
       </div>
-      <div className="text-center font-semibold my-8">Order #{orderId}</div>
-      <div className="flex justify-center gap-4">
-        {packs.map((pack) => (
-          <Card
-            className="max-w-sm"
-            imgSrc={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-            horizontal
-            key={pack.id}
-          >
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {pack.display_name}
-            </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              100 image pack
-            </p>
-          </Card>
-        ))}
+      <div>
+        <div className="text-center text-lg font-medium mb-4">
+          Order #{orderId}
+        </div>
+        <div className="flex justify-center gap-4">
+          {packs.map((pack) => (
+            <Card
+              className="max-w-sm"
+              imgSrc={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              horizontal
+              key={pack.id}
+            >
+              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {pack.display_name}
+              </h5>
+              <p className="font-normal text-gray-700 dark:text-gray-400">
+                100 image pack
+              </p>
+            </Card>
+          ))}
+        </div>
       </div>
+
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-screen-xl px-4 py-8 text-center sm:py-16 lg:px-6">
-          <h4 className="mb-4 text-5xl font-extrabold tracking-tight ">
+          <h4 className="mb-8 md:mb-16 text-3xl md:text-4xl font-bold tracking-tight ">
             Choose the right photos
           </h4>
-          <div className="mb-8 mt-8 space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0">
+          <div className="my-8 space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0">
             <div>
               <div className="mb-6 inline-flex gap-4 h-24 w-24 items-center justify-center rounded-lg">
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_good_1.jpg`}
                   alt="product image"
                 />
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_good_2.jpg`}
                   alt="product image"
                 />
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_good_3.jpg`}
                   alt="product image"
                 />
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_good_4.jpg`}
                   alt="product image"
                 />
               </div>
-              <h3 className="mb-4 text-2xl font-bold dark:text-white">
+              <h3 className="mb-2 md:mb-4 text-xl md:text-2xl font-bold dark:text-white">
                 Good Photos
               </h3>
-              <p className="mb-4">
+              <p className="mb-4 text-gray-500">
                 Provide many headshots and several full-body shots. Photos
                 should be fairly high resolution, well lit, and from a variety
                 of angles.
@@ -150,30 +155,30 @@ function Upload() {
             <div>
               <div className="mb-6 inline-flex gap-4 h-24 w-24 items-center justify-center rounded-lg">
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_bad_1.jpg`}
                   alt="product image"
                 />
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_bad_2.jpg`}
                   alt="product image"
                 />
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_bad_3.jpg`}
                   alt="product image"
                 />
                 <img
-                  className="pt-8 pb-2 rounded-t-lg"
+                  className="rounded-lg"
                   src={`${STATIC_ROOT}/tips/tips_bad_4.jpg`}
                   alt="product image"
                 />
               </div>
-              <h3 className="mb-4 text-2xl font-bold dark:text-white">
+              <h3 className="mb:2 md:mb-4 text-xl md:text-2xl font-bold dark:text-white">
                 Bad Photos
               </h3>
-              <p className="mb-4">
+              <p className="mb-4 text-gray-500">
                 Do not use photos with other people! Also avoid photos with
                 harsh shadows, sunglasses, poor color contrast, and partial
                 faces.
@@ -182,11 +187,12 @@ function Upload() {
           </div>
         </div>
       </section>
-      <form onSubmit={handleSubmit(onSubmit)} className="mx-auto my-8 p-4">
-        <div className="mb-4 text-center">
-          <label className="block text-primary-700 text-3xl font-bold mb-2">
-            Upload:
+      <form onSubmit={handleSubmit(onSubmit)} className="mb-8 md:my-8 md:p-4">
+        <div className="mb-8 md:mb-16 mx-4 text-center">
+          <label className="block text-primary-700 text-4xl font-bold mb-8">
+            Upload
           </label>
+
           <Controller
             name="files"
             control={control}
@@ -200,9 +206,28 @@ function Upload() {
               <>
                 <label
                   htmlFor="file-upload"
-                  className="cursor-pointer bg-primary-500 text-white py-2 px-4 rounded inline-block hover:bg-primary-600"
+                  className="flex flex-col max-w-screen-xl mx-auto items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                 >
-                  Choose files
+                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg
+                      className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 20 16"
+                    >
+                      <path
+                        stroke="currentColor"
+                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                      />
+                    </svg>
+                    <p className="mb-2 text-sm text-primary-600 dark:text-gray-400">
+                      <span className="font-semibold">Click to upload</span>
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      PNG or JPG
+                    </p>
+                  </div>
                 </label>
                 <input
                   id="file-upload"
@@ -226,8 +251,8 @@ function Upload() {
           )}
         </div>
 
-        <section>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+        <section className="max-w-screen-xl mx-auto my-8 md:my-16">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mx-4">
             {renderImagePreviews()}
           </div>
         </section>
@@ -323,7 +348,7 @@ function Upload() {
             )}
           </div>
 
-          <ul className="list-disc pl-5">
+          <ul className="list-disc pl-5 font-normal text-sm text-gray-700 flex flex-col gap-2 ml-4">
             <li>I have read the tips and warnings above;</li>
             <li>
               I have read and agree to the PhotoPacks.AI Terms and Conditions;
@@ -343,8 +368,14 @@ function Upload() {
           </ul>
         </section>
 
-        <div className="mt-8 flex justify-center items-center">
-          <Button type="submit" pill color="info" disabled={isUploading}>
+        <div className="max-w-screen-xl mx-auto px-6">
+          <Button
+            type="submit"
+            pill
+            color="info"
+            size="lg"
+            disabled={isUploading}
+          >
             {isUploading ? (
               <>
                 <Spinner />
