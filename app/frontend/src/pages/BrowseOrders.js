@@ -17,27 +17,34 @@ function BrowseOrders() {
   if (error) return <div>Error: {error}</div>
 
   return (
-    <div>
-      <h2 className="mt-16 mb-8 mb-4 text-4xl md:text-6xl font-extrabold tracking-tight text-center">
-        {'My Orders'.toUpperCase()}
-      </h2>
-      {successOrderParam && (
-        <Alert
-          color="warning"
-          icon={HiCheck}
-          additionalContent={
-            <div>
-              Your order is in progress! You can see it below. We&apos;ll send
-              you an email when it is complete!
-            </div>
-          }
-        >
-          Order #{successOrderParam} Successfully Uploaded
-        </Alert>
-      )}
+    <section className="bg-white dark:bg-gray-900">
+      <div className="flex flex-col gap-6 md:gap-12 w-full justify-between mx-auto max-w-screen-xl px-4 items-center mt-8 mb-16 md:my-16">
+        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-center">
+          {'My Orders'.toUpperCase()}
+        </h2>
+        <div>
+          {successOrderParam && (
+            <Alert
+              color="success"
+              className="w-full mb-8 mx-auto"
+              icon={HiCheck}
+              additionalContent={
+                <div>
+                  Your order is in progress! You can see it below.{' '}
+                  <span className="font-bold">
+                    We&apos;ll send you an email when it is complete!
+                  </span>
+                </div>
+              }
+            >
+              Order #{successOrderParam} Successfully Uploaded
+            </Alert>
+          )}
 
-      <OrderPacks orders={orderPacks} />
-    </div>
+          <OrderPacks orders={orderPacks} />
+        </div>
+      </div>
+    </section>
   )
 }
 

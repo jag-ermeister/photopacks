@@ -252,7 +252,7 @@ function Upload() {
         </div>
 
         <section className="max-w-screen-xl mx-auto my-8 md:my-16">
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mx-4">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mx-4 gap-y-4">
             {renderImagePreviews()}
           </div>
         </section>

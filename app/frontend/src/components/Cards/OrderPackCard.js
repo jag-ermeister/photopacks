@@ -4,32 +4,48 @@ import { useNavigate } from 'react-router-dom'
 import { Ring } from '@uiball/loaders'
 
 function OrderPackCard({ order }) {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
+
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 px-8 ">
-      <a href="#">
-        {order.is_success && (
-          <img
-            className="pt-8 pb-2 rounded-t-lg"
-            src={order.inference_image_urls[0]}
-            alt="product image"
-          />
-        )}
-        {!order.is_success && (
-          <img
-            className="pt-8 pb-2 rounded-t-lg"
-            src={order.training_image_urls[0]}
-            alt="product image"
-          />
-        )}
-      </a>
-      <div className="pb-5">
-        <div className="text-sm text-gray-500">Order #{order.id}</div>
-        <div className="text-3xl font-bold text-gray-900">
-          {order.prompt_pack.display_name}
+    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-6 overflow-hidden">
+      <div
+        className="relative overflow-hidden"
+        style={{ paddingTop: '100%' }}
+        onClick={() =>
+          navigate(`/orders/${order.id}/packs/${order.prompt_pack.id}`)
+        }
+      >
+        <a
+          href="#"
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          {order.is_success && (
+            <img
+              className="w-full h-full object-cover rounded-lg"
+              src={order.inference_image_urls[0]}
+              alt="product image"
+            />
+          )}
+          {!order.is_success && (
+            <img
+              className="w-full h-full object-cover rounded-lg"
+              src={order.training_image_urls[0]}
+              alt="product image"
+            />
+          )}
+        </a>
+      </div>
+
+      <div className="flex flex-col gap-6 pt-6">
+        <div className="flex flex-col gap-1">
+          <div className="text-xs text-gray-500">Order #{order.id}</div>
+          <div className="text-2xl font-bold text-gray-900">
+            {order.prompt_pack.display_name}
+          </div>
+          <div className="text-gray-500">100 Image Pack</div>
         </div>
-        <div className="text-gray-500">100 Image Pack</div>
-        <div className="flex items-center justify-between mt-4">
+
+        <div className="flex items-center justify-between">
           {order.is_success && (
             <Button
               onClick={() =>

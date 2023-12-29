@@ -7,13 +7,13 @@ function PhotoGallery({ photoUrls }) {
     return (
       <Item original={url} thumbnail={url} width="1024" height="1024" key={url}>
         {({ ref, open }) => (
-          <div className="flex-basis-auto w-full max-w-xs">
+          <div className="flex-basis-auto w-full relative overflow-hidden hover:transform hover:scale-105 transition-transform duration-300">
             <img
               ref={ref}
               onClick={open}
               src={url}
               alt="Gallery Image"
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover rounded-lg hover:cursor-pointer"
             />
           </div>
         )}
@@ -23,7 +23,7 @@ function PhotoGallery({ photoUrls }) {
 
   return (
     <Gallery>
-      <div className="flex flex-wrap gap-4">{items}</div>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">{items}</div>
     </Gallery>
   )
 }
