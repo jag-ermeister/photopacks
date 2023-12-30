@@ -1,7 +1,7 @@
 import uuid
 import random
 from enum import Enum
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager as _UserManager
 
@@ -65,6 +65,13 @@ class PromptPack(models.Model):
 
 class OrderSequence(models.Model):
     # Using this because Django does not support auto-incrementing fields that are not primary keys (WHY!?)
+    order = models.OneToOneField(
+        'Order',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+
     def __str__(self):
         return str(self.id)
 
@@ -97,7 +104,7 @@ class Order(models.Model):
             return [(item.value, f"{item.name.lower()} ({item.value})") for item in cls]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    order_sequence = models.ForeignKey(OrderSequence, on_delete=models.CASCADE)
+    sequence = models.ForeignKey(OrderSequence, on_delete=models.CASCADE, related_name="sequence")
     display_id = models.CharField(max_length=40, unique=True, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject_name = models.CharField(max_length=240, null=True, blank=True)
@@ -135,9 +142,9 @@ class Order(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
 
     def generate_display_id(self, sequence_id):
-        prefix = random.randint(10, 99)
+        prefix = random.randint(0, 9)
         infix = random.randint(10, 99)
-        suffix = random.randint(10, 99)
+        suffix = random.randint(0, 9)
 
         sequence_str = str(sequence_id)
         mid_index = len(sequence_str) // 2
@@ -146,10 +153,9 @@ class Order(models.Model):
         return f"{prefix}{sequence_with_infix}{suffix}"
 
     def save(self, *args, **kwargs):
-        if self._state.adding:  # Checking if the object is new
-            order_sequence = OrderSequence.objects.create()
-            print(order_sequence)
-            self.order_sequence = order_sequence
-            self.display_id = self.generate_display_id(order_sequence.id)
+        with transaction.atomic():
+            if self._state.adding:  # Checking if the object is new
+                self.sequence = OrderSequence.objects.create(order=self)
+                self.display_id = self.generate_display_id(self.sequence.id)
 
-        super(Order, self).save(*args, **kwargs)
+            super(Order, self).save(*args, **kwargs)

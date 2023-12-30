@@ -49,7 +49,7 @@ class OrderSequenceAdmin(admin.ModelAdmin):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'display_id', 'user', 'subject_name', 'model_type', 'speed_type', 'fulfillment_service', 'is_success', 'created_date', 'modified_date')
     form = OrderAdminForm
-    readonly_fields = ('order_sequence', 'display_id', 'created_date', 'modified_date')
+    readonly_fields = ('sequence', 'display_id', 'created_date', 'modified_date')
     ordering = ('-created_date',)
     change_form_template = "admin/order_detail.html"
 
