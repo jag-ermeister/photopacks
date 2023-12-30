@@ -1,20 +1,37 @@
 import React from 'react'
-import { useOrderPacks } from '../hooks/dataHooks'
+import { useOrderPacks, useOrders } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import OrderPacks from '../components/Sections/OrderPacks'
 import { useLocation } from 'react-router-dom'
 import { Alert } from 'flowbite-react'
 import { HiCheck } from 'react-icons/hi'
+import AwaitingUploadOrders from '../components/Sections/AwaitingUploadOrders'
 
 function BrowseOrders() {
-  const { orderPacks, isLoading, error } = useOrderPacks()
+  const {
+    orders,
+    isLoading: ordersIsLoading,
+    error: ordersIsError,
+  } = useOrders()
+  const {
+    orderPacks,
+    isLoading: orderPacksIsLoading,
+    error: orderPacksIsError,
+  } = useOrderPacks()
   const location = useLocation()
   const successOrderParam = new URLSearchParams(location.search).get(
     'success_order'
   )
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
+  if (ordersIsLoading || orderPacksIsLoading) return <div>Loading...</div>
+  if (ordersIsError || orderPacksIsError) return <div>Error!</div>
+
+  const imagesNotUploadedOrders = orders.filter(
+    (o) => o.training_image_urls === null || o.training_image_urls.length === 0
+  )
+  const imagesUploadedOrderPacks = orderPacks.filter(
+    (o) => o.training_image_urls !== null && o.training_image_urls.length > 0
+  )
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -41,7 +58,8 @@ function BrowseOrders() {
             </Alert>
           )}
 
-          <OrderPacks orders={orderPacks} />
+          <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
+          <OrderPacks orders={imagesUploadedOrderPacks} />
         </div>
       </div>
     </section>
