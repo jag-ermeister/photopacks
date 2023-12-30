@@ -17,7 +17,7 @@ function AwaitingUploadOrderCard({ order }) {
     <Card className="max-w-3xl p-2">
       <div>
         <h1 className="font-normal text-lg text-gray-900 dark:text-white text-center">
-          Order #{order.id}
+          Order #{order.display_id}
         </h1>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">

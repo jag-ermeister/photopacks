@@ -94,7 +94,7 @@ function Upload() {
       </div>
       <div>
         <div className="text-center text-lg font-medium mb-4">
-          Order #{orderId}
+          Order #{order.display_id}
         </div>
         <div className="flex justify-center gap-4">
           {packs.map((pack) => (

@@ -32,6 +32,9 @@ function BrowseOrders() {
   const imagesUploadedOrderPacks = orderPacks.filter(
     (o) => o.training_image_urls !== null && o.training_image_urls.length > 0
   )
+  const uploadedOrder = successOrderParam
+    ? orders.find((o) => o.id === successOrderParam)
+    : null
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -39,26 +42,25 @@ function BrowseOrders() {
         <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-center">
           {'My Orders'.toUpperCase()}
         </h2>
-        <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
-        <div>
-          {successOrderParam && (
+        {uploadedOrder && (
             <Alert
-              color="success"
-              className="w-full mb-8 mx-auto"
-              icon={HiCheck}
-              additionalContent={
-                <div>
-                  Your order is in progress! You can see it below.{' '}
-                  <span className="font-bold">
+                color="success"
+                className="w-full mb-8 mx-auto"
+                icon={HiCheck}
+                additionalContent={
+                  <div>
+                    Your order is in progress! You can see it below.{' '}
+                    <span className="font-bold">
                     We&apos;ll send you an email when it is complete!
                   </span>
-                </div>
-              }
+                  </div>
+                }
             >
-              Order #{successOrderParam} Successfully Uploaded
+              Order #{uploadedOrder.display_id} Successfully Uploaded
             </Alert>
-          )}
-
+        )}
+        <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
+        <div>
           <OrderPacks orders={imagesUploadedOrderPacks} />
           {orders.length === 0 && (
             <Alert
