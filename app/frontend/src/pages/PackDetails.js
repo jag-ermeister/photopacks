@@ -15,14 +15,151 @@ function PackDetails() {
 
   return (
     <div>
-      <h1>Pack Details</h1>
-      <h2>{pack.name}</h2>
-      <a
-        href={`/confirmation/${id}`}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Buy
-      </a>
+      <div className="dark">
+        <section className="bg-white dark:bg-gray-900">
+          <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div className="mr-auto place-self-center lg:col-span-7">
+              <div className="flex gap-2 md:gap-4 items-center">
+                <div className="text-4xl md:text-6xl font-extrabold tracking-tight text-grey-900 dark:text-white">
+                  CHRISTMAS
+                </div>
+                <Badge color="pink" size="lg">
+                  Dog
+                </Badge>
+              </div>
+              <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                From checkout to global sales tax compliance, companies around
+                the world use Flowbite to simplify their payment stack.
+              </p>
+              <Button pill size="lg">
+                Buy Now $9.99
+              </Button>
+            </div>
+            <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+              <img
+                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
+                alt="mockup"
+              />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section className="bg-white dark:bg-gray-900">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:px-12 sm:text-center lg:py-16">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            AI Magic in Every Style
+          </h2>
+          <p className="font-light text-gray-500 sm:text-lg md:px-20 lg:px-38 xl:px-48 dark:text-gray-400">
+            We whip up a bunch of different styles, so you&apos;re bound to find
+            your perfect match in every photo pack. It&apos;s your own personal
+            gallery, curated just for you.
+          </p>
+          <div className="gap-4 mt-8 grid grid-cols-2 md:grid-cols-5">
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+            <img
+              className="rounded-lg"
+              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+              alt="product image"
+            />
+          </div>
+        </div>
+      </section>
+
       <div className="dark">
         <section className="bg-white dark:bg-gray-900">
           <div className="mx-auto max-w-screen-xl px-4 py-8 text-center sm:py-16 lg:px-6 text-white">
@@ -85,45 +222,7 @@ function PackDetails() {
           </div>
         </section>
       </div>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:px-12 sm:text-center lg:py-16">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-            AI Magic in Every Style
-          </h2>
-          <p className="font-light text-gray-500 sm:text-lg md:px-20 lg:px-38 xl:px-48 dark:text-gray-400">
-            We whip up a bunch of different styles, so you&apos;re bound to find
-            your perfect match in every photo pack. It&apos;s your own personal
-            gallery, curated just for you.
-          </p>
-          <div className="gap-4 mt-8 grid grid-cols-2 md:grid-cols-5">
-            <img
-              className="rounded-lg"
-              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-              alt="product image"
-            />
-            <img
-              className="rounded-lg"
-              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-              alt="product image"
-            />
-            <img
-              className="rounded-lg"
-              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-              alt="product image"
-            />
-            <img
-              className="rounded-lg"
-              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-              alt="product image"
-            />
-            <img
-              className="rounded-lg"
-              src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-              alt="product image"
-            />
-          </div>
-        </div>
-      </section>
+
       <section className="bg-secondary-600 dark:bg-gray-900">
         <div className="flex flex-col md:flex-row gap-6 w-full justify-between mx-auto max-w-screen-xl px-4 py-8 md:py-24 sm:py-24 lg:px-6 items-center">
           <div className="flex flex-col gap-2">

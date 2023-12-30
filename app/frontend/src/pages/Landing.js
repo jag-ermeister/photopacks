@@ -8,6 +8,7 @@ import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import HeroBanner from '../components/Banner/HeroBanner'
 import AboutSection from '../components/Sections/AboutSection'
 import CtaSection from '../components/Sections/CtaSection'
+import Testimonials from '../components/Sections/Testimonials'
 
 function Landing() {
   return (
@@ -18,6 +19,7 @@ function Landing() {
       <LearnHowItWorks />
       <Features />
       <AboutSection />
+      <Testimonials />
       <FAQ />
       <CtaSection />
     </div>

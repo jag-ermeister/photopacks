@@ -190,7 +190,7 @@ function Upload() {
       <form onSubmit={handleSubmit(onSubmit)} className="mb-8 md:my-8 md:p-4">
         <div className="mb-8 md:mb-16 mx-4 text-center">
           <label className="block text-primary-700 text-4xl font-bold mb-8">
-            Upload
+            Upload 10 Photos
           </label>
 
           <Controller
