@@ -4,7 +4,7 @@ import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import OrderPacks from '../components/Sections/OrderPacks'
 import { useLocation } from 'react-router-dom'
 import { Alert } from 'flowbite-react'
-import { HiCheck } from 'react-icons/hi'
+import { HiCheck, HiInformationCircle } from 'react-icons/hi'
 import AwaitingUploadOrders from '../components/Sections/AwaitingUploadOrders'
 
 function BrowseOrders() {
@@ -60,6 +60,15 @@ function BrowseOrders() {
 
           <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
           <OrderPacks orders={imagesUploadedOrderPacks} />
+          {orders.length === 0 && (
+            <Alert
+              color="warning"
+              icon={HiInformationCircle}
+              className="w-full mx-auto"
+            >
+              You have not placed any orders yet!
+            </Alert>
+          )}
         </div>
       </div>
     </section>

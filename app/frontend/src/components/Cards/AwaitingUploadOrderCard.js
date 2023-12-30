@@ -15,21 +15,27 @@ function AwaitingUploadOrderCard({ order }) {
 
   return (
     <Card className="max-w-3xl">
-      <h1 className="mb-2 font-bold text-gray-900 dark:text-white">
+      <h1 className="font-bold text-gray-900 dark:text-white text-center">
         Order #{order.id}
       </h1>
-      <h5 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+      <h5 className="text-3xl font-bold text-gray-900 dark:text-white">
         Awaiting your photo upload
       </h5>
-      <p className="mb-5 text-base text-gray-500 dark:text-gray-400 sm:text-lg">
+      <p className="text-base text-gray-500 dark:text-gray-400 sm:text-lg text-center">
         Upload photos for your recent purchase!
       </p>
       {packs.map((pack) => (
         <PackThumbnailCard pack={pack} key={pack.id} />
       ))}
-      <Button pill color="info" onClick={() => navigate(`/upload/${order.id}`)}>
-        Upload my photos
-      </Button>
+      <div className="mx-auto">
+        <Button
+          pill
+          color="info"
+          onClick={() => navigate(`/upload/${order.id}`)}
+        >
+          Upload my photos
+        </Button>
+      </div>
     </Card>
   )
 }
