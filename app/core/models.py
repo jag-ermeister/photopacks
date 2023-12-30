@@ -1,4 +1,5 @@
 import uuid
+import random
 from enum import Enum
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -62,6 +63,12 @@ class PromptPack(models.Model):
         return self.internal_name
 
 
+class OrderSequence(models.Model):
+    # Using this because Django does not support auto-incrementing fields that are not primary keys (WHY!?)
+    def __str__(self):
+        return str(self.id)
+
+
 class Order(models.Model):
     class FulfillmentService(Enum):
         RUNPOD = "runpod"
@@ -90,6 +97,8 @@ class Order(models.Model):
             return [(item.value, f"{item.name.lower()} ({item.value})") for item in cls]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    order_sequence = models.ForeignKey(OrderSequence, on_delete=models.CASCADE)
+    display_id = models.CharField(max_length=40, unique=True, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject_name = models.CharField(max_length=240, null=True, blank=True)
     prompt_pack_1 = models.ForeignKey(PromptPack, on_delete=models.PROTECT, related_name="orders_prompt_pack_1")
@@ -124,3 +133,23 @@ class Order(models.Model):
     prompts = models.JSONField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
+
+    def generate_display_id(self, sequence_id):
+        prefix = random.randint(10, 99)
+        infix = random.randint(10, 99)
+        suffix = random.randint(10, 99)
+
+        sequence_str = str(sequence_id)
+        mid_index = len(sequence_str) // 2
+        sequence_with_infix = sequence_str[:mid_index] + str(infix) + sequence_str[mid_index:]
+
+        return f"{prefix}{sequence_with_infix}{suffix}"
+
+    def save(self, *args, **kwargs):
+        if self._state.adding:  # Checking if the object is new
+            order_sequence = OrderSequence.objects.create()
+            print(order_sequence)
+            self.order_sequence = order_sequence
+            self.display_id = self.generate_display_id(order_sequence.id)
+
+        super(Order, self).save(*args, **kwargs)

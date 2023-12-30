@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from .models import Order, PromptPack, User
+from .models import Order, OrderSequence, PromptPack, User
 from .services import AiService
 from django.conf import settings
 from django.forms.widgets import RadioSelect
@@ -39,13 +39,17 @@ class OrderAdminForm(forms.ModelForm):
         widgets = {
             'fulfillment_service': RadioSelect,
         }
-        readonly_fields = ('created_date', 'modified_date')
+        readonly_fields = ('display_id', 'created_date', 'modified_date')
+
+
+class OrderSequenceAdmin(admin.ModelAdmin):
+    list_display = ('id',)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'subject_name', 'model_type', 'speed_type', 'fulfillment_service', 'is_success', 'created_date', 'modified_date')
+    list_display = ('id', 'display_id', 'user', 'subject_name', 'model_type', 'speed_type', 'fulfillment_service', 'is_success', 'created_date', 'modified_date')
     form = OrderAdminForm
-    readonly_fields = ('created_date', 'modified_date')
+    readonly_fields = ('order_sequence', 'display_id', 'created_date', 'modified_date')
     ordering = ('-created_date',)
     change_form_template = "admin/order_detail.html"
 
@@ -129,4 +133,5 @@ class PromptPackAdmin(admin.ModelAdmin):
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderSequence, OrderSequenceAdmin)
 admin.site.register(PromptPack, PromptPackAdmin)

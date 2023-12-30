@@ -59,7 +59,9 @@ class OrderSerializer(serializers.ModelSerializer):
             speed_type=Order.SpeedType.TEST.value,
             fulfillment_service=Order.FulfillmentService.RUNPOD.value,
         )
+        print('about to save from serializer')
         order.save()
+        print('saved from serializer')
         return order
 
     def to_representation(self, instance):
