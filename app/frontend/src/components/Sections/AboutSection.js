@@ -1,7 +1,10 @@
 import React from 'react'
 import { Button } from 'flowbite-react'
+import { useNavigate } from 'react-router-dom'
 
 function AboutSection() {
+  let navigate = useNavigate()
+
   return (
     <section className="flex md:flex-row flex-col">
       <div className="bg-gray-900 w-full px-4 py-8 sm:py-16 lg:px-16 text-white">
@@ -40,7 +43,12 @@ function AboutSection() {
             </a>
           </div>
           <div className="flex">
-            <Button pill size="xl" color="light">
+            <Button
+              pill
+              size="xl"
+              color="light"
+              onClick={() => navigate('/packs')}
+            >
               Get Started
             </Button>
           </div>

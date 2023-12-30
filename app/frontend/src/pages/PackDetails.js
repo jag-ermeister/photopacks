@@ -4,14 +4,20 @@ import { usePack } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { STATIC_ROOT } from '../constants'
 import { Badge, Button } from 'flowbite-react'
+import { useNavigate } from 'react-router-dom'
 
 function PackDetails() {
   let { id } = useParams()
+  let navigate = useNavigate()
 
   const { pack, isLoading, error } = usePack(id)
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
+
+  const handleBuyClick = (e) => {
+    navigate(`/confirmation/${pack.id}`)
+  }
 
   return (
     <div>
@@ -31,7 +37,7 @@ function PackDetails() {
                 From checkout to global sales tax compliance, companies around
                 the world use Flowbite to simplify their payment stack.
               </p>
-              <Button pill size="lg">
+              <Button pill size="lg" onClick={handleBuyClick}>
                 Buy Now $9.99
               </Button>
             </div>
@@ -238,7 +244,7 @@ function PackDetails() {
               </Badge>
             </div>
           </div>
-          <Button pill size="lg">
+          <Button pill size="lg" onClick={handleBuyClick}>
             Buy Now $9.99
           </Button>
         </div>
