@@ -18,15 +18,17 @@ function PhotoPackCard({ pack }) {
 
   return (
     <div
-      className="w-full max-w-lg group cursor-pointer"
+      className="w-full max-w-lg group cursor-pointer hover:transform hover:scale-105 transition-transform duration-300"
       onClick={handleCardClick}
     >
       <div className="relative">
-        <img
-          className="pt-8 pb-2 rounded-t-lg"
-          src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-          alt="product image"
-        />
+        <div className="overflow-hidden">
+          <img
+            className="pt-8 pb-2 rounded-t-lg hover:scale-125 transition-transform duration-500 ease-in-out delay-100"
+            src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
+            alt="product image"
+          />
+        </div>
         <div className="absolute bottom-0 left-0 mb-4 ml-2">
           <Badge color="dark" size="sm" className="text-xs font-semibold">
             {pack.pack_type}
