@@ -93,6 +93,9 @@ function NavBar({ onLoginClick }) {
               Orders
             </Navbar.Link>
           )}
+          <Navbar.Link active={isPathActive('/about')} href="/about">
+            About
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </header>
