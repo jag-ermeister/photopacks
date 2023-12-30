@@ -3,9 +3,11 @@ import Cookies from 'js-cookie'
 import { Button, Navbar } from 'flowbite-react'
 import { Auth } from 'aws-amplify'
 import { STATIC_ROOT } from '../../constants'
+import { useLocation } from 'react-router-dom'
 
 function NavBar({ onLoginClick }) {
   const [user, setUser] = useState(null)
+  const location = useLocation()
 
   useEffect(() => {
     Auth.currentAuthenticatedUser()
@@ -44,6 +46,10 @@ function NavBar({ onLoginClick }) {
     })
   }
 
+  const isPathActive = (path) => {
+    return location.pathname.startsWith(path)
+  }
+
   return (
     <header>
       <Navbar fluid rounded>
@@ -79,19 +85,11 @@ function NavBar({ onLoginClick }) {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <Navbar.Link
-            active
-            href="/packs"
-            className="bg-transparent text-primary-700"
-          >
+          <Navbar.Link active={isPathActive('/packs')} href="/packs">
             Packs
           </Navbar.Link>
           {user && (
-            <Navbar.Link
-              active
-              href="/orders"
-              className="bg-transparent text-primary-700"
-            >
+            <Navbar.Link active={isPathActive('/orders')} href="/orders">
               Orders
             </Navbar.Link>
           )}
