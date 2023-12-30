@@ -39,6 +39,7 @@ function BrowseOrders() {
         <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-center">
           {'My Orders'.toUpperCase()}
         </h2>
+        <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
         <div>
           {successOrderParam && (
             <Alert
@@ -58,7 +59,6 @@ function BrowseOrders() {
             </Alert>
           )}
 
-          <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
           <OrderPacks orders={imagesUploadedOrderPacks} />
           {orders.length === 0 && (
             <Alert

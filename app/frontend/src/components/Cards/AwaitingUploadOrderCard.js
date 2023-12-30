@@ -14,27 +14,35 @@ function AwaitingUploadOrderCard({ order }) {
   ].filter((pack) => pack !== undefined && pack !== null)
 
   return (
-    <Card className="max-w-3xl">
-      <h1 className="font-bold text-gray-900 dark:text-white text-center">
-        Order #{order.id}
-      </h1>
-      <h5 className="text-3xl font-bold text-gray-900 dark:text-white">
-        Awaiting your photo upload
-      </h5>
-      <p className="text-base text-gray-500 dark:text-gray-400 sm:text-lg text-center">
-        Upload photos for your recent purchase!
-      </p>
-      {packs.map((pack) => (
-        <PackThumbnailCard pack={pack} key={pack.id} />
-      ))}
-      <div className="mx-auto">
-        <Button
-          pill
-          color="info"
-          onClick={() => navigate(`/upload/${order.id}`)}
-        >
-          Upload my photos
-        </Button>
+    <Card className="max-w-3xl p-2">
+      <div>
+        <h1 className="font-normal text-lg text-gray-900 dark:text-white text-center">
+          Order #{order.id}
+        </h1>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center gap-2">
+            <h5 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              Awaiting your photo upload
+            </h5>
+            <p className="text-base font-normal text-gray-500 dark:text-gray-400 text-center">
+              Upload photos for your recent purchase!
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            {packs.map((pack) => (
+              <PackThumbnailCard pack={pack} key={pack.id} />
+            ))}
+          </div>
+          <div className="mx-auto">
+            <Button
+              pill
+              color="info"
+              onClick={() => navigate(`/upload/${order.id}`)}
+            >
+              Upload my photos
+            </Button>
+          </div>
+        </div>
       </div>
     </Card>
   )

@@ -7,6 +7,7 @@ function PackThumbnailCard({ pack }) {
     <Card
       renderImage={() => (
         <img
+          className="rounded-tl-lg rounded-bl-lg"
           width={96}
           height={96}
           src={`${STATIC_ROOT}/packs/${pack.preview_image}`}
@@ -25,7 +26,7 @@ function PackThumbnailCard({ pack }) {
       horizontal
       key={pack.id}
     >
-      <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white px-4">
+      <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white px-4 pt-3">
         {pack.display_name}
       </h5>
       <p className="font-normal text-gray-700 dark:text-gray-400 px-4">
