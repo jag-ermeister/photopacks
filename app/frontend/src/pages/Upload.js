@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import BackendClient from '../client/BackendClient'
-import { Badge, Button, Card, Spinner } from 'flowbite-react'
+import { Badge, Button, Spinner } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { STATIC_ROOT } from '../constants'
 import { HiOutlineArrowUp } from 'react-icons/hi'
 import { useOrder } from '../hooks/dataHooks'
+import PackThumbnailCard from '../components/Cards/PackThumbnailCard'
 
 function Upload() {
   let { id: orderId } = useParams()
@@ -97,19 +98,7 @@ function Upload() {
         </div>
         <div className="flex justify-center gap-4">
           {packs.map((pack) => (
-            <Card
-              className="max-w-sm"
-              imgSrc={`${STATIC_ROOT}/packs/${pack.preview_image}`}
-              horizontal
-              key={pack.id}
-            >
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {pack.display_name}
-              </h5>
-              <p className="font-normal text-gray-700 dark:text-gray-400">
-                100 image pack
-              </p>
-            </Card>
+            <PackThumbnailCard pack={pack} key={pack.id} />
           ))}
         </div>
       </div>
