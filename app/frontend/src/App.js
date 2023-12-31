@@ -8,6 +8,7 @@ import OrderDetails from './pages/OrderDetails'
 import Confirmation from './pages/Confirmation'
 import Upload from './pages/Upload'
 import About from './pages/About'
+import Privacy from './pages/Privacy'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/confirmation/:id" element={<Confirmation />} />
           <Route path="/upload/:id" element={<Upload />} />
           <Route path="/about" element={<About />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </div>
     </Router>
