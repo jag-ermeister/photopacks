@@ -1,4 +1,3 @@
-from unittest.mock import patch
 import json
 import pytest
 from django.urls import reverse
@@ -34,19 +33,7 @@ def test_create_order(authenticated_client, prompt_pack, create_prompt_pack):
 
 
 @pytest.mark.django_db
-@patch('requests.post')
-def test_patch_order(mock_post, authenticated_client, order, create_prompt_pack, monkeypatch):
-    mock_post.return_value.status_code = 201
-    mock_post.return_value.json.return_value = {"success": True}
-
-    monkeypatch.setenv('AWS_ACCESS_KEY_ID', 'test_access_key_id')
-    monkeypatch.setenv('AWS_SECRET_ACCESS_KEY', 'test_secret_access_key')
-    monkeypatch.setenv('AWS_S3_REGION_NAME', 'us-east-1')
-    monkeypatch.setenv('RUNPOD_JOB_SUBMIT_URL', 'https://runpod.io/fake-url')
-    monkeypatch.setenv('RUNPOD_API_KEY', 'test_runpod_api_key')
-    monkeypatch.setenv('API_URL', 'https://fakephotopacks.ai')
-    monkeypatch.setenv('ORDER_IMAGES_S3_BUCKET_NAME', 'fake-bucket-name')
-
+def test_patch_order(authenticated_client, order, create_prompt_pack):
     order.prompt_pack_2 = create_prompt_pack(internal_name="Pack 2", display_name="Pack 2", prompts=["prompt 3", "prompt 4"])
     order.prompt_pack_3 = create_prompt_pack(internal_name="Pack 3", display_name="Pack 3", prompts=["prompt 5", "prompt 6"])
     order.prompt_pack_4 = create_prompt_pack(internal_name="Pack 4", display_name="Pack 4", prompts=["prompt 7", "prompt 8"])
@@ -62,24 +49,6 @@ def test_patch_order(mock_post, authenticated_client, order, create_prompt_pack,
     assert response.status_code == 200
     updated_order = Order.objects.get(pk=order.id)
     assert updated_order.training_image_urls == training_image_urls
-
-    # assert on request body to runpod
-    kwargs = mock_post.call_args.kwargs
-    request_body = kwargs.get('json', {})
-    assert request_body['input']['order_id'] == response.data['id']
-    assert request_body['input']['model_type'] == 'man'
-    assert request_body['input']['prompts'] == [
-        'prompt 1',
-        'prompt 2',
-        'prompt 3',
-        'prompt 4',
-        'prompt 5',
-        'prompt 6',
-        'prompt 7',
-        'prompt 8',
-        'prompt 9',
-        'prompt 10',
-    ]
 
 
 @pytest.mark.django_db

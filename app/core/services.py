@@ -83,3 +83,6 @@ class AiService:
             }
         )
         response.raise_for_status()
+
+        order.is_submitted = True
+        order.save()

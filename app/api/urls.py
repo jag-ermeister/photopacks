@@ -12,4 +12,8 @@ urlpatterns = [
         views.runpod_webhook,
         name="runpod_webhook",
     ),
+    path("queue/process",
+         views.submit_orders_for_processing,
+         name="submit_orders_for_processing"
+    )
 ]
