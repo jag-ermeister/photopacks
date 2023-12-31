@@ -152,12 +152,12 @@ function Footer() {
               <ul className="text-gray-500 dark:text-gray-400">
                 <li className="mb-4">
                   <a href="/packs" className="hover:underline">
-                    Packs
+                    Photo Packs
                   </a>
                 </li>
                 <li className="mb-4">
                   <a href="/orders" className="hover:underline">
-                    Orders
+                    My Orders
                   </a>
                 </li>
               </ul>

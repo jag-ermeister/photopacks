@@ -44,6 +44,21 @@ export default {
       blue: primaryColors,
     },
     extend: {
+      animation: {
+        'float-in': 'floatIn 1s ease-out forwards',
+      },
+      keyframes: {
+        floatIn: {
+          from: {
+            transform: 'translateY(40px)',
+            opacity: 0,
+          },
+          to: {
+            transform: 'translateY(0)',
+            opacity: 1,
+          },
+        },
+      },
       colors: {
         primary: primaryColors,
         secondary: secondaryColors,

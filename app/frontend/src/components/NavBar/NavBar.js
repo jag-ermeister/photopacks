@@ -86,11 +86,11 @@ function NavBar({ onLoginClick }) {
         </div>
         <Navbar.Collapse>
           <Navbar.Link active={isPathActive('/packs')} href="/packs">
-            Packs
+            Photo Packs
           </Navbar.Link>
           {user && (
             <Navbar.Link active={isPathActive('/orders')} href="/orders">
-              Orders
+              My Orders
             </Navbar.Link>
           )}
           <Navbar.Link active={isPathActive('/about')} href="/about">

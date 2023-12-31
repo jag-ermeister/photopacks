@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import { STATIC_ROOT } from '../../constants'
+import { useInView } from 'react-intersection-observer'
 
 function AboutSection() {
   const [scrollY, setScrollY] = useState(0)
   const navigate = useNavigate()
+  const [ref1, inView1] = useInView({})
+  const [ref2, inView2] = useInView({})
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,20 +28,30 @@ function AboutSection() {
     <section className="flex md:flex-row flex-col">
       <div className="bg-gray-900 w-full px-4 py-8 sm:py-16 lg:px-16 text-white">
         <div className="flex flex-col gap-8 md:gap-16 max-w-xl px-2 md:px-6 ml-auto">
-          <div className="leading-tight text-2xl md:text-4xl font-light">
+          <div
+            ref={ref1}
+            className={`leading-tight text-2xl md:text-4xl font-light opacity-0 ${
+              inView1 ? 'animate-float-in' : ''
+            }`}
+          >
             We use{' '}
             <span className="text-secondary-600">SDXL with Dreambooth</span> to
             generate the highest quality images. Competitor images just don’t
             compare.
           </div>
-          <div className="leading-tight text-2xl md:text-4xl font-light">
+          <div
+            ref={ref2}
+            className={`leading-tight text-2xl md:text-4xl font-light opacity-0 ${
+              inView2 ? 'animate-float-in' : ''
+            }`}
+          >
             We create{' '}
             <span className="text-secondary-600">high resolution images</span>{' '}
             and capture the details that lesser technologies just can’t obtain.
           </div>
           <div>
             <a
-              href="#"
+              href="/packs"
               title=""
               className="inline-flex items-center text-base font-medium text-primary-700 hover:underline dark:text-primary-500"
             >
@@ -78,7 +91,7 @@ function AboutSection() {
               transform: `scale(${scaleValue})`,
               transition: 'transform 0.1s ease',
             }}
-            className="object-cover w-full h-full"
+            className="w-1/2 h-1/2"
             src={`${STATIC_ROOT}/YellowCircleBG.svg`}
             alt="Background Image"
           />
