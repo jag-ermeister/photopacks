@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 
 function AboutSection() {
-  let navigate = useNavigate()
+  const [scrollY, setScrollY] = useState(0)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const scaleValue = 0.75 + scrollY * 0.0005 // Adjust the multiplier for the desired scaling effect
 
   return (
     <section className="flex md:flex-row flex-col">
@@ -54,8 +69,20 @@ function AboutSection() {
           </div>
         </div>
       </div>
-      <div className="bg-secondary-600 w-full px-4 py-8 text-center sm:py-16 lg:px-16 text-primary-700">
-        <div className="flex flex-col gap-16 max-w-xl px-6 mr-auto my-auto h-full justify-center">
+      <div className="relative bg-secondary-600 w-full px-4 py-8 text-center sm:py-16 lg:px-16 text-primary-700 overflow-hidden">
+        <div className="absolute bottom-[-1350px] right-[-1350px] md:bottom-[-500px] md:right-[-500px]">
+          {/* Your SVG image goes here */}
+          <img
+            style={{
+              transform: `scale(${scaleValue})`,
+              transition: 'transform 0.1s ease',
+            }}
+            className="object-cover w-full h-full"
+            src="/YellowCircleBG.svg"
+            alt="Background Image"
+          />
+        </div>
+        <div className="flex flex-col gap-16 max-w-xl px-6 mr-auto my-auto h-full justify-center relative">
           <div className="leading-tight text-4xl md:text-6xl font-extrabold text-capitalize">
             SHARPER, REALER, AND MORE AUTHENTICALLY{' '}
             <span className="text-white">YOU</span>
