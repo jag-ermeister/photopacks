@@ -43,21 +43,21 @@ function BrowseOrders() {
           {'My Orders'.toUpperCase()}
         </h2>
         {uploadedOrder && (
-            <Alert
-                color="success"
-                className="w-full mb-8 mx-auto"
-                icon={HiCheck}
-                additionalContent={
-                  <div>
-                    Your order is in progress! You can see it below.{' '}
-                    <span className="font-bold">
-                    We&apos;ll send you an email when it is complete!
-                  </span>
-                  </div>
-                }
-            >
-              Order #{uploadedOrder.display_id} Successfully Uploaded
-            </Alert>
+          <Alert
+            color="success"
+            className="w-full mb-8 mx-auto"
+            icon={HiCheck}
+            additionalContent={
+              <div>
+                Your order is in progress! You can see it below.{' '}
+                <span className="font-bold">
+                  We&apos;ll send you an email when it is complete!
+                </span>
+              </div>
+            }
+          >
+            Order #{uploadedOrder.display_id} Successfully Uploaded
+          </Alert>
         )}
         <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
         <div>
