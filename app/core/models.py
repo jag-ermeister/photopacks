@@ -128,7 +128,7 @@ class Order(models.Model):
         default=FulfillmentService.RUNPOD.value
     )
     images_per_prompt = models.IntegerField(default=5)
-    is_processing = models.BooleanField(default=False)
+    is_submitted = models.BooleanField(default=False)
     is_success = models.BooleanField(null=True)
     error_message = models.TextField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)

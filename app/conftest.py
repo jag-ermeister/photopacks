@@ -51,7 +51,7 @@ def order(prompt_pack_user, prompt_pack):
         model_type=Order.ModelType.MAN.value,
         speed_type=Order.SpeedType.FAST.value,
         fulfillment_service=Order.FulfillmentService.RUNPOD.value,
-        is_processing=False,
+        is_submitted=False,
         is_success=False,
 
     )

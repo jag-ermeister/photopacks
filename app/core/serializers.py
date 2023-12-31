@@ -23,7 +23,6 @@ class OrderSerializer(serializers.ModelSerializer):
             'prompt_pack_3',
             'prompt_pack_4',
             'prompt_pack_5',
-            'is_processing',
             'is_success',
             'zip_file_url',
             'training_image_urls',
