@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
+import {STATIC_ROOT} from "../../constants";
 
 function AboutSection() {
   const [scrollY, setScrollY] = useState(0)
@@ -78,7 +79,7 @@ function AboutSection() {
               transition: 'transform 0.1s ease',
             }}
             className="object-cover w-full h-full"
-            src="/YellowCircleBG.svg"
+            src={`${STATIC_ROOT}/YellowCircleBG.svg`}
             alt="Background Image"
           />
         </div>
