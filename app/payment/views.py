@@ -27,9 +27,15 @@ def stripe_webhook(request):
     event_type = event["type"]
     logger.error("Stripe: received event type {}".format(event_type))
 
-    if event_type == "payment_intent.succeeded":
-        # Should I use this event? "checkout.session.completed":
-        print(data)
+    if event_type == "checkout.session.completed":
+        # print(data)
+        data_object = data["object"]
+        # user_id = data_object["metadata"]["user_id"]
+        order_id = data_object["metadata"]["order_id"]
+        order = Order.objects.get(id=order_id)
+        order.is_paid = True
+        order.save()
+        logger.error(f"Stripe: Order ID {order_id} is paid.")
     else:
         print("Unhandled event type {}".format(event_type))
         logger.error("Unhandled event type {}".format(event_type))
