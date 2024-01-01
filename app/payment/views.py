@@ -8,6 +8,7 @@ import os
 import logging
 import json
 from core.models import Order
+from core.services import EmailService
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +37,7 @@ def stripe_webhook(request):
         order.is_paid = True
         order.save()
         logger.error(f"Stripe: Order ID {order_id} is paid.")
+        EmailService().send_order_confirmation_email(order.user.email)
     else:
         print("Unhandled event type {}".format(event_type))
         logger.error("Unhandled event type {}".format(event_type))

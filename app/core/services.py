@@ -4,6 +4,8 @@ import uuid
 import json
 import requests
 from django.conf import settings
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from .models import Order
 
 
@@ -86,3 +88,22 @@ class AiService:
 
         order.is_submitted = True
         order.save()
+
+
+class EmailService:
+    def __init__(self):
+        self.sg = SendGridAPIClient(os.environ['SENDGRID_API_KEY'])
+
+    def send_order_confirmation_email(self, to_email):
+        try:
+            message = Mail(
+                from_email='info@photopacks.ai',
+                to_emails=to_email,
+                subject='Thank you for placing your PhotoPacks.AI order.',
+                html_content='<strong>You will get some sweet pics soon!</strong>'
+            )
+            response = self.sg.send(message)
+            print(response.status_code)
+        except Exception as e:
+            print(e.message)
+            raise e
