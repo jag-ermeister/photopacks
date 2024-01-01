@@ -47,7 +47,7 @@ class OrderSequenceAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'display_id', 'user', 'subject_name', 'model_type', 'speed_type', 'fulfillment_service', 'is_submitted', 'is_success', 'created_date', 'modified_date')
+    list_display = ('id', 'display_id', 'user', 'subject_name', 'model_type', 'speed_type', 'fulfillment_service', 'is_paid', 'is_uploaded', 'is_submitted', 'is_success', 'created_date', 'modified_date')
     form = OrderAdminForm
     readonly_fields = ('sequence', 'display_id', 'created_date', 'modified_date')
     ordering = ('-created_date',)

@@ -129,6 +129,7 @@ class Order(models.Model):
     )
     images_per_prompt = models.IntegerField(default=5)
     is_paid = models.BooleanField(null=True)
+    is_uploaded = models.BooleanField(null=True)
     is_submitted = models.BooleanField(default=False)
     is_success = models.BooleanField(null=True)
     error_message = models.TextField(null=True, blank=True)
