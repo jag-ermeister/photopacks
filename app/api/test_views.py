@@ -6,7 +6,10 @@ import pytest
 
 
 @pytest.mark.django_db
-def test_update_order(client, order):
+@patch('core.services.EmailService.send_order_complete_email')
+def test_update_order(mock_email_service, client, order, monkeypatch):
+    monkeypatch.setenv('SENDGRID_API_KEY', 'test_sendgrid_api_key')
+
     payload = {
         "image_urls": ["image-url-1", "image-url-2"],
         "cropped_image_urls": ["image-url-1", "image-url-2"],
@@ -21,6 +24,8 @@ def test_update_order(client, order):
     assert order.inference_image_urls == ["image-url-1", "image-url-2"]
     assert order.cropped_image_urls == ["image-url-1", "image-url-2"]
     assert order.zip_file_url == 'zip-url'
+
+    mock_email_service.assert_called_with(order.user.email)
 
 
 @pytest.mark.django_db

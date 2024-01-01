@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.utils import timezone
 from core.models import Order
-from core.services import AiService
+from core.services import AiService, EmailService
 import json
 
 
@@ -21,6 +21,8 @@ def update_order(request, order_id):
     order.zip_file_url = request_body["zip_url"]
     order.is_success = True
     order.save()
+
+    EmailService().send_order_complete_email(order.user.email)
 
     return HttpResponse()
 

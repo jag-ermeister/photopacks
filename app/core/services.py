@@ -107,3 +107,17 @@ class EmailService:
         except Exception as e:
             print(e.message)
             raise e
+
+    def send_order_complete_email(self, to_email):
+        try:
+            message = Mail(
+                from_email='info@photopacks.ai',
+                to_emails=to_email,
+                subject='Your PhotoPacks.AI order is complete',
+                html_content='<strong>Log in to get your pics!</strong>'
+            )
+            response = self.sg.send(message)
+            print(response.status_code)
+        except Exception as e:
+            print(e.message)
+            raise e
