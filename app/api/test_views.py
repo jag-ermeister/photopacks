@@ -67,7 +67,8 @@ def test_submit_orders_for_processing_ready_orders(mock_post, authenticated_clie
         speed_type=Order.SpeedType.FAST.value,
         fulfillment_service=Order.FulfillmentService.RUNPOD.value,
         training_image_urls=['http://example.com/image.jpg'],
-        is_submitted=False
+        is_submitted=False,
+        is_paid=True
     )
 
     url = reverse('submit_orders_for_processing')

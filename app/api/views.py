@@ -56,7 +56,8 @@ def runpod_webhook(request, order_id):
 def submit_orders_for_processing(request):
     orders_ready_for_submission = Order.objects.filter(
         training_image_urls__isnull=False,
-        is_submitted=False
+        is_submitted=False,
+        is_paid=True
     ).order_by('created_date')
     num_ready_for_submission = orders_ready_for_submission.count()
     print(f"Found {num_ready_for_submission} orders ready for processing.")
