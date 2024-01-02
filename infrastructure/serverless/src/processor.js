@@ -9,7 +9,7 @@ const preSignUpHook = async (event) => {
     );
     const allowedEmails = response.data;
     if (!allowedEmails.includes(email)) {
-      throw new Error("PhotoPacks.AI is currently invite only.");
+      throw new Error("PhotoPacks.AI is currently invite only");
     }
     return event;
   } catch (error) {

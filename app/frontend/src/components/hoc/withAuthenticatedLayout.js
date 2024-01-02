@@ -20,6 +20,9 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
       return (
         <View textAlign="center" padding={tokens.space.large}>
           <img alt="PhotoPacks.AI logo" src={`${STATIC_ROOT}/title_logo.svg`} />
+          <div className="my-6 bg-red-50 border border-red-300 text-red-600 px-4 py-2 ">
+            PhotoPacks.AI is currently invite only.
+          </div>
         </View>
       )
     },
