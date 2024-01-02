@@ -238,4 +238,10 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
     name      = "STRIPE_WEBHOOK_SECRET"
     value     = var.stripe_webhook_secret
   }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "SENDGRID_API_KEY"
+    value     = var.sendgrid_api_key
+  }
 }

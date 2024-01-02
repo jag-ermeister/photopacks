@@ -122,3 +122,7 @@ variable stripe_additional_pack_price_id {
 variable stripe_webhook_secret {
   type = string
 }
+
+variable sendgrid_api_key {
+  type = string
+}
