@@ -1,0 +1,13 @@
+service: photopacks
+useDotenv: true
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  preSignUpHook:
+    handler: src/processor.preSignUpHook
+    environment:
+      PHOTOPACKS_SIGN_UP_WHITELIST_URL: ${env:PHOTOPACKS_SIGN_UP_WHITELIST_URL}
