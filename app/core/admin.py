@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from .models import Order, OrderSequence, PromptPack, User
+from .models import Order, OrderSequence, PromptPack, User, WhitelistedUser
 from .services import AiService
 from django.conf import settings
 from django.forms.widgets import RadioSelect
@@ -131,7 +131,12 @@ class PromptPackAdmin(admin.ModelAdmin):
         return self.readonly_fields
 
 
+class WhitelistedUserAdmin(admin.ModelAdmin):
+    list_display = ("email",)
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderSequence, OrderSequenceAdmin)
 admin.site.register(PromptPack, PromptPackAdmin)
+admin.site.register(WhitelistedUser, WhitelistedUserAdmin)
