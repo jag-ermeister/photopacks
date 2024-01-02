@@ -35,7 +35,7 @@ jobs:
         run: cd app/frontend && npm install
 
       - name: Build frontend
-        run: cd app/frontend && API_HOST="https://www.photopacks.ai" npm run relocate
+        run: cd app/frontend && mv src/aws-exports-prod.js src/aws-exports.js && API_HOST="https://www.photopacks.ai" npm run relocate
 
       - name: Build zip
         run: cd app && ./build-app.sh
