@@ -22,7 +22,7 @@ def update_order(request, order_id):
     order.is_success = True
     order.save()
 
-    EmailService().send_order_complete_email(order.user.email)
+    EmailService().send_order_complete_email(order)
 
     return HttpResponse()
 

@@ -25,7 +25,7 @@ def test_update_order(mock_email_service, client, order, monkeypatch):
     assert order.cropped_image_urls == ["image-url-1", "image-url-2"]
     assert order.zip_file_url == 'zip-url'
 
-    mock_email_service.assert_called_with(order.user.email)
+    mock_email_service.assert_called_with(order)
 
 
 @pytest.mark.django_db

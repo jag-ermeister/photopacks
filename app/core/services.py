@@ -3,10 +3,15 @@ import os
 import uuid
 import json
 import requests
+import logging
+from django.template.loader import render_to_string
 from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from .models import Order
+
+
+logger = logging.getLogger(__name__)
 
 
 class AiService:
@@ -94,13 +99,16 @@ class EmailService:
     def __init__(self):
         self.sg = SendGridAPIClient(os.environ['SENDGRID_API_KEY'])
 
-    def send_order_confirmation_email(self, to_email):
+    def send_order_confirmation_email(self, order):
         try:
             message = Mail(
                 from_email='info@photopacks.ai',
-                to_emails=to_email,
-                subject='Thank you for placing your PhotoPacks.AI order.',
-                html_content='<strong>You will get some sweet pics soon!</strong>'
+                to_emails=order.user.email,
+                subject='PhotoPacks.AI Order Confirmation',
+                html_content=render_to_string('email/order_confirmation.html', {
+                    'order': order,
+                    'site_url': os.environ['SITE_URL']
+                })
             )
             response = self.sg.send(message)
             print(response.status_code)
@@ -108,11 +116,11 @@ class EmailService:
             print(e.message)
             raise e
 
-    def send_order_complete_email(self, to_email):
+    def send_order_complete_email(self, order):
         try:
             message = Mail(
                 from_email='info@photopacks.ai',
-                to_emails=to_email,
+                to_emails=order.user.email,
                 subject='Your PhotoPacks.AI order is complete',
                 html_content='<strong>Log in to get your pics!</strong>'
             )

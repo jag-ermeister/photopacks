@@ -37,7 +37,7 @@ def stripe_webhook(request):
         order.is_paid = True
         order.save()
         logger.error(f"Stripe: Order ID {order_id} is paid.")
-        EmailService().send_order_confirmation_email(order.user.email)
+        EmailService().send_order_confirmation_email(order)
     else:
         print("Unhandled event type {}".format(event_type))
         logger.error("Unhandled event type {}".format(event_type))
