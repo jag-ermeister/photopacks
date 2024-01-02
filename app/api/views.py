@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core.serializers import serialize
 from django.db.models import Q
 from django.utils import timezone
-from core.models import Order
+from core.models import Order, WhitelistedUser
 from core.services import AiService, EmailService
 import json
 
@@ -87,3 +88,12 @@ def submit_orders_for_processing(request):
         'num_orders_ready_for_submission': num_ready_for_submission,
         'submitted_orders': submitted_orders,
     })
+
+
+@csrf_exempt
+def get_whitelisted_users(request):
+    whitelisted_users = WhitelistedUser.objects.all()
+    serialized_data = serialize("json", whitelisted_users)
+    parsed_data = json.loads(serialized_data)
+    email_list = [entry["fields"]["email"] for entry in parsed_data]
+    return JsonResponse(email_list, safe=False)

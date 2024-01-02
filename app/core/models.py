@@ -161,3 +161,7 @@ class Order(models.Model):
                 self.display_id = self.generate_display_id(self.sequence.id)
 
             super(Order, self).save(*args, **kwargs)
+
+
+class WhitelistedUser(models.Model):
+    email = models.CharField(max_length=100)
