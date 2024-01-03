@@ -24,11 +24,11 @@
 
         .button { padding: 10px 20px; background-color: #ff69b4; color: white; text-decoration: none; border-radius: 5px; }
 
-        .featured { background-color: #f9f9f9; padding: 10px; margin: 20px 0; display: flex; justify-content: space-around; }
+        .featured { background-color: #f9f9f9; padding: 10px; margin: 20px 0; text-align: center; }
 
-        .featured div { text-align: center; }
+        .featured img { width: 280px; height: auto; }
 
-        .featured img { width: 280px; }
+        .pack-text { margin-bottom: 10px; /* Space between text and image */ }
 
         .faq-question h3 { color: #000; }
 
@@ -53,14 +53,38 @@
     </div>
     <div class="featured">
         <h2>Featured Packs</h2>
-        <div>
-            <img src="{{ site_url }}/static/packs/christmas_dog.png" alt="Christmas Pack">
-            <span>Christmas Pack</span>
-        </div>
-        <div>
-            <img src="{{ site_url }}/static/packs/fantasy_man.jpeg" alt="Fantasy Pack">
-            <span>Fantasy Pack</span>
-        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="center" valign="top">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="center" valign="top">
+                                <span>Christmas Pack</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="top">
+                                <img src="{{ site_url }}/static/packs/christmas_dog.png" alt="Christmas Pack" width="280">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td align="center" valign="top">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="center" valign="top">
+                                <span>Fantasy Pack</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="top">
+                                <img src="{{ site_url }}/static/packs/fantasy_man.jpeg" alt="Fantasy Pack" width="280">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="faq-section">
         <h2>Frequently Asked Questions</h2>
