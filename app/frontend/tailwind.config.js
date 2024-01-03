@@ -46,6 +46,10 @@ export default {
     extend: {
       animation: {
         'float-in': 'floatIn 1s ease-out forwards',
+        'float-down': 'floatDown 1s ease-out forwards',
+        'arrow-dance':
+          'appear 3s 2s ease forwards, bounce 2s infinite ease-in-out',
+        appear: 'appear 2s 1s ease forwards',
       },
       keyframes: {
         floatIn: {
@@ -55,6 +59,24 @@ export default {
           },
           to: {
             transform: 'translateY(0)',
+            opacity: 1,
+          },
+        },
+        floatDown: {
+          from: {
+            transform: 'translateY(-40px)',
+            opacity: 0,
+          },
+          to: {
+            transform: 'translateY(0)',
+            opacity: 1,
+          },
+        },
+        appear: {
+          from: {
+            opacity: 0,
+          },
+          to: {
             opacity: 1,
           },
         },
