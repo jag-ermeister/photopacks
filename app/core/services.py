@@ -137,7 +137,10 @@ class EmailService:
                 from_email='info@photopacks.ai',
                 to_emails=order.user.email,
                 subject='Your PhotoPacks.AI order is complete',
-                html_content='<strong>Log in to get your pics!</strong>'
+                html_content=render_to_string('email/order_complete.html', {
+                    'order': order,
+                    'site_url': os.environ['SITE_URL']
+                })
             )
             response = self.sg.send(message)
             print(response.status_code)
