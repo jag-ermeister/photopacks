@@ -11,6 +11,7 @@ import getTheme from './authenticationTheme'
 import Footer from '../Footer/Footer'
 import { STATIC_ROOT } from '../../constants'
 import styles from './AmplifyStyles.module.css'
+import BackendClient from '../../client/BackendClient'
 
 const withAuthenticatedLayout = (Component, bypassAuth = false) => {
   const components = {
@@ -41,6 +42,26 @@ const withAuthenticatedLayout = (Component, bypassAuth = false) => {
       setAction(action)
       setIsAuthRequired(true)
     }
+
+    useEffect(() => {
+      const listener = async (data) => {
+        switch (data.payload.event) {
+          case 'signIn':
+            // This is a hack to ensure the backend to a user-centered operation so that, for new users...
+            // ...it creates the User model, and fires off welcome email if needed
+            // I should instead have a function and API to GET/CREATE a user
+            // Sign In ALWAYS occurs after Sign Up
+            await BackendClient.getOrders()
+            break
+        }
+      }
+
+      Hub.listen('auth', listener)
+
+      return () => {
+        Hub.remove('auth', listener)
+      }
+    }, [])
 
     useEffect(() => {
       let unsubscribe
