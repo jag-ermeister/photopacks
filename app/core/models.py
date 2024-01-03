@@ -1,7 +1,7 @@
 import uuid
 import random
 from enum import Enum
-from django.db import models, transaction
+from django.db import models, transaction, IntegrityError
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager as _UserManager
 

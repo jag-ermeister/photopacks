@@ -99,6 +99,24 @@ class EmailService:
     def __init__(self):
         self.sg = SendGridAPIClient(os.environ['SENDGRID_API_KEY'])
 
+    def send_welcome_email(self, user):
+        try:
+            message = Mail(
+                from_email='info@photopacks.ai',
+                to_emails=user.email,
+                subject='Thank you for signing up for PhotoPacks.AI'
+            )
+            message.template_id = 'd-56f32a6e98b741c3ab58396baaf0f158'
+            message.dynamic_template_data = {
+                # 'username': user.email,
+                # 'site_url': os.environ['SITE_URL']
+            }
+            response = self.sg.send(message)
+            print(response.status_code)
+        except Exception as e:
+            print(e.message)
+            raise e
+
     def send_order_confirmation_email(self, order):
         try:
             message = Mail(

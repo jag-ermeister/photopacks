@@ -2,9 +2,15 @@ import pytest
 from django.contrib.auth import get_user_model
 from core.models import Order, PromptPack
 from rest_framework.test import APIClient
+from django.conf import settings
 
 
 User = get_user_model()
+
+
+@pytest.fixture(autouse=True)
+def disable_welcome_email(monkeypatch):
+    monkeypatch.setattr(settings, 'WELCOME_EMAIL_ENABLED', False)
 
 
 @pytest.fixture
