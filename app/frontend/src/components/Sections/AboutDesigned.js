@@ -10,8 +10,8 @@ function AboutDesigned() {
               {'Designed with a focus on you'.toUpperCase()}
             </h2>
             <p className="font-light text-gray-500 dark:text-gray-400 sm:text-xl">
-              Here at Flowbite we focus on markets where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
+              We&apos;re all about keeping it simple and secure, making AI image
+              creation fun and totally stress-free!
             </p>
           </div>
           <div className="space-y-8 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
