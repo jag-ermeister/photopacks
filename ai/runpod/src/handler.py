@@ -16,7 +16,11 @@ def handler(job):
     order_images_s3_bucket_name = job_input.get('order_images_s3_bucket_name')
     model_type = job_input.get('model_type')
     num_steps = job_input.get('num_steps')
-    prompts = job_input.get('prompts')
+    pack_1_prompts = job_input.get('pack_1_prompts')
+    pack_2_prompts = job_input.get('pack_2_prompts')
+    pack_3_prompts = job_input.get('pack_3_prompts')
+    pack_4_prompts = job_input.get('pack_4_prompts')
+    pack_5_prompts = job_input.get('pack_5_prompts')
     images_per_prompt = job_input.get('images_per_prompt')
 
     print('Received payload:')
@@ -29,20 +33,55 @@ def handler(job):
     download_training_photos(order_id, training_download_directory, order_images_s3_bucket_name)
     Cropper().auto_zoom(training_download_directory, training_dir, model_type)
     move_image_files(model_type)
+
     color = get_adjective(training_dir, model_type)
-    prompts = modify_prompts(prompts, color, model_type)
+    pack_1_prompts = modify_prompts(pack_1_prompts, color, model_type)
+    pack_2_prompts = modify_prompts(pack_2_prompts, color, model_type)
+    pack_3_prompts = modify_prompts(pack_3_prompts, color, model_type)
+    pack_4_prompts = modify_prompts(pack_4_prompts, color, model_type)
+    pack_5_prompts = modify_prompts(pack_5_prompts, color, model_type)
 
     kohya = Kohya()
     kohya.enable_accelerator()
     kohya.execute_training(num_steps)
-    kohya.execute_inference(model_type, prompts, images_per_prompt)
 
-    inference_image_urls = upload_images_to_s3(
+    kohya.execute_inference(pack_1_prompts, images_per_prompt, '/app/kohya_ss/inference_results/1')
+    kohya.execute_inference(pack_2_prompts, images_per_prompt, '/app/kohya_ss/inference_results/2')
+    kohya.execute_inference(pack_3_prompts, images_per_prompt, '/app/kohya_ss/inference_results/3')
+    kohya.execute_inference(pack_4_prompts, images_per_prompt, '/app/kohya_ss/inference_results/4')
+    kohya.execute_inference(pack_5_prompts, images_per_prompt, '/app/kohya_ss/inference_results/5')
+
+    pack_1_inference_image_urls = upload_images_to_s3(
         order_id,
-        '/app/kohya_ss/inference_results',
+        '/app/kohya_ss/inference_results/1',
         'inference_results',
         order_images_s3_bucket_name
     )
+    pack_2_inference_image_urls = upload_images_to_s3(
+        order_id,
+        '/app/kohya_ss/inference_results/2',
+        'inference_results',
+        order_images_s3_bucket_name
+    )
+    pack_3_inference_image_urls = upload_images_to_s3(
+        order_id,
+        '/app/kohya_ss/inference_results/3',
+        'inference_results',
+        order_images_s3_bucket_name
+    )
+    pack_4_inference_image_urls = upload_images_to_s3(
+        order_id,
+        '/app/kohya_ss/inference_results/4',
+        'inference_results',
+        order_images_s3_bucket_name
+    )
+    pack_5_inference_image_urls = upload_images_to_s3(
+        order_id,
+        '/app/kohya_ss/inference_results/5',
+        'inference_results',
+        order_images_s3_bucket_name
+    )
+
     cropped_image_urls = upload_images_to_s3(
         order_id,
         training_dir,
@@ -50,7 +89,18 @@ def handler(job):
         order_images_s3_bucket_name
     )
     zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name)
-    notify_backend(order_id, inference_image_urls, cropped_image_urls, zip_url, results_url, prompts)
+    notify_backend(
+        order_id,
+        pack_1_inference_image_urls,
+        pack_2_inference_image_urls,
+        pack_3_inference_image_urls,
+        pack_4_inference_image_urls,
+        pack_5_inference_image_urls,
+        cropped_image_urls,
+        zip_url,
+        results_url,
+        pack_1_prompts + pack_2_prompts + pack_3_prompts + pack_4_prompts + pack_5_prompts
+    )
 
     return f"Hello, {order_id}, you rock!"
 

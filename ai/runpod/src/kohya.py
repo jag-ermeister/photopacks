@@ -102,7 +102,7 @@ class Kohya:
         if exit_code != 0:
             raise RuntimeError(f"Subprocess failed with exit code {exit_code}")
 
-    def execute_inference(self, model_type, prompts, images_per_prompt):
+    def execute_inference(self, prompts, images_per_prompt, output_dir):
         logger.info("Executing inference...")
         for prompt in prompts:
             cmd = [
@@ -115,7 +115,7 @@ class Kohya:
                 "--images_per_prompt",
                 f"{images_per_prompt}",
                 "--outdir",
-                "/app/kohya_ss/inference_results",
+                f"{output_dir}",
                 "--scale",
                 "7.0",
                 "--xformers",
