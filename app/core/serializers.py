@@ -27,6 +27,11 @@ class OrderSerializer(serializers.ModelSerializer):
             'zip_file_url',
             'training_image_urls',
             'inference_image_urls',
+            'pack_1_inference_image_urls',
+            'pack_2_inference_image_urls',
+            'pack_3_inference_image_urls',
+            'pack_4_inference_image_urls',
+            'pack_5_inference_image_urls',
             'created_date',
             'modified_date'
         )

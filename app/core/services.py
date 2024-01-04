@@ -79,7 +79,11 @@ class AiService:
                     "order_images_s3_bucket_name": os.environ["ORDER_IMAGES_S3_BUCKET_NAME"],
                     "model_type": order.model_type,
                     "num_steps": order.speed_type,
-                    "prompts": prompts,
+                    "pack_1_prompts": order.prompt_pack_1.prompts if order.prompt_pack_1 is not None else [],
+                    "pack_2_prompts": order.prompt_pack_2.prompts if order.prompt_pack_2 is not None else [],
+                    "pack_3_prompts": order.prompt_pack_3.prompts if order.prompt_pack_3 is not None else [],
+                    "pack_4_prompts": order.prompt_pack_4.prompts if order.prompt_pack_4 is not None else [],
+                    "pack_5_prompts": order.prompt_pack_5.prompts if order.prompt_pack_5 is not None else [],
                     "images_per_prompt": order.images_per_prompt,
                 },
                 "webhook": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}/runpod'

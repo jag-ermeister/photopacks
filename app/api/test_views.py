@@ -89,7 +89,11 @@ def test_submit_orders_for_processing_ready_orders(mock_post, authenticated_clie
     request_body = kwargs.get('json', {})
     assert request_body['input']['order_id'] == str(test_order.id)
     assert request_body['input']['model_type'] == Order.ModelType.MAN.value
-    assert request_body['input']['prompts'] == ['prompt 1', 'prompt 2']
+    assert request_body['input']['pack_1_prompts'] == ['prompt 1', 'prompt 2']
+    assert request_body['input']['pack_2_prompts'] == []
+    assert request_body['input']['pack_3_prompts'] == []
+    assert request_body['input']['pack_4_prompts'] == []
+    assert request_body['input']['pack_5_prompts'] == []
 
 
 @pytest.mark.django_db
