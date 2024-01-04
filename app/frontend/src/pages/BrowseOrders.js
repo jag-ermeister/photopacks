@@ -1,30 +1,25 @@
 import React from 'react'
-import { useOrderPacks, useOrders } from '../hooks/dataHooks'
+import { useOrders } from '../hooks/dataHooks'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import OrderPacks from '../components/Sections/OrderPacks'
 import { useLocation } from 'react-router-dom'
 import { Alert } from 'flowbite-react'
 import { HiCheck, HiInformationCircle } from 'react-icons/hi'
 import AwaitingUploadOrders from '../components/Sections/AwaitingUploadOrders'
+import { transformOrdersToOrderPacks } from '../transform/transform'
 
 function BrowseOrders() {
-  const {
-    orders,
-    isLoading: ordersIsLoading,
-    error: ordersIsError,
-  } = useOrders()
-  const {
-    orderPacks,
-    isLoading: orderPacksIsLoading,
-    error: orderPacksIsError,
-  } = useOrderPacks()
+  const { orders, isLoading, error } = useOrders()
+
   const location = useLocation()
   const successOrderParam = new URLSearchParams(location.search).get(
     'success_order'
   )
 
-  if (ordersIsLoading || orderPacksIsLoading) return <div>Loading...</div>
-  if (ordersIsError || orderPacksIsError) return <div>Error!</div>
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error!</div>
+
+  const orderPacks = transformOrdersToOrderPacks(orders)
 
   const imagesNotUploadedOrders = orders.filter(
     (o) => o.training_image_urls === null || o.training_image_urls.length === 0
