@@ -45,7 +45,7 @@ function OrderDetails() {
         className="md:block hidden"
       >
         <Breadcrumb.Item href="/orders">My Orders</Breadcrumb.Item>
-        <Breadcrumb.Item>Order# {orderId}</Breadcrumb.Item>
+        <Breadcrumb.Item>Order #{orderPack.display_id}</Breadcrumb.Item>
       </Breadcrumb>
 
       {/* Order details */}
@@ -59,7 +59,7 @@ function OrderDetails() {
               {orderPack.prompt_pack.pack_type}
             </Badge>
           </div>
-          <div className="text-gray-500">Order ID: {orderId}</div>
+          <div className="text-gray-500">Order #{orderPack.display_id}</div>
         </div>
         <a href={order.zip_file_url} className="your-button-classes-here">
           <Button
