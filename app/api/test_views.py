@@ -11,7 +11,7 @@ def test_update_order(mock_email_service, client, order, monkeypatch):
     monkeypatch.setenv('SENDGRID_API_KEY', 'test_sendgrid_api_key')
 
     payload = {
-        "image_urls": ["image-url-1", "image-url-2"],
+        "pack_1_inference_image_urls": ["image-url-1", "image-url-2"],
         "cropped_image_urls": ["image-url-1", "image-url-2"],
         "zip_url": 'zip-url'
     }
@@ -21,7 +21,7 @@ def test_update_order(mock_email_service, client, order, monkeypatch):
     order.refresh_from_db()
     assert response.status_code == 200
     assert order.is_success is True
-    assert order.inference_image_urls == ["image-url-1", "image-url-2"]
+    assert order.pack_1_inference_image_urls == ["image-url-1", "image-url-2"]
     assert order.cropped_image_urls == ["image-url-1", "image-url-2"]
     assert order.zip_file_url == 'zip-url'
 

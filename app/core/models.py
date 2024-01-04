@@ -136,7 +136,6 @@ class Order(models.Model):
     notes = models.TextField(null=True, blank=True)
     training_image_urls = models.JSONField(blank=True, null=True)
     cropped_image_urls = models.JSONField(blank=True, null=True)
-    inference_image_urls = models.JSONField(blank=True, null=True) # TODO get rid of this
     pack_1_inference_image_urls = models.JSONField(blank=True, null=True)
     pack_2_inference_image_urls = models.JSONField(blank=True, null=True)
     pack_3_inference_image_urls = models.JSONField(blank=True, null=True)
