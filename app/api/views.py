@@ -67,6 +67,7 @@ def submit_orders_for_processing(request):
 
     processing_orders_count = Order.objects.filter(
         Q(error_message__exact='') | Q(error_message__isnull=True),
+        is_success__isnull=True, # I need to do more automated testing on this
         is_submitted=True,
     ).count()
     print(f"Found {processing_orders_count} already processing processing.")
