@@ -60,7 +60,7 @@ class OrderSerializer(serializers.ModelSerializer):
             prompt_pack_4=prompt_pack_4,
             prompt_pack_5=prompt_pack_5,
             model_type=validated_data.get('model_type'),
-            speed_type=Order.SpeedType.TEST.value,
+            speed_type=Order.SpeedType.MODERATE.value,
             fulfillment_service=Order.FulfillmentService.RUNPOD.value,
         )
         order.save()
