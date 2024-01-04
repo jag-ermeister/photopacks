@@ -16,20 +16,24 @@ def upload_images_to_s3(order_id, images_to_upload_directory, bucket_directory, 
     )
 
     image_urls = []
-    for file_name in os.listdir(images_to_upload_directory):
-        if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
-            image_path = os.path.join(images_to_upload_directory, file_name)
-            with Image.open(image_path) as image:
-                buffer = BytesIO()
-                image.save(buffer, "jpeg")
-                buffer.seek(0)
-                unique_file_name = f"{str(uuid.uuid4())}.jpg"
-                key = f"{order_id}/{bucket_directory}/{unique_file_name}"
-                s3.put_object(Body=buffer, Bucket=order_images_s3_bucket_name, Key=key)
-                image_url = (
-                    f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
-                )
-                image_urls.append(image_url)
+    if os.path.exists(images_to_upload_directory):
+        print(f"{images_to_upload_directory} exists. Uploading images from this directory...")
+        for file_name in os.listdir(images_to_upload_directory):
+            if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
+                image_path = os.path.join(images_to_upload_directory, file_name)
+                with Image.open(image_path) as image:
+                    buffer = BytesIO()
+                    image.save(buffer, "jpeg")
+                    buffer.seek(0)
+                    unique_file_name = f"{str(uuid.uuid4())}.jpg"
+                    key = f"{order_id}/{bucket_directory}/{unique_file_name}"
+                    s3.put_object(Body=buffer, Bucket=order_images_s3_bucket_name, Key=key)
+                    image_url = (
+                        f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
+                    )
+                    image_urls.append(image_url)
+    else:
+        print(f"{images_to_upload_directory} does not exist. Skipping uploading images from this directory.")
     return image_urls
 
 
