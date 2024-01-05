@@ -50,8 +50,18 @@ export default {
         'arrow-dance':
           'appear 3s 2s ease forwards, bounce 2s infinite ease-in-out',
         appear: 'appear 2s 1s ease forwards',
+        'fade-in': 'fadeIn 1s ease forwards',
+        'fade-out': 'fadeOut 1s ease forwards',
       },
       keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
         floatIn: {
           from: {
             transform: 'translateY(40px)',

@@ -2,17 +2,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Surface } from 'gl-react-dom'
 import GLTransitions from 'gl-transitions'
 import GLTransition from 'react-gl-transition'
-import { STATIC_ROOT } from '../../constants'
 
 function ImageTransition({
-  displayDuration = 3000,
+  images,
+  onTransition,
+  displayDuration = 1500, //I think this time is getting doubled somehow
   transitionDuration = 1000,
 }) {
-  const images = [
-    `${STATIC_ROOT}/hero_placeholder.png`,
-    `${STATIC_ROOT}/hero_placeholder.png`,
-  ]
-
   const [index, setIndex] = useState(0)
   const [progress, setProgress] = useState(0)
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 })
@@ -66,7 +62,13 @@ function ImageTransition({
         }
       }
 
-      requestAnimationFrame(step)
+      const timeout = setTimeout(() => {
+        // Call the onTransition callback at the beginning of the effect
+        onTransition && onTransition((index + 1) % images.length)
+        requestAnimationFrame(step)
+      }, displayDuration)
+
+      return () => clearTimeout(timeout)
     }, displayDuration)
 
     return () => clearTimeout(timeout)

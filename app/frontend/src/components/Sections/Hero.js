@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { STATIC_ROOT } from '../../constants'
 import ImageTransition from '../WebGL/ImageTransition'
 
 function Hero() {
+  const imageCaptions = [
+    {
+      image: `${STATIC_ROOT}/hero_placeholder.png`,
+      caption: 'Profile Picture',
+    },
+    {
+      image: `${STATIC_ROOT}/hero_placeholder.png`,
+      caption: 'Professional Photo',
+    },
+    {
+      image: `${STATIC_ROOT}/hero_placeholder.png`,
+      caption: 'Vintage Vision',
+    },
+  ]
+
+  const [currentCaption, setCurrentCaption] = useState(imageCaptions[0].caption)
+  const [animationClass, setAnimationClass] = useState(
+    'animate-float-in animate-fadeIn'
+  )
+
+  const handleTransition = (index) => {
+    setAnimationClass('animate-fade-out')
+
+    setTimeout(() => {
+      setCurrentCaption(imageCaptions[index].caption)
+      setAnimationClass('animate-fade-in')
+    }, 1000)
+  }
+
   return (
     <section className="bg-white dark:bg-gray-900 min-h-screen flex flex-col -mb-14">
       <div className="bg-white dark:bg-gray-900 my-auto flex items-center justify-center text-center">
@@ -11,10 +40,15 @@ function Hero() {
             {'Create Your Perfect'.toUpperCase()}
           </h1>
           <div className="flex justify-center w-full">
-            <ImageTransition />
+            <ImageTransition
+              images={imageCaptions.map((item) => item.image)}
+              onTransition={handleTransition}
+            />
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight leading-none text-primary-700 md:text-5xl lg:text-6xl dark:text-white tracking-tight animate-float-in">
-            {'Profile Picture'.toUpperCase()}
+          <h1
+            className={`text-4xl font-extrabold tracking-tight leading-none text-primary-700 md:text-5xl lg:text-6xl dark:text-white tracking-tight  ${animationClass}`}
+          >
+            {currentCaption.toUpperCase()}
           </h1>
           <p className="font-light text-gray-500 md:text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 opacity-0 animate-appear">
             Upload your photos, get 100+ AI images
