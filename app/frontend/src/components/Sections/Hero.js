@@ -11,7 +11,7 @@ function Hero() {
     },
     {
       image: `${STATIC_ROOT}/hero_placeholder.png`,
-      caption: 'Professional Photo',
+      caption: 'Fashion Photo',
       effect: 'directionalwarp',
     },
     {
