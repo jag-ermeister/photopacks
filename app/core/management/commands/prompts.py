@@ -67,9 +67,9 @@ abstract_pack_1 = [
     "adorably cute (MODELNAME), portrait by Victo Ngai, Kilian Eng vibrant colors, winning-award masterpiece, fantastically gaudy, aestheticly inspired by beksinski and dan mumford, 4K upscale with Simon Stalenhag work, sitting on the cosmic cloudscape",
     "masterpiece portrait of (MODELNAME)  as a cosmic, au naturel, hyper detailed, digital art, trending in artstation, cinematic lighting, studio quality, smooth render, unreal engine 5 rendered, octane rendered, art style by klimt and nixeu and ian sprigger and wlop and krenz cushart and riot and overwatch",
     "(MODELNAME), figurative unique features portrait soft light painted by james jean and katsuhiro otomo and erik jones, inspired by akira anime, smooth face feature, intricate oil painting, high detail illustration, sharp high detail, manga and anime",
-    "A portrait of modern and stunning MODELNAME, oil painting by Kehinde Wiley, majestic, detailed, high resolution",
+    "A portrait of modern and stunning (MODELNAME), oil painting, majestic, detailed, high resolution",
     "MODELNAME, dramatic light, art deco city background, high contrast, sharp, painted by stanley lau, painted by stanley artgerm, painted by patrick nagel",
-    "MODELNAME, detailed analogue mixed media collage with canvas texture in style of contemporary art, punk art, hyperrealistic yoga punk french singer with wraparound sunglasses and long hair and beard, commercial actor and model, similar to brad pitt, photorealistic, expressionism, masterpiece, perfect composition, spectacular quality, intricate oil details, vivid broken glass, torn paper, magazine pages",
+    "((MODELNAME)), detailed analogue mixed media collage with canvas texture in style of contemporary art, punk art, hyperrealistic yoga punk french singer with wraparound sunglasses and long hair and beard, commercial actor and model, photorealistic, expressionism, masterpiece, perfect composition, spectacular quality, intricate oil details, vivid broken glass, torn paper, magazine pages",
 ]
 
 fashion_pack_1 = [
