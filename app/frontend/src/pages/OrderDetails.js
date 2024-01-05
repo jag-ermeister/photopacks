@@ -61,7 +61,7 @@ function OrderDetails() {
           </div>
           <div className="text-gray-500">Order #{orderPack.display_id}</div>
         </div>
-        <a href={order.zip_file_url} className="your-button-classes-here">
+        <a href={orderPack.zip_file_url}>
           <Button
             pill
             color="info"
