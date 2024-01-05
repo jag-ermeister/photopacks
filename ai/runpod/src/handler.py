@@ -88,11 +88,11 @@ def handler(job):
         'cropped_results',
         order_images_s3_bucket_name
     )
-    pack_1_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/1')
-    pack_2_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/2')
-    pack_3_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/3')
-    pack_4_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/4')
-    pack_5_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/5')
+    pack_1_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/1', 1)
+    pack_2_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/2', 2)
+    pack_3_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/3', 3)
+    pack_4_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/4', 4)
+    pack_5_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/5', 5)
     notify_backend(
         order_id,
         pack_1_inference_image_urls,

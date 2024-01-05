@@ -37,7 +37,7 @@ def upload_images_to_s3(order_id, images_to_upload_directory, bucket_directory, 
     return image_urls
 
 
-def upload_zip_to_s3(order_id, order_images_s3_bucket_name, inference_results_path):
+def upload_zip_to_s3(order_id, order_images_s3_bucket_name, inference_results_path, pack_num):
     print("Zipping and uploading images...")
 
     s3 = boto3.client(
@@ -46,7 +46,7 @@ def upload_zip_to_s3(order_id, order_images_s3_bucket_name, inference_results_pa
         aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
     )
 
-    zip_file_path = f"/tmp/{order_id}.zip"
+    zip_file_path = f"/tmp/{order_id}_{pack_num}.zip"
 
     if os.path.exists(inference_results_path):
         print(f"{inference_results_path} exists. Zipping images in this directory...")
@@ -56,7 +56,7 @@ def upload_zip_to_s3(order_id, order_images_s3_bucket_name, inference_results_pa
                     image_path = os.path.join(inference_results_path, file_name)
                     zipf.write(image_path, os.path.basename(image_path))
 
-        key = f"{order_id}/inference_results_zip/{order_id}.zip"
+        key = f"{order_id}/inference_results_zip/{order_id}_{pack_num}.zip"
         with open(zip_file_path, 'rb') as file_data:
             s3.put_object(
                 Body=file_data,
