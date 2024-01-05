@@ -37,7 +37,7 @@ def upload_images_to_s3(order_id, images_to_upload_directory, bucket_directory, 
     return image_urls
 
 
-def upload_zip_to_s3(order_id, order_images_s3_bucket_name):
+def upload_zip_to_s3(order_id, order_images_s3_bucket_name, inference_results_path):
     print("Zipping and uploading images...")
 
     s3 = boto3.client(
@@ -46,20 +46,14 @@ def upload_zip_to_s3(order_id, order_images_s3_bucket_name):
         aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
     )
 
-    # Directory containing the images
-    inference_results_path = "/app/kohya_ss/inference_results"
-
-    # Path for the temporary ZIP file
     zip_file_path = f"/tmp/{order_id}.zip"
 
-    # Create a ZIP file
     with ZipFile(zip_file_path, 'w') as zipf:
         for file_name in os.listdir(inference_results_path):
             if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
                 image_path = os.path.join(inference_results_path, file_name)
                 zipf.write(image_path, os.path.basename(image_path))
 
-    # Upload the ZIP file to S3
     key = f"{order_id}/inference_results_zip/{order_id}.zip"
     with open(zip_file_path, 'rb') as file_data:
         s3.put_object(
@@ -68,7 +62,6 @@ def upload_zip_to_s3(order_id, order_images_s3_bucket_name):
             Key=key
         )
 
-    # URL to the uploaded ZIP file
     zip_url = f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
 
     return zip_url

@@ -10,7 +10,11 @@ def notify_backend(
         pack_4_inference_image_urls,
         pack_5_inference_image_urls,
         cropped_image_urls,
-        zip_url,
+        pack_1_zip_url,
+        pack_2_zip_url,
+        pack_3_zip_url,
+        pack_4_zip_url,
+        pack_5_zip_url,
         results_url,
         prompts
 ):
@@ -22,7 +26,11 @@ def notify_backend(
         "pack_4_inference_image_urls": pack_4_inference_image_urls,
         "pack_5_inference_image_urls": pack_5_inference_image_urls,
         "cropped_image_urls": cropped_image_urls,
-        "zip_url": zip_url,
+        "pack_1_zip_file_url": pack_1_zip_url,
+        "pack_2_zip_file_url": pack_2_zip_url,
+        "pack_3_zip_file_url": pack_3_zip_url,
+        "pack_4_zip_file_url": pack_4_zip_url,
+        "pack_5_zip_file_url": pack_5_zip_url,
         "prompts": prompts
     }
 

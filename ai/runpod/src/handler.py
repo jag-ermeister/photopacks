@@ -88,7 +88,11 @@ def handler(job):
         'cropped_results',
         order_images_s3_bucket_name
     )
-    zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name)
+    pack_1_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/1')
+    pack_2_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/2')
+    pack_3_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/3')
+    pack_4_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/4')
+    pack_5_zip_url = upload_zip_to_s3(order_id, order_images_s3_bucket_name, '/app/kohya_ss/inference_results/5')
     notify_backend(
         order_id,
         pack_1_inference_image_urls,
@@ -97,7 +101,11 @@ def handler(job):
         pack_4_inference_image_urls,
         pack_5_inference_image_urls,
         cropped_image_urls,
-        zip_url,
+        pack_1_zip_url,
+        pack_2_zip_url,
+        pack_3_zip_url,
+        pack_4_zip_url,
+        pack_5_zip_url,
         results_url,
         pack_1_prompts + pack_2_prompts + pack_3_prompts + pack_4_prompts + pack_5_prompts
     )
