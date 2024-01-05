@@ -13,7 +13,7 @@ def test_update_order(mock_email_service, client, order, monkeypatch):
     payload = {
         "pack_1_inference_image_urls": ["image-url-1", "image-url-2"],
         "cropped_image_urls": ["image-url-1", "image-url-2"],
-        "zip_url": 'zip-url'
+        "pack_1_zip_file_url": 'zip-url'
     }
     url = reverse('update_order', kwargs={'order_id': order.id})
     response = client.post(url, payload, content_type='application/json')
@@ -23,7 +23,7 @@ def test_update_order(mock_email_service, client, order, monkeypatch):
     assert order.is_success is True
     assert order.pack_1_inference_image_urls == ["image-url-1", "image-url-2"]
     assert order.cropped_image_urls == ["image-url-1", "image-url-2"]
-    assert order.zip_file_url == 'zip-url'
+    assert order.pack_1_zip_file_url == 'zip-url'
 
     mock_email_service.assert_called_with(order)
 

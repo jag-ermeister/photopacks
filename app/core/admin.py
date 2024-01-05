@@ -88,16 +88,22 @@ class OrderAdmin(admin.ModelAdmin):
         extra_context = extra_context or {}
         if object_id:
             order = Order.objects.get(pk=object_id)
-            if order.zip_file_url:
-                extra_context['show_download_button'] = True
-                extra_context['zip_file_url'] = order.zip_file_url
+            for i in range(1, 6):
+                zip_field_name = f'pack_{i}_zip_file_url'
+                zip_file_url = getattr(order, zip_field_name, None)
+                if zip_file_url:
+                    extra_context[f'show_download_button_{i}'] = True
+                    extra_context[zip_field_name] = zip_file_url
         return super().changeform_view(request, object_id, form_url, extra_context)
 
     def render_change_form(self, request, context, *args, **kwargs):
-        if context.get('show_download_button'):
-            context['adminform'].form.fields['zip_file_url'].help_text = format_html(
-                '<a href="{}" target="_blank">Download ZIP File</a>', context['zip_file_url']
-            )
+        for i in range(1, 6):
+            zip_field_name = f'pack_{i}_zip_file_url'
+            if context.get(f'show_download_button_{i}'):
+                zip_file_url = context[zip_field_name]
+                context['adminform'].form.fields[zip_field_name].help_text = format_html(
+                    '<a href="{}" target="_blank">Download ZIP File {}</a>', zip_file_url, i
+                )
         return super().render_change_form(request, context, *args, **kwargs)
 
 

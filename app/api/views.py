@@ -18,7 +18,11 @@ def update_order(request, order_id):
 
     order = Order.objects.get(id=order_id)
     order.cropped_image_urls = request_body["cropped_image_urls"]
-    order.zip_file_url = request_body["zip_url"]
+    order.pack_1_zip_file_url = request_body.get("pack_1_zip_file_url")
+    order.pack_2_zip_file_url = request_body.get("pack_2_zip_file_url")
+    order.pack_3_zip_file_url = request_body.get("pack_3_zip_file_url")
+    order.pack_4_zip_file_url = request_body.get("pack_4_zip_file_url")
+    order.pack_5_zip_file_url = request_body.get("pack_5_zip_file_url")
     order.pack_1_inference_image_urls = request_body.get("pack_1_inference_image_urls")
     order.pack_2_inference_image_urls = request_body.get("pack_2_inference_image_urls")
     order.pack_3_inference_image_urls = request_body.get("pack_3_inference_image_urls")
