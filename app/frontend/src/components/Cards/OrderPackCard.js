@@ -15,10 +15,7 @@ function OrderPackCard({ order }) {
           navigate(`/orders/${order.id}/packs/${order.prompt_pack.id}`)
         }
       >
-        <a
-          href="#"
-          className="absolute inset-0 flex items-center justify-center"
-        >
+        <div className="absolute inset-0 flex items-center justify-center">
           {order.is_success && (
             <img
               className="w-full h-full object-cover rounded-lg"
@@ -33,7 +30,7 @@ function OrderPackCard({ order }) {
               alt="product image"
             />
           )}
-        </a>
+        </div>
       </div>
 
       <div className="flex flex-col gap-6 pt-6">
