@@ -7,14 +7,17 @@ function Hero() {
     {
       image: `${STATIC_ROOT}/hero_placeholder.png`,
       caption: 'Profile Picture',
+      effect: 'GlitchMemories',
     },
     {
       image: `${STATIC_ROOT}/hero_placeholder.png`,
       caption: 'Professional Photo',
+      effect: 'directionalwarp',
     },
     {
       image: `${STATIC_ROOT}/hero_placeholder.png`,
       caption: 'Vintage Vision',
+      effect: 'morph',
     },
   ]
 
@@ -42,6 +45,7 @@ function Hero() {
           <div className="flex justify-center w-full">
             <ImageTransition
               images={imageCaptions.map((item) => item.image)}
+              effects={imageCaptions.map((item) => item.effect)}
               onTransition={handleTransition}
             />
           </div>

@@ -5,6 +5,7 @@ import GLTransition from 'react-gl-transition'
 
 function ImageTransition({
   images,
+  effects,
   onTransition,
   displayDuration = 1500, //I think this time is getting doubled somehow
   transitionDuration = 1000,
@@ -76,7 +77,9 @@ function ImageTransition({
 
   const from = images[index % images.length]
   const to = images[(index + 1) % images.length]
-  const transition = GLTransitions.find((t) => t.name === 'GlitchMemories') // Or any other transition you prefer
+  const transition = GLTransitions.find(
+    (t) => t.name === effects[index % images.length]
+  )
 
   return (
     <div ref={containerRef} className="w-full">
