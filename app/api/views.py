@@ -7,6 +7,7 @@ from django.utils import timezone
 from core.models import Order, WhitelistedUser
 from core.services import AiService, EmailService
 import json
+import os
 
 
 @csrf_exempt
@@ -80,7 +81,7 @@ def submit_orders_for_processing(request):
     ).count()
     print(f"Found {processing_orders_count} already processing processing.")
 
-    MAX_ORDERS_PROCESSING = 2
+    MAX_ORDERS_PROCESSING = int(os.environ['SDXL_QUEUE_SIZE'])
     available_slots = MAX_ORDERS_PROCESSING - processing_orders_count
 
     submitted_orders = []

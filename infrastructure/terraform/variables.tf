@@ -126,3 +126,7 @@ variable stripe_webhook_secret {
 variable sendgrid_api_key {
   type = string
 }
+
+variable sdxl_queue_size {
+  type = number
+}

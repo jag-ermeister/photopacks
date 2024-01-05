@@ -63,6 +63,7 @@ def test_submit_orders_for_processing_ready_orders(mock_post, authenticated_clie
     monkeypatch.setenv('RUNPOD_API_KEY', 'test_runpod_api_key')
     monkeypatch.setenv('API_URL', 'https://fakephotopacks.ai')
     monkeypatch.setenv('ORDER_IMAGES_S3_BUCKET_NAME', 'fake-bucket-name')
+    monkeypatch.setenv('SDXL_QUEUE_SIZE', 2)
 
     test_order = Order.objects.create(
         user=authenticated_client.user,
@@ -97,9 +98,10 @@ def test_submit_orders_for_processing_ready_orders(mock_post, authenticated_clie
 
 
 @pytest.mark.django_db
-def test_submit_orders_for_processing_max_processing(authenticated_client, order):
-    # Setup: Create orders that fill up the processing slots
-    for _ in range(2):  # Assuming MAX_ORDERS_PROCESSING is 2
+def test_submit_orders_for_processing_max_processing(authenticated_client, order, monkeypatch):
+    queue_size = 2
+    monkeypatch.setenv('SDXL_QUEUE_SIZE', queue_size)
+    for _ in range(queue_size):
         Order.objects.create(
             user=order.user,
             subject_name="Test",

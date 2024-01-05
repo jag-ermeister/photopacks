@@ -244,4 +244,10 @@ resource "aws_elastic_beanstalk_environment" "BeanstalkDevEnv" {
     name      = "SENDGRID_API_KEY"
     value     = var.sendgrid_api_key
   }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "SDXL_QUEUE_SIZE"
+    value     = var.sdxl_queue_size
+  }
 }
