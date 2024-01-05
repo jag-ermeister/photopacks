@@ -52,12 +52,14 @@ def test_patch_order(authenticated_client, order, create_prompt_pack):
 
 
 @pytest.mark.django_db
-def test_get_orders(authenticated_client, order, prompt_pack):
+def test_get_order(authenticated_client, order, prompt_pack):
     url = reverse('order_detail', kwargs={'pk': str(order.id)})
     response = authenticated_client.get(url)
 
     assert response.status_code == 200
     assert response.data['id'] == str(order.id)
+    assert response.data['is_success'] is False
+    assert response.data['model_type'] == Order.ModelType.MAN.value
     assert response.data['prompt_pack_1']['id'] == str(prompt_pack.id)
     assert response.data['prompt_pack_1']['display_name'] == prompt_pack.display_name
     assert response.data['prompt_pack_1']['preview_image'] == prompt_pack.preview_image
