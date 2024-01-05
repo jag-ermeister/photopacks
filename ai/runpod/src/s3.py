@@ -48,23 +48,28 @@ def upload_zip_to_s3(order_id, order_images_s3_bucket_name, inference_results_pa
 
     zip_file_path = f"/tmp/{order_id}.zip"
 
-    with ZipFile(zip_file_path, 'w') as zipf:
-        for file_name in os.listdir(inference_results_path):
-            if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
-                image_path = os.path.join(inference_results_path, file_name)
-                zipf.write(image_path, os.path.basename(image_path))
+    if os.path.exists(inference_results_path):
+        print(f"{inference_results_path} exists. Zipping images in this directory...")
+        with ZipFile(zip_file_path, 'w') as zipf:
+            for file_name in os.listdir(inference_results_path):
+                if file_name.lower().endswith(('.png', '.jpg', '.jpeg')):
+                    image_path = os.path.join(inference_results_path, file_name)
+                    zipf.write(image_path, os.path.basename(image_path))
 
-    key = f"{order_id}/inference_results_zip/{order_id}.zip"
-    with open(zip_file_path, 'rb') as file_data:
-        s3.put_object(
-            Body=file_data,
-            Bucket=order_images_s3_bucket_name,
-            Key=key
-        )
+        key = f"{order_id}/inference_results_zip/{order_id}.zip"
+        with open(zip_file_path, 'rb') as file_data:
+            s3.put_object(
+                Body=file_data,
+                Bucket=order_images_s3_bucket_name,
+                Key=key
+            )
 
-    zip_url = f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
+        zip_url = f"https://{order_images_s3_bucket_name}.s3.{os.environ['AWS_S3_REGION_NAME']}.amazonaws.com/{key}"
 
-    return zip_url
+        return zip_url
+    else:
+        print(f"{inference_results_path} does not exist. Nothing to zip, skipping.")
+        return None
 
 
 def download_training_photos(order_id, training_image_directory, order_images_s3_bucket_name):
