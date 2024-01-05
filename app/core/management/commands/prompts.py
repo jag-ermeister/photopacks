@@ -49,10 +49,10 @@ scifi_pack_1 = [
 fantasy_pack_1 = [
     "(MODELNAME), portrait of a spartan warrior bodybuilder posing, radiant light, caustics, war hero, by bayard wu, giger, maxim verehin",
     "(MODELNAME), portrait, fantasy viking warrior, dnd, art by Greg Rutkowski, highly detailed, sharp focus, 4k, bright light",
-    "((MODELNAME)), ((portrait)), fantasy tiefling, (two horns), (red skin), ((fantasy tiefling)), close up, dnd art, (art by Greg Rutkowski), highly detailed, sharp focus, 4k, ((in a forest)), (((magic glow)))",
+    "((MODELNAME)), ((portrait)), fantasy tiefling, (two horns), ((fantasy tiefling)), close up, dnd art, (art by Greg Rutkowski), highly detailed, sharp focus, 4k, ((in a forest)), (((magic glow)))",
     "((MODELNAME)), handsome portrait of a warhammer marine posing, radiant light, caustics, war hero, psychedelic dmt, by gaston bussiere, bayard wu, greg rutkowski, giger, maxim verehin",
     "MODELNAME, as fantasy paladin, art by greg rutkowski, fighting in battle, in front lines",
-    "MODELNAME, as a beatiuful dnd miniature figurine, as a fantasy paladin, miniature terrain, mountainous background",
+    "((MODELNAME)), as a beautiful dnd miniature figurine, as a fantasy paladin, miniature terrain, mountainous background",
     "MODELNAME, ((portrait)), close-up, praying realistic knight, dnd, ((in white armor with golden symbols)), (dramatic real castle in background), art by Greg Rutkowski, highly detailed, sharp focus, 4k",
     "MODELNAME, ((portrait)), close-up, fantasy knight, ((in white armor with golden symbols)), white hair, (castle in background), art by Greg Rutkowski, highly detailed, sharp focus, 4k",
     "(((MODELNAME))) with dragon slayer sword, (Kentaro Miura manga book style), illustration, Berserk manga artstyle, manga, portrait, close up, fantasy, landscape, face, ancient ruins background",
