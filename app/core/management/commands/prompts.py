@@ -72,7 +72,7 @@ abstract_pack_1 = [
     "MODELNAME, detailed analogue mixed media collage with canvas texture in style of contemporary art, punk art, hyperrealistic yoga punk french singer with wraparound sunglasses and long hair and beard, commercial actor and model, similar to brad pitt, photorealistic, expressionism, masterpiece, perfect composition, spectacular quality, intricate oil details, vivid broken glass, torn paper, magazine pages",
 ]
 
-photoshoot_pack_1 = [
+fashion_pack_1 = [
     "(MODELNAME) portrait, photographed with a Hasselblad H6D-400c lens, copy Sisley Spring Summer 2014 campaign session, ultra high definition, ultra-realism, ultra realistic, young, good looking, correctly proportion, smooth skin",
     "(MODELNAME), beautiful portrait backlit silhouette concept art draped in light fabric delicate, dramatic lighting, by peter mohrbache",
     "MODELNAME, portrait, Shot on 28 mm kodak camera, twilight, countryside, bathed in twilight, (glowing, smooth face) (highly detailed and natural eyes) dreamy atmosphere, highly detailed, 8k",

@@ -2,7 +2,7 @@ import uuid
 from django.core.management.base import BaseCommand
 from core.models import PromptPack
 from .prompts import holiday_pack_1, scifi_pack_1, fantasy_pack_1, abstract_pack_1, \
-    photoshoot_pack_1
+    fashion_pack_1
 
 
 class Command(BaseCommand):
@@ -60,12 +60,12 @@ class Command(BaseCommand):
         )
 
         PromptPack.objects.update_or_create(
-            internal_name="Photoshoot - Woman",
+            internal_name="Fashion - Woman",
             defaults={
-                'display_name': "Photoshoot",
+                'display_name': "Fashion",
                 'pack_type': PromptPack.PackType.WOMAN.value,
                 'preview_image': "photoshoot_woman.jpeg",
-                'prompts': photoshoot_pack_1
+                'prompts': fashion_pack_1
             }
         )
 
