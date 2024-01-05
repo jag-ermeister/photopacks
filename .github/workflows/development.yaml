@@ -32,7 +32,7 @@ jobs:
           pytest
 
       - name: Install frontend dependencies
-        run: cd app/frontend && npm install
+        run: cd app/frontend && npm install --force
 
       - name: Build frontend
         run: |

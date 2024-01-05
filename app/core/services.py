@@ -10,7 +10,6 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from .models import Order
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -80,7 +79,11 @@ class AiService:
                     "order_images_s3_bucket_name": os.environ["ORDER_IMAGES_S3_BUCKET_NAME"],
                     "model_type": order.model_type,
                     "num_steps": order.speed_type,
-                    "prompts": prompts,
+                    "pack_1_prompts": order.prompt_pack_1.prompts if order.prompt_pack_1 is not None else [],
+                    "pack_2_prompts": order.prompt_pack_2.prompts if order.prompt_pack_2 is not None else [],
+                    "pack_3_prompts": order.prompt_pack_3.prompts if order.prompt_pack_3 is not None else [],
+                    "pack_4_prompts": order.prompt_pack_4.prompts if order.prompt_pack_4 is not None else [],
+                    "pack_5_prompts": order.prompt_pack_5.prompts if order.prompt_pack_5 is not None else [],
                     "images_per_prompt": order.images_per_prompt,
                 },
                 "webhook": f'{os.environ["API_URL"]}/api/orders/{str(order.id)}/runpod'
@@ -98,6 +101,22 @@ class AiService:
 class EmailService:
     def __init__(self):
         self.sg = SendGridAPIClient(os.environ['SENDGRID_API_KEY'])
+
+    def send_welcome_email(self, user):
+        try:
+            message = Mail(
+                from_email='info@photopacks.ai',
+                to_emails=user.email,
+                subject='Thank you for signing up for PhotoPacks.AI',
+                html_content = render_to_string('email/welcome.html', {
+                    'site_url': os.environ['SITE_URL']
+                }),
+            )
+            response = self.sg.send(message)
+            print(response.status_code)
+        except Exception as e:
+            print(e.message)
+            raise e
 
     def send_order_confirmation_email(self, order):
         try:
@@ -122,7 +141,10 @@ class EmailService:
                 from_email='info@photopacks.ai',
                 to_emails=order.user.email,
                 subject='Your PhotoPacks.AI order is complete',
-                html_content='<strong>Log in to get your pics!</strong>'
+                html_content=render_to_string('email/order_complete.html', {
+                    'order': order,
+                    'site_url': os.environ['SITE_URL']
+                })
             )
             response = self.sg.send(message)
             print(response.status_code)

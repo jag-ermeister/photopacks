@@ -24,6 +24,7 @@ def stripe_webhook(request):
     event = stripe.Webhook.construct_event(
         payload=request.body, sig_header=signature, secret=webhook_secret
     )
+    print(event)
     data = event["data"]
     event_type = event["type"]
     logger.error("Stripe: received event type {}".format(event_type))

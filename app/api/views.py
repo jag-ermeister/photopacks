@@ -17,9 +17,13 @@ def update_order(request, order_id):
     print(request_body)
 
     order = Order.objects.get(id=order_id)
-    order.inference_image_urls = request_body["image_urls"]
     order.cropped_image_urls = request_body["cropped_image_urls"]
     order.zip_file_url = request_body["zip_url"]
+    order.pack_1_inference_image_urls = request_body.get("pack_1_inference_image_urls")
+    order.pack_2_inference_image_urls = request_body.get("pack_2_inference_image_urls")
+    order.pack_3_inference_image_urls = request_body.get("pack_3_inference_image_urls")
+    order.pack_4_inference_image_urls = request_body.get("pack_4_inference_image_urls")
+    order.pack_5_inference_image_urls = request_body.get("pack_5_inference_image_urls")
     order.is_success = True
     order.save()
 
@@ -67,6 +71,7 @@ def submit_orders_for_processing(request):
 
     processing_orders_count = Order.objects.filter(
         Q(error_message__exact='') | Q(error_message__isnull=True),
+        is_success__isnull=True, # I need to do more automated testing on this
         is_submitted=True,
     ).count()
     print(f"Found {processing_orders_count} already processing processing.")

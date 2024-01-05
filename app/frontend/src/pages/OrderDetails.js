@@ -4,6 +4,7 @@ import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { useOrder } from '../hooks/dataHooks'
 import PhotoGallery from '../components/Gallery/PhotoGallery'
 import { Badge, Button, Breadcrumb } from 'flowbite-react'
+import { transformOrderToOrderPacks } from '../transform/transform'
 
 function OrderDetails() {
   let { orderId, packId } = useParams()
@@ -31,14 +32,10 @@ function OrderDetails() {
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
 
-  const promptPacks = [
-    order.prompt_pack_1,
-    order.prompt_pack_2,
-    order.prompt_pack_3,
-    order.prompt_pack_4,
-    order.prompt_pack_5,
-  ]
-  const promptPack = promptPacks.find((pack) => pack && pack.id === packId)
+  const orderPacks = transformOrderToOrderPacks(order)
+  const orderPack = orderPacks.find(
+    (orderPack) => orderPack.prompt_pack.id === packId
+  )
 
   return (
     <div className="flex flex-col gap-8 md:gap-12 max-w-screen-xl m-auto px-4 md:px-8 md:my-16 my-8">
@@ -48,7 +45,7 @@ function OrderDetails() {
         className="md:block hidden"
       >
         <Breadcrumb.Item href="/orders">My Orders</Breadcrumb.Item>
-        <Breadcrumb.Item>Order# {orderId}</Breadcrumb.Item>
+        <Breadcrumb.Item>Order #{orderPack.display_id}</Breadcrumb.Item>
       </Breadcrumb>
 
       {/* Order details */}
@@ -56,13 +53,13 @@ function OrderDetails() {
         <div className="flex flex-col gap-2">
           <div className="flex gap-2 items-center">
             <div className="text-3xl md:text-5xl font-extrabold tracking-tight text-primary-700">
-              {promptPack.display_name.toUpperCase()}&nbsp;&nbsp;
+              {orderPack.prompt_pack.display_name.toUpperCase()}&nbsp;&nbsp;
             </div>
             <Badge color="info" size="lg">
-              {promptPack.pack_type}
+              {orderPack.prompt_pack.pack_type}
             </Badge>
           </div>
-          <div className="text-gray-500">Order ID: {orderId}</div>
+          <div className="text-gray-500">Order #{orderPack.display_id}</div>
         </div>
         <a href={order.zip_file_url} className="your-button-classes-here">
           <Button
@@ -81,10 +78,10 @@ function OrderDetails() {
       </div>
 
       {/* Photo Gallery */}
-      {order.inference_image_urls && (
-        <PhotoGallery photoUrls={order.inference_image_urls} />
+      {orderPack.inference_image_urls && (
+        <PhotoGallery photoUrls={orderPack.inference_image_urls} />
       )}
-      {!order.inference_image_urls && (
+      {!orderPack.inference_image_urls && (
         <div>Your pack is currently processing</div>
       )}
 

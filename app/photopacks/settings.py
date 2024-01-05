@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'corsheaders',
-    'core',
+    'core.apps.CoreConfig',
     'django.contrib.admin',
 ]
 
@@ -174,3 +174,5 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEFAULT_LOGGING["handlers"]["console"]["filters"] = []
+
+WELCOME_EMAIL_ENABLED=True

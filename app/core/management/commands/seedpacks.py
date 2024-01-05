@@ -1,7 +1,7 @@
 import uuid
 from django.core.management.base import BaseCommand
 from core.models import PromptPack
-from .prompts import holiday_pack_1, holiday_pack_2, holiday_pack_3, scifi_pack_1, fantasy_pack_1, abstract_pack_1, \
+from .prompts import holiday_pack_1, scifi_pack_1, fantasy_pack_1, abstract_pack_1, \
     photoshoot_pack_1
 
 
@@ -10,9 +10,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         PromptPack.objects.update_or_create(
-            internal_name="Holiday 1 - Dog",
+            internal_name="Holiday - Dog",
             defaults={
-                'display_name': "Christmas Dog",
+                'display_name': "Christmas",
                 'pack_type': PromptPack.PackType.DOG.value,
                 'preview_image': "christmas_dog.png",
                 'prompts': holiday_pack_1
@@ -20,52 +20,12 @@ class Command(BaseCommand):
         )
 
         PromptPack.objects.update_or_create(
-            internal_name="Holiday 2 - Dog",
+            internal_name="Holiday - Cat",
             defaults={
-                'display_name': "Christmas Dog",
-                'pack_type': PromptPack.PackType.DOG.value,
-                'preview_image': "christmas_dog.png",
-                'prompts': holiday_pack_2
-            }
-        )
-
-        PromptPack.objects.update_or_create(
-            internal_name="Holiday 3 - Dog",
-            defaults={
-                'display_name': "Christmas Dog",
-                'pack_type': PromptPack.PackType.DOG.value,
-                'preview_image': "christmas_dog.png",
-                'prompts': holiday_pack_3
-            }
-        )
-
-        PromptPack.objects.update_or_create(
-            internal_name="Holiday 1 - Cat",
-            defaults={
-                'display_name': "Christmas Cat",
+                'display_name': "Christmas",
                 'pack_type': PromptPack.PackType.CAT.value,
                 'preview_image': "christmas_cat.png",
                 'prompts': holiday_pack_1
-            }
-        )
-
-        PromptPack.objects.update_or_create(
-            internal_name="Holiday 2 - Cat",
-            defaults={
-                'display_name': "Christmas Cat",
-                'pack_type': PromptPack.PackType.CAT.value,
-                'preview_image': "christmas_cat.png",
-                'prompts': holiday_pack_2
-            }
-        )
-
-        PromptPack.objects.update_or_create(
-            internal_name="Holiday 3 - Cat",
-            defaults={
-                'display_name': "Christmas Cat",
-                'pack_type': PromptPack.PackType.CAT.value,
-                'preview_image': "christmas_cat.png",
-                'prompts': holiday_pack_3
             }
         )
 

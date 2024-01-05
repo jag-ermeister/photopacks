@@ -11,7 +11,7 @@ def test_update_order(mock_email_service, client, order, monkeypatch):
     monkeypatch.setenv('SENDGRID_API_KEY', 'test_sendgrid_api_key')
 
     payload = {
-        "image_urls": ["image-url-1", "image-url-2"],
+        "pack_1_inference_image_urls": ["image-url-1", "image-url-2"],
         "cropped_image_urls": ["image-url-1", "image-url-2"],
         "zip_url": 'zip-url'
     }
@@ -21,7 +21,7 @@ def test_update_order(mock_email_service, client, order, monkeypatch):
     order.refresh_from_db()
     assert response.status_code == 200
     assert order.is_success is True
-    assert order.inference_image_urls == ["image-url-1", "image-url-2"]
+    assert order.pack_1_inference_image_urls == ["image-url-1", "image-url-2"]
     assert order.cropped_image_urls == ["image-url-1", "image-url-2"]
     assert order.zip_file_url == 'zip-url'
 
@@ -89,7 +89,11 @@ def test_submit_orders_for_processing_ready_orders(mock_post, authenticated_clie
     request_body = kwargs.get('json', {})
     assert request_body['input']['order_id'] == str(test_order.id)
     assert request_body['input']['model_type'] == Order.ModelType.MAN.value
-    assert request_body['input']['prompts'] == ['prompt 1', 'prompt 2']
+    assert request_body['input']['pack_1_prompts'] == ['prompt 1', 'prompt 2']
+    assert request_body['input']['pack_2_prompts'] == []
+    assert request_body['input']['pack_3_prompts'] == []
+    assert request_body['input']['pack_4_prompts'] == []
+    assert request_body['input']['pack_5_prompts'] == []
 
 
 @pytest.mark.django_db

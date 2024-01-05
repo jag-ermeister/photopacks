@@ -1,7 +1,7 @@
 import uuid
 import random
 from enum import Enum
-from django.db import models, transaction
+from django.db import models, transaction, IntegrityError
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager as _UserManager
 
@@ -136,7 +136,11 @@ class Order(models.Model):
     notes = models.TextField(null=True, blank=True)
     training_image_urls = models.JSONField(blank=True, null=True)
     cropped_image_urls = models.JSONField(blank=True, null=True)
-    inference_image_urls = models.JSONField(blank=True, null=True)
+    pack_1_inference_image_urls = models.JSONField(blank=True, null=True)
+    pack_2_inference_image_urls = models.JSONField(blank=True, null=True)
+    pack_3_inference_image_urls = models.JSONField(blank=True, null=True)
+    pack_4_inference_image_urls = models.JSONField(blank=True, null=True)
+    pack_5_inference_image_urls = models.JSONField(blank=True, null=True)
     zip_file_url = models.URLField(null=True, blank=True)
     runpod_webhook_time = models.DateTimeField(null=True, blank=True)
     prompts = models.JSONField(blank=True, null=True)

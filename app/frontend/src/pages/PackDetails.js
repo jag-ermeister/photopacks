@@ -27,15 +27,14 @@ function PackDetails() {
             <div className="mr-auto place-self-center lg:col-span-7">
               <div className="flex gap-2 md:gap-4 items-center">
                 <div className="text-4xl md:text-6xl font-extrabold tracking-tight text-grey-900 dark:text-white">
-                  CHRISTMAS
+                  {pack.display_name}
                 </div>
                 <Badge color="pink" size="lg">
-                  Dog
+                  {pack.pack_type}
                 </Badge>
               </div>
               <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-                From checkout to global sales tax compliance, companies around
-                the world use Flowbite to simplify their payment stack.
+                These pics are dope.
               </p>
               <Button pill size="lg" onClick={handleBuyClick}>
                 Buy Now $9.99
@@ -237,10 +236,10 @@ function PackDetails() {
             </h2>
             <div className="flex gap-2 md:gap-4 items-center">
               <div className="text-4xl md:text-6xl font-extrabold tracking-tight text-grey-900">
-                CHRISTMAS
+                {pack.display_name}
               </div>
               <Badge color="dark" size="lg">
-                Dog
+                {pack.pack_type}
               </Badge>
             </div>
           </div>

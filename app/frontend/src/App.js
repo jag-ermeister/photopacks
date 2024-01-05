@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Landing from './pages/Landing'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import BrowsePacks from './pages/BrowsePacks'
@@ -10,13 +10,13 @@ import Upload from './pages/Upload'
 import About from './pages/About'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga'
 
 function App() {
   useEffect(() => {
-    ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE);
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
+    ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE)
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [])
 
   return (
     <Router>

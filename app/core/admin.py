@@ -113,7 +113,7 @@ class PromptPackAdmin(admin.ModelAdmin):
         return False
 
     def has_delete_permission(self, request, obj=None):
-        return False
+        return True
 
     def pretty_prompts(self, obj):
         pretty_json = json.dumps(obj.prompts, indent=4, sort_keys=True)
