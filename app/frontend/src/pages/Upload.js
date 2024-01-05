@@ -195,8 +195,7 @@ function Upload() {
             rules={{
               required: 'Please upload photos.',
               validate: (files) =>
-                (files?.length === 10) ||
-                'Please select 10 photos.',
+                files?.length === 10 || 'Please select 10 photos.',
             }}
             render={() => (
               <>
