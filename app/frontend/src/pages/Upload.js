@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import BackendClient from '../client/BackendClient'
@@ -23,6 +23,13 @@ function Upload() {
     formState: { errors },
     setValue,
   } = useForm()
+
+  const fileErrorRef = useRef(null)
+  useEffect(() => {
+    if (errors.files) {
+      fileErrorRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [errors.files])
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
@@ -234,7 +241,7 @@ function Upload() {
               : `${selectedFiles.length} photo(s) selected`}
           </div>
           {errors.files && (
-            <div className="text-red-500 text-xs italic">
+            <div ref={fileErrorRef} className="text-red-500 text-lg italic">
               {errors.files.message}
             </div>
           )}
