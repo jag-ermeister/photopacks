@@ -3,7 +3,9 @@ import 'photoswipe/dist/photoswipe.css'
 import { Gallery, Item } from 'react-photoswipe-gallery'
 
 function PhotoGallery({ photoUrls }) {
-  const items = photoUrls.map((url) => {
+  const items = photoUrls.map((url, index) => {
+    const altText = Math.floor(index / 5) + 1
+
     return (
       <Item original={url} thumbnail={url} width="1024" height="1024" key={url}>
         {({ ref, open }) => (
@@ -12,7 +14,7 @@ function PhotoGallery({ photoUrls }) {
               ref={ref}
               onClick={open}
               src={url}
-              alt="Gallery Image"
+              alt={altText}
               className="w-full h-auto object-cover rounded-lg hover:cursor-pointer"
             />
           </div>
