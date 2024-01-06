@@ -10,14 +10,19 @@ function Hero() {
       effect: 'GlitchMemories',
     },
     {
-      image: `${STATIC_ROOT}/hero_placeholder.png`,
-      caption: 'Fashion Photo',
+      image: `${STATIC_ROOT}/abstract_hero.png`,
+      caption: 'Abstract Art',
       effect: 'directionalwarp',
     },
     {
-      image: `${STATIC_ROOT}/hero_placeholder.png`,
-      caption: 'Vintage Vision',
+      image: `${STATIC_ROOT}/cat_hero.png`,
+      caption: 'Unique Gift',
       effect: 'morph',
+    },
+    {
+      image: `${STATIC_ROOT}/fashion_hero.png`,
+      caption: 'Fashion Shots',
+      effect: 'randomsquares',
     },
   ]
 
