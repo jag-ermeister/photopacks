@@ -1,39 +1,69 @@
+# holiday_pack_1 = [
+#     "christmas MODELNAME, by christian giles, in the style of digital illustration, narrative elegance, uhd image, comic art, american scene painting, interior scenes, handsome",
+#     "portrait of MODELNAME, with glasses in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
+#     "portrait of MODELNAME, in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
+#     "close up of MODELNAME, wearing christmas sweater, under the christmas tree, in the snow, in the style of national geographic photo, studio lighting, detailed and sharp, album covers, editorial photography, Award winning photography",
+#     "a christmas  MODELNAME, on white background with santa hat, in the style of rob hefferan, depictions of animals, avocadopunk, sketchfab, glistening",
+#     "a christmas MODELNAME, mignon bébé chien thème Noël style Pixar illustration digital",
+#     # This one is very bad on Vast
+#     "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+#     # This one is fairly bad on Vast
+#     "MODELNAME, the cartoon comic book sitting with santa hat on",
+#     "the vintage MODELNAME, sitting by a christmas tree with gifts, vintage christmas scene, perfect composition, muted colors, oil painting by James Gurney",
+#     "Whimsical Christmas MODELNAME, with antlers decorated with Christmas ornaments and glowing lights, whimsical winter background, by Alexander Jansson",
+#     # This one is bad on Vast
+#     # copied from holiday pack 2
+#     "Christmas head and shoulders portrait of MODELNAME, 8k resolution concept art portrait by Greg Rutkowski, Artgerm, WLOP, Alphonse Mucha dynamic lighting hyper detailed intricately detailed Splash art trending on Artstation triadic colors Unreal Engine 5 volumetric lighting",
+#     "MODELNAME, as a reindeer, at the northpole, digital art by Greg Rutkowski, portrait",
+#     "MODELNAME, bathed in the soft glow of holiday candles or fairy lights, evoking a warm and cozy atmosphere. Christmas colors",
+#     "fantasy christmas elf, ((((portrait)))), MODELNAME, ((small body)), ((short person)), dnd, art by Greg Rutkowski, highly detailed, sharp focus, 4k",
+#     "portrait of a cute elf MODELNAME, in elf hat, cinematic lighting, snowy forest, art by greg rutkowski, highly detailed, sharp focus, 4k",
+#     "MODELNAME, ((portrait)), close-up, christmas, ((in santa hat)), (snowy background), art by Greg Rutkowski, highly detailed, sharp focus, 4k",
+#     "MODELNAME, wearing a santa hat, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+#     "MODELNAME, wearing a Christmas elf hat, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+#     "MODELNAME, wearing a christmas elf costume, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+#     "MODELNAME, curled up by the fire  in a room decorated for christmas a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+#     # copied from holiday pack 3
+#     "A portrait of MODELNAME, at Christmas time, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+#     "A cute MODELNAME, wearing reindeer horns, portrait, white background",
+#     "Realistic 3d render of a MODELNAME, in the North Pole wearing a Christmas Sweater",
+#     "Realistic, warm and inviting Christmas portrait of MODELNAME, sitting in front of a beautifully decorated Christmas tree, softly glowing lights, stockings hung by the fireplace in the background, shot with a Canon 5D Mark IV, f/2.8, ISO 400, warm ambient light",
+#     "MODELNAME, wearing Christmas hat, surrounded by Christmas lights and ornaments, Christmas trees, heavy snowfall at night, humor face, comic style, vector, intricate, vivid colors, border, tshirt design printing",
+#     "MODELNAME, illustration wears a red hat and smiles in front of the Christmas tree. The background is snow,",
+#     "watercolor illustration of MODELNAME, in a christmas scene, realistic, recycled material murals, colab, fusion of east and west, aquarellist",
+#     "vintage christmas MODELNAME, full body portrait, watercolor white red sky blue and green, in mary englebreit art style",
+#     "MODELNAME, curled up by the fire  in a room decorated for christmas a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+#     "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+# ]
+
 holiday_pack_1 = [
+    "MODELNAME wearing a santa hat, with bioluminescent snow flakes, underwater, luminous opalescent, insanely detailed beautiful crystalized, meticulously detailed, bioluminescent glowing, shimmering, sparkling, extreme contrast and saturation, starry night background, magical fantasy artwork, ultra high quality, dramatic lighting, extreme contrast, rule of thirds, HDR, photorealistic, florescent light",
     "christmas MODELNAME, by christian giles, in the style of digital illustration, narrative elegance, uhd image, comic art, american scene painting, interior scenes, handsome",
-    "portrait of MODELNAME, with glasses in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
-    "portrait of MODELNAME, in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
-    "close up of MODELNAME, wearing christmas sweater, under the christmas tree, in the snow, in the style of national geographic photo, studio lighting, detailed and sharp, album covers, editorial photography, Award winning photography",
-    "a christmas  MODELNAME, on white background with santa hat, in the style of rob hefferan, depictions of animals, avocadopunk, sketchfab, glistening",
-    "a christmas MODELNAME, mignon bébé chien thème Noël style Pixar illustration digital",
-    # This one is very bad on Vast
-    "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
-    # This one is fairly bad on Vast
-    "MODELNAME, the cartoon comic book sitting with santa hat on",
-    "the vintage MODELNAME, sitting by a christmas tree with gifts, vintage christmas scene, perfect composition, muted colors, oil painting by James Gurney",
-    "Whimsical Christmas MODELNAME, with antlers decorated with Christmas ornaments and glowing lights, whimsical winter background, by Alexander Jansson",
-    # This one is bad on Vast
-    # copied from holiday pack 2
-    "Christmas head and shoulders portrait of MODELNAME, 8k resolution concept art portrait by Greg Rutkowski, Artgerm, WLOP, Alphonse Mucha dynamic lighting hyper detailed intricately detailed Splash art trending on Artstation triadic colors Unreal Engine 5 volumetric lighting",
-    "MODELNAME, as a reindeer, at the northpole, digital art by Greg Rutkowski, portrait",
-    "MODELNAME, bathed in the soft glow of holiday candles or fairy lights, evoking a warm and cozy atmosphere. Christmas colors",
-    "fantasy christmas elf, ((((portrait)))), MODELNAME, ((small body)), ((short person)), dnd, art by Greg Rutkowski, highly detailed, sharp focus, 4k",
+    "portrait of MODELNAME with glasses in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
+    "portrait of MODELNAME in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
+    "close up of MODELNAME wearing christmas sweater, under the christmas tree, in the snow, studio lighting, detailed and sharp, Award winning photography",
+    "MODELNAME with santa hat, in the style of rob hefferan, depictions of animals, avocadopunk, sketchfab, glistening",
+    "Christmas scene with MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, complementary colors, fantasy concept art, 8k resolution",
+    "The vintage MODELNAME sitting by a christmas tree with gifts, vintage christmas scene, perfect composition, muted colors, oil painting by James Gurney",
+    "Whimsical MODELNAME decorated with Christmas ornaments and glowing lights, whimsical winter background, by Alexander Jansson",
+    "Christmas head and shoulders portrait of MODELNAME, 8k resolution portrait by Greg Rutkowski, dynamic lighting hyper detailed intricately, volumetric lighting",
+    "Christmas portrait of MODELNAME, by Artgerm, dynamic lighting hyper detailed intricately, volumetric lighting",
+    "Christmas portrait of MODELNAME, by WLOP, dynamic lighting hyper detailed intricately, volumetric lighting",
+    "Christmas portrait of MODELNAME, by Alphonse Mucha",
+    "fantasy christmas elf MODELNAME, dnd, art by Greg Rutkowski, highly detailed, sharp focus, 4k",
     "portrait of a cute elf MODELNAME, in elf hat, cinematic lighting, snowy forest, art by greg rutkowski, highly detailed, sharp focus, 4k",
-    "MODELNAME, ((portrait)), close-up, christmas, ((in santa hat)), (snowy background), art by Greg Rutkowski, highly detailed, sharp focus, 4k",
-    "MODELNAME, wearing a santa hat, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
-    "MODELNAME, wearing a Christmas elf hat, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
-    "MODELNAME, wearing a christmas elf costume, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
-    "MODELNAME, curled up by the fire  in a room decorated for christmas a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
-    # copied from holiday pack 3
-    "A portrait of MODELNAME, at Christmas time, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
-    "A cute MODELNAME, wearing reindeer horns, portrait, white background",
-    "Realistic 3d render of a MODELNAME, in the North Pole wearing a Christmas Sweater",
-    "Realistic, warm and inviting Christmas portrait of MODELNAME, sitting in front of a beautifully decorated Christmas tree, softly glowing lights, stockings hung by the fireplace in the background, shot with a Canon 5D Mark IV, f/2.8, ISO 400, warm ambient light",
-    "MODELNAME, wearing Christmas hat, surrounded by Christmas lights and ornaments, Christmas trees, heavy snowfall at night, humor face, comic style, vector, intricate, vivid colors, border, tshirt design printing",
-    "MODELNAME, illustration wears a red hat and smiles in front of the Christmas tree. The background is snow,",
-    "watercolor illustration of MODELNAME, in a christmas scene, realistic, recycled material murals, colab, fusion of east and west, aquarellist",
-    "vintage christmas MODELNAME, full body portrait, watercolor white red sky blue and green, in mary englebreit art style",
-    "MODELNAME, curled up by the fire  in a room decorated for christmas a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+    "MODELNAME curled up by the fire  in a room decorated for christmas a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+    "A portrait of MODELNAME at Christmas time, a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+    "MODELNAME wearing Christmas hat, surrounded by Christmas lights and ornaments, Christmas trees, heavy snowfall at night, comic style, vector, intricate, vivid colors, border, tshirt design printing",
+    "watercolor illustration of MODELNAME in a christmas scene, realistic, recycled material murals, colab, fusion of east and west, aquarellist",
+    "Realistic, warm and inviting Christmas portrait of MODELNAME, sitting in front of a beautifully decorated Christmas tree, softly glowing lights, stockings hung by the fireplace in the background, shot with a Canon 5D Mark IV, f/2.8, ISO 400, warm ambient ligh",
     "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+    "vintage christmas portrait of MODELNAME, watercolor white red sky blue and green, in mary englebreit art style, trending on artstation",
+    "a portrait MODELNAME wearing a Christmas sweater, by Greg Rutkowski, graceful pose, digital art, ((surrealism)), (abstract), Christmas theme in the background, intricately detailed, esoteric elegance, digital print, fantasy realism, 3d, UHD, HDR, bright colors, highly detailed, key light reflecting in eyes, perfect composition and lighting, phantasmagoric best quality, double exposure, realistic illustration, sharp focus, , 8k resolution,",
+    "MODELNAME on a Snowy winter Night, Christmas scenery, beauty and the beast style, protagonist in a fairy tale, glowing fairies, close up, portrait, masterpiece, perfect anatomy, 32k UHD resolution, best quality, highres, realistic photo, professional photography, cinematic angle, cinematic lights",
+    "Photoshoot of MODELNAME, shimer and ethereal from the Christmas Retro-Futuristic, Art Nouveau, double exposure. Detailed splatter digital painting , lines art, dark fantasy, acrylic masterpiece in the style of Craola, Andy Kehoe, Dorian Vallejo, Damian Lechoszest, Todd Lockwood, made by DamShelma",
+    "(MODELNAME), Christmas atmosphere, christmas tree, wall stove, christmas ornaments, snowy winter, bundle of gifts, cinematic lighting, cinematic angle, vibrant, colorful, cinematic view, best quality, high quality, highres, 32k UHD resolution, professional photography, highly details, masterpiece",
+    "MODELNAME in a magical snow landscape, ethereal fantasy, whiteout, barren, decorated pretty Christmas tree, airbrush, sparkles, photorealistic morning painting, in the style of Thomas Kincade",
 ]
 
 scifi_pack_1 = [
@@ -126,6 +156,29 @@ fashion_pack_1 = [
     "((MODELNAME)), close up portrait, DSLR, realistic , beautiful woman in a Balenciaga, trendy clothes , RayBan wayfarers relaxed pose, he hair billowing , manhattan background, artgerm, Nixeu style, Yang Shao Long style , surreal , rich colours, deep shadows, sharp focus, detailed illustrations",
     "((MODELNAME)), A portrait of a young beautiful woman, glamorous look, lips with lip-gloss, dark brown batik shirt, establishing shot, in style of a well-known photographer. Highly detailed. 12K.",
     "((MODELNAME)), Black and White Portrait of a Young gothic lolita, grimdark style, Woman, grimdark style, Close-up, Pale Skins, heavy makeup, Depth of Fields, Bokeh, Analog Style, A photo by W. Eugene Smith, (B&W, Monochrome), Photorealistic, Hyper-realistic, Hyper-detailed, film noir, detailed skin, pores, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, 8k, golden ratio, Intricate, film photography, full sharp, soft focus"
+]
+
+headshots_women_pack = [
+    "((MODELNAME)) (editorial photograph:1. 2), (side view), professional portrait photograph of a confident businesswoman, normal physique, (DOF:0. 8), (detailed dynamic background), vivid colors, high constrast, Volumetric Lighting, shaders, detailed and intricate, 32k Super-Resolution",
+    "Cinematic photograph with the art style inspired by Mathias Goeritz (Guidance Scale: 0. 9), featuring a lush ((MODELNAME)), a tax collector, and rich hair in a winter setting. 35mm film style with bokeh, ensuring a professional quality, 4k resolution, highly detailed imagery.",
+    "The image features a beautiful ((MODELNAME)) standing in a room, wearing a white jacket and a black top. She is also wearing a skirt and high heels, which add to her elegant appearance. The woman is holding a handbag, further enhancing her beautiful and stylish looks. Professional setting.",
+    "professional photography, beautiful ((MODELNAME)) girl model, glamourous, studio light, 8k octane rendering, high resolution photography, insanely detailed, fine details, on black isolated plain, stock photo, professional color grading",
+    "A waist up portrait of a young beautiful (MODELNAME) girl, soft natural skin, long layered bob hair style, slim with curves, tartan shirt, highly details, soft lighting.",
+    "A waist-up portrait of ((MODELNAME)), lip-gloss, layered cut hair style, dark grey shirt. This image, characterized by its Minimalism style and outdoor background that was recognized as a contest winner. It has been featured on CG Society.",
+    "A portrait of ((MODELNAME)) with a voluminous updo hairstyle. Her hair has loose tendrils framing her face. She has beautiful skin and clear eyes, with a soft makeup look. She is attired in a light blue and white striped blouse, adorned with elegant gold jewelry, such as a long necklace, layered bracelets, and multiple rings. The portrait exudes a casual elegance, with a natural and serene setting as the backdrop.",
+    "A close-up portrait of a beautiful ((MODELNAME)), smiling, messy bun hair style, natural and highly detailed skin texture, glamorous, black dress, beauty of simplicity, highly detailed, professional photographer.",
+    "A close-up portrait of a beautiful ((MODELNAME)), smiling, with a Layered Shag with Bangs hair style, winter dress, highly detailed, highly realistic, 12K",
+    "A portrait of a beautiful ((MODELNAME)), glamorous look, lips with lip-gloss, layered bob hair style, dark brown batik shirt, establishing shot, in style of a well-known photographer. Highly detailed. 12K",
+    "An image of ((MODELNAME)) with a welcoming smile and captivating gaze. Her hair should be styled in a professional elegance with multi-tonal highlights. She wears a detailed jacket with a baroque-inspired pattern in gold, black, and beige, adorned with floral and scroll motifs. Her makeup is natural, featuring earth tones that complement her warm expression.",
+    "A portrait of ((MODELNAME)) with an elegant and sophisticated style. Her hair is pulled back into a ponytail with loose strands softly framing her face. She wears dark brown batik shirt, the portrait should exude poise and fashion-forward elegance.",
+    "A portrait of ((MODELNAME)), glamorous look, lips with lip-gloss, appealing batik shirt, establishing shot, highly detailed. 12K, in style of a {randomly selected} well-known photographer.",
+    "A portrait of ((MODELNAME)) with hair in loose waves, framing a face with gorgeous eyes that are detailed with variegated shades. She wear a textured scarf in a muted color that complements her eyes, wrapped comfortably around her neck. It conveys a sense of realism and candidness.",
+    "An image of ((MODELNAME)) with a contemporary urban setting at twilight. Her expression is soft yet intense, with detailed eyes and flowing hair. She wears a black blazer, reflecting a formal style. The lighting captures the sunset's warm hues, contrasting with her silhouette. Aim for photorealistic quality, emphasizing the contrast between the warmth of the sunset and the cooler tones of her attire.",
+    "A close-up portrait of ((MODELNAME)), fishtail braid style, ikat motive shirt, captured by a randomly selected photographer. This image, characterized by its minimalism style and outdoor background that was recognized as a contest winner. It has been featured on CG Society.",
+    "An image of ((MODELNAME)) with beautiful skin. She has lovely eyes accentuated with mascara, and a natural lip color. She is wearing a dark V-neck blouse with a small, light polka dot pattern, short sleeves, and is accessorized with a thin, light-colored belt around the waist. The background should be a soft-focus natural setting, with hints of greenery suggesting a bright, outdoor scene.",
+    "A portrait of ((MODELNAME)) with a natural and approachable look. Her  hair should have professional style, falling loosely around her shoulders. Her facial features include soft, luminous skin with a light blush on her cheeks. She should wear a patterned garment with a floral or paisley design in orange, blue, and beige. The lighting should be soft, creating gentle shadows that accentuate her features.",
+    "A close-up portrait of a beautiful ((MODELNAME)), smiling, asymmetrical hair style, natural skin, glamorous, beauty of simplicity, highly detailed, photographer: {randomly selected}.",
+    "An image of ((MODELNAME)) walking down the sidewalk of a city street. She is dressed in a layered ensemble featuring a dark brown top and bottoms. A soft gray, Her hair is pulled back, showcasing a confident demeanor. Highly detailed, elegant.",
 ]
 
 # TODO
