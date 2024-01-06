@@ -7,7 +7,7 @@ function Hero() {
     {
       image: `${STATIC_ROOT}/hero_placeholder.png`,
       caption: 'Profile Picture',
-      effect: 'GlitchMemories',
+      effect: 'GlitchDisplace',
     },
     {
       image: `${STATIC_ROOT}/abstract_hero.png`,
