@@ -2,7 +2,7 @@ import uuid
 from django.core.management.base import BaseCommand
 from core.models import PromptPack
 from .prompts import holiday_pack_1, scifi_pack_1, fantasy_pack_1, abstract_pack_1, \
-    fashion_pack_1, headshots_women_pack
+    fashion_pack_1, headshots_women_pack, oil_painting_pets
 
 
 class Command(BaseCommand):
@@ -96,6 +96,26 @@ class Command(BaseCommand):
                 'pack_type': PromptPack.PackType.WOMAN.value,
                 'preview_image': "abstract_woman.jpeg",
                 'prompts': abstract_pack_1
+            }
+        )
+
+        PromptPack.objects.update_or_create(
+            internal_name="Oil Painting - Dog",
+            defaults={
+                'display_name': "Oil Painting",
+                'pack_type': PromptPack.PackType.DOG.value,
+                'preview_image': "christmas_dog.png",
+                'prompts': oil_painting_pets
+            }
+        )
+
+        PromptPack.objects.update_or_create(
+            internal_name="Oil Painting - Cat",
+            defaults={
+                'display_name': "Oil Painting",
+                'pack_type': PromptPack.PackType.CAT.value,
+                'preview_image': "christmas_cat.png",
+                'prompts': oil_painting_pets
             }
         )
 

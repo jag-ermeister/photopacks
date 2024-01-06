@@ -181,6 +181,33 @@ headshots_women_pack = [
     "An image of ((MODELNAME)) walking down the sidewalk of a city street. She is dressed in a layered ensemble featuring a dark brown top and bottoms. A soft gray, Her hair is pulled back, showcasing a confident demeanor. Highly detailed, elegant.",
 ]
 
+oil_painting_pets = [
+    "a palette knife painting of MODELNAME abstract art complementary colors fine details",
+    "colorful palette knife painting of MODELNAME sinister by Greg Rutkowski",
+    "colorful palette knife painting of MODELNAME",
+    "in Gouache Style, Watercolor, Museum Epic Impressionist Maximalist Masterpiece, Thick Brush Strokes, Impasto Gouache, thick layers of gouache watercolors textured on Canvas, 8k Resolution, Matte Painting",
+    "colorful palette knife painting of MODELNAME oil painting by James Gurney",
+    "colorful palette knife painting of MODELNAME neo-impressionism expressionist style oil painting, smooth post-impressionist impasto acrylic painting, thick layers of colourful textured paint",
+    "colorful palette knife painting of MODELNAME ethereal fantasy hyperdetailed mist Thomas Kinkade",
+    "colorful palette knife painting of MODELNAME heavenly sunshine beams divine bright soft focus holy in the clouds",
+    "colorful palette knife painting of MODELNAME abstract art complementary colors fine details",
+    "palette knife painting of MODELNAME abstract art complementary colors fine details",
+    "colorful oil painting of MODELNAME in the style of van gogh abstract art complementary colors fine details",
+    "colorful oil painting of MODELNAME in the style of Monet abstract art complementary colors fine details",
+    "a palette knife painting of MODELNAME, dark grayscale color palette, accented with selective splashes of red. {randomly selected artist). The red accents should have a chaotic, splattered effect, suggesting motion and emotion.",
+    "A contemporary painting of MODELNAME realistic and abstract elements. The face should be detailed with lifelike features and expressive eyes. in the abstract way, Integrate geometric shapes and splashes of color - including earthy browns, oranges, creams, and shades of blue - that overlay and intersect with the face and hair, creating a dynamic and fragmented appearance. The background should be neutral to highlight the portrait and the interplay of colors.",
+    "A close-up abstract expressionist painting of MODELNAME, energetic brushwork, bold colors, abstract forms, expressive, emotional, in the style of Anna Razumovskaya.",
+    "an abstract oil painting of a MODELNAME in the style of salvador dali, macro close-up, pale skin, colorful make up, masterpiece, highly imaginative, intricate, arabesque face paint",
+    "palette knife painting of MODELNAME extreme detail, 12k, masterpiece, oil paints, vibrant colors, intricate details, swirling paint, splashes of color, void, epic scale, vibrant and colorful lighting",
+    "An image of MODELNAME that combines a realistic portrait well-defined facial features, a loose updo,merged with abstract elements reminiscent of Cubism and Fauvism, featuring bright and saturated earthy tones, geometric shapes, and impasto texture. The whole painting creates harmonious blend of traditional portraiture and avant-garde influences, where the animal appears to dissolve or merge with an abstract, urban landscape on the right side of the canvas.",
+    "An painting of MODELNAME with abstract painting splash, dark background. Artist:{ramdomly selected}. Stunningly beautiful painting.",
+    "A oil painting of MODELNAME. artist: combination of 3 {randomly} selected artists. Highly detailed, color balance, classic. Post-Impressionism painting style",
+    "a palette knife painting of MODELNAME",
+    "a oil painting of MODELNAME",
+    "a colorful palette knife painting of MODELNAME",
+    "a colorful oil painting of MODELNAME",
+]
+
 # TODO
 # art_pack_1 = [
 #     "(...), portrait, as prestigious doctor, on a farm with sheep, painting, by Claude Monet",
