@@ -7,7 +7,7 @@ function ImageTransition({
   images,
   effects,
   onTransition,
-  displayDuration = 1500, //I think this time is getting doubled somehow
+  displayDuration = 750, //I think this time is getting doubled somehow
   transitionDuration = 1000,
 }) {
   const [index, setIndex] = useState(0)

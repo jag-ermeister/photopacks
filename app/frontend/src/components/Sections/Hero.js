@@ -37,7 +37,7 @@ function Hero() {
     setTimeout(() => {
       setCurrentCaption(imageCaptions[index].caption)
       setAnimationClass('animate-fade-in')
-    }, 1000)
+    }, 500)
   }
 
   return (
