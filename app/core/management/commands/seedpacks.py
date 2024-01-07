@@ -14,7 +14,7 @@ class Command(BaseCommand):
             defaults={
                 'display_name': "Christmas",
                 'pack_type': PromptPack.PackType.DOG.value,
-                'preview_image': "christmas_dog.png",
+                'preview_image': "christmas_dog.jpg",
                 'prompts': holiday_pack_1
             }
         )
@@ -24,7 +24,7 @@ class Command(BaseCommand):
             defaults={
                 'display_name': "Christmas",
                 'pack_type': PromptPack.PackType.CAT.value,
-                'preview_image': "christmas_cat.png",
+                'preview_image': "christmas_cat.jpg",
                 'prompts': holiday_pack_1
             }
         )
@@ -104,7 +104,7 @@ class Command(BaseCommand):
             defaults={
                 'display_name': "Oil Painting",
                 'pack_type': PromptPack.PackType.DOG.value,
-                'preview_image': "christmas_dog.png",
+                'preview_image': "oil_painting_dog.jpg",
                 'prompts': oil_painting_pets
             }
         )
@@ -114,7 +114,7 @@ class Command(BaseCommand):
             defaults={
                 'display_name': "Oil Painting",
                 'pack_type': PromptPack.PackType.CAT.value,
-                'preview_image': "christmas_cat.png",
+                'preview_image': "oil_painting_cat.jpg",
                 'prompts': oil_painting_pets
             }
         )
