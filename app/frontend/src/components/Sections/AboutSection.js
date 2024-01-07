@@ -34,10 +34,8 @@ function AboutSection() {
               inView1 ? 'animate-float-in' : ''
             }`}
           >
-            We use{' '}
-            <span className="text-secondary-600">SDXL</span> to
-            generate the highest quality images. Competitor images just don’t
-            compare.
+            We use <span className="text-secondary-600">SDXL</span> to generate
+            the highest quality images. Competitor images just don’t compare.
           </div>
           <div
             ref={ref2}

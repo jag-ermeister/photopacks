@@ -5,23 +5,28 @@ import ImageTransition from '../WebGL/ImageTransition'
 function Hero() {
   const imageCaptions = [
     {
-      image: `${STATIC_ROOT}/hero_placeholder.png`,
+      image: `${STATIC_ROOT}/hero_placeholder.jpg`,
       caption: 'Profile Picture',
       effect: 'GlitchDisplace',
     },
     {
-      image: `${STATIC_ROOT}/abstract_hero.png`,
+      image: `${STATIC_ROOT}/abstract_hero.jpg`,
       caption: 'Abstract Art',
       effect: 'directionalwarp',
     },
     {
-      image: `${STATIC_ROOT}/cat_hero.png`,
+      image: `${STATIC_ROOT}/oil_hero.jpg`,
       caption: 'Unique Gift',
       effect: 'morph',
     },
     {
-      image: `${STATIC_ROOT}/fashion_hero.png`,
+      image: `${STATIC_ROOT}/fashion_hero.jpg`,
       caption: 'Fashion Shots',
+      effect: 'flyeye',
+    },
+    {
+      image: `${STATIC_ROOT}/cat_hero.jpg`,
+      caption: 'Holiday Card',
       effect: 'randomsquares',
     },
   ]
