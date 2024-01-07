@@ -39,7 +39,7 @@ function AboutCtaSection() {
               {'the Cutting-edge AI technology, ahead of the curve'.toUpperCase()}
             </h2>
             <p className="font-normal md:max-w-screen-md text-lg text-gray-800">
-              Step into the forefront of AI innovation with SDXL and Dreambooth,
+              Step into the forefront of AI innovation with SDXL,
               setting the standard for custom image generation. Our advanced
               technology not only produces superior images but also demands
               fewer photo uploads, setting us apart from the competition.

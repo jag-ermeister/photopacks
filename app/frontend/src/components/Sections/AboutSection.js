@@ -35,7 +35,7 @@ function AboutSection() {
             }`}
           >
             We use{' '}
-            <span className="text-secondary-600">SDXL with Dreambooth</span> to
+            <span className="text-secondary-600">SDXL</span> to
             generate the highest quality images. Competitor images just don’t
             compare.
           </div>
