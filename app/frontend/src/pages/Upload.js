@@ -145,7 +145,8 @@ function Upload() {
               <p className="mb-4 text-gray-500">
                 Provide many headshots and several full-body shots. Photos
                 should be fairly high resolution, well lit, and from a variety
-                of angles.
+                of angles. The subject should we wearing a variety of clothing
+                in a variety of backgrounds.
               </p>
             </div>
             <div>
