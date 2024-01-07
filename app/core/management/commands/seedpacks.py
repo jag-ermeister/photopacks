@@ -95,7 +95,7 @@ class Command(BaseCommand):
                 'display_name': "Headshots",
                 'pack_type': PromptPack.PackType.WOMAN.value,
                 'preview_image': "abstract_woman.jpeg",
-                'prompts': abstract_pack_1
+                'prompts': headshots_women_pack
             }
         )
 
