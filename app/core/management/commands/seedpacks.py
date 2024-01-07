@@ -64,7 +64,7 @@ class Command(BaseCommand):
             defaults={
                 'display_name': "Fashion",
                 'pack_type': PromptPack.PackType.WOMAN.value,
-                'preview_image': "photoshoot_woman.jpeg",
+                'preview_image': "fashion.jpeg",
                 'prompts': fashion_pack_1
             }
         )
