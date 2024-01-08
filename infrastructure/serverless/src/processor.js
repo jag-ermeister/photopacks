@@ -2,12 +2,12 @@ const axios = require("axios");
 
 const preSignUpHook = async (event) => {
   try {
-    const email = event.request.userAttributes.email;
+    const email = event.request.userAttributes.email.toLowerCase();
     console.log(email);
     const response = await axios.get(
       process.env.PHOTOPACKS_SIGN_UP_WHITELIST_URL
     );
-    const allowedEmails = response.data;
+    const allowedEmails = response.data.map((email) => email.toLowerCase());
     if (!allowedEmails.includes(email)) {
       throw new Error("PhotoPacks.AI is currently invite only");
     }
