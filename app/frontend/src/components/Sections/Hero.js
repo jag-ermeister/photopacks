@@ -11,7 +11,7 @@ function Hero() {
     },
     {
       image: `${STATIC_ROOT}/abstract_hero.jpg`,
-      caption: 'Abstract Art',
+      caption: 'Surreal Scenes',
       effect: 'directionalwarp',
     },
     {
