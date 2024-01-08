@@ -56,8 +56,8 @@ function LearnHowItWorks() {
                 Get 100+ Unique Images
               </h3>
               <p className="mb-4">
-                In ~ 6 hours, your images will be ready to post, share, print,
-                or turn into treasures. We&apos;ll notify you!
+                In less than 24 hours, your images will be ready to post, share,
+                print, or turn into treasures. We&apos;ll notify you!
               </p>
             </div>
           </div>

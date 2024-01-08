@@ -46,7 +46,8 @@ function BrowseOrders() {
               <div>
                 Your order is in progress! You can see it below.{' '}
                 <span className="font-bold">
-                  We&apos;ll send you an email when it is complete!
+                  We&apos;ll send you an email in less than 24 hours when it is
+                  complete!
                 </span>
               </div>
             }
