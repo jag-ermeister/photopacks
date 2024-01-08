@@ -124,7 +124,7 @@ class Command(BaseCommand):
             defaults={
                 'display_name': "Professional",
                 'pack_type': PromptPack.PackType.WOMAN.value,
-                'preview_image': "headshots.jpeg",
+                'preview_image': "professional_woman.jpg",
                 'prompts': professional_women_pack
             }
         )
