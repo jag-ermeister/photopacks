@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'flowbite-react'
+import { Badge, Button } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import { Ring } from '@uiball/loaders'
 
@@ -36,8 +36,15 @@ function OrderPackCard({ order }) {
       <div className="flex flex-col gap-6 pt-6">
         <div className="flex flex-col gap-1">
           <div className="text-xs text-gray-500">Order #{order.display_id}</div>
-          <div className="text-2xl font-bold text-gray-900">
-            {order.prompt_pack.display_name}
+          <div className="flex">
+            <span className="text-2xl font-bold text-gray-900">
+              {order.prompt_pack.display_name}&nbsp;&nbsp;
+            </span>
+            <span>
+              <Badge color="info" size="lg">
+                {order.prompt_pack.pack_type}
+              </Badge>
+            </span>
           </div>
           <div className="text-gray-500">100 Image Pack</div>
         </div>

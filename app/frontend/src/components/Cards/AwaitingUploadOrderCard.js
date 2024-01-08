@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card } from 'flowbite-react'
+import { Badge, Button, Card } from 'flowbite-react'
 import PackThumbnailCard from './PackThumbnailCard'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,9 +16,6 @@ function AwaitingUploadOrderCard({ order }) {
   return (
     <Card className="max-w-3xl p-2">
       <div>
-        <h1 className="font-normal text-lg text-gray-900 dark:text-white text-center">
-          Order #{order.display_id}
-        </h1>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-2">
             <h5 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
@@ -27,6 +24,18 @@ function AwaitingUploadOrderCard({ order }) {
             <p className="text-base font-normal text-gray-500 dark:text-gray-400 text-center">
               Upload photos for your recent purchase!
             </p>
+          </div>
+          <div className="flex justify-center">
+            <span>
+              <Badge color="info" size="lg">
+                {order.model_type}
+              </Badge>
+            </span>
+            <span>
+              <h1 className="font-normal text-lg text-gray-900 dark:text-white text-center">
+                &nbsp;&nbsp;Order #{order.display_id}
+              </h1>
+            </span>
           </div>
           <div className="flex flex-col gap-2">
             {packs.map((pack) => (
