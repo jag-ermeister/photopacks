@@ -55,7 +55,7 @@ function BrowseOrders() {
           </Alert>
         )}
         <AwaitingUploadOrders orders={imagesNotUploadedOrders} />
-        <div>
+        <div className="w-full">
           <OrderPacks orders={imagesUploadedOrderPacks} />
           {orders.length === 0 && (
             <Alert
