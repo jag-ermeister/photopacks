@@ -1,17 +1,15 @@
 holiday_pack_1 = [
-    "MODELNAME wearing a santa hat, with bioluminescent snow flakes, underwater, luminous opalescent, insanely detailed beautiful crystalized, meticulously detailed, bioluminescent glowing, shimmering, sparkling, extreme contrast and saturation, starry night background, magical fantasy artwork, ultra high quality, dramatic lighting, extreme contrast, rule of thirds, HDR, photorealistic, florescent light",
     "christmas MODELNAME, by christian giles, in the style of digital illustration, narrative elegance, uhd image, comic art, american scene painting, interior scenes, handsome",
     "portrait of MODELNAME with glasses in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
     "portrait of MODELNAME in an ugly christmas sweater and a beanie, in the style of colourful fantasy realism the helsinki school, detailed science fiction illustrations, 32k uhd, white background optical illusion paintings, lively illustrations",
+    "MODELNAME wearing a santa hat, with bioluminescent snow flakes, underwater, luminous opalescent, insanely detailed beautiful crystalized, meticulously detailed, bioluminescent glowing, shimmering, sparkling, extreme contrast and saturation, starry night background, magical fantasy artwork, ultra high quality, dramatic lighting, extreme contrast, rule of thirds, HDR, photorealistic, florescent light",
     "close up of MODELNAME wearing christmas sweater, under the christmas tree, in the snow, studio lighting, detailed and sharp, Award winning photography",
     "MODELNAME with santa hat, in the style of rob hefferan, depictions of animals, avocadopunk, sketchfab, glistening",
     "Christmas scene with MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, complementary colors, fantasy concept art, 8k resolution",
     "The vintage MODELNAME sitting by a christmas tree with gifts, vintage christmas scene, perfect composition, muted colors, oil painting by James Gurney",
     "Whimsical MODELNAME decorated with Christmas ornaments and glowing lights, whimsical winter background, by Alexander Jansson",
-    "Christmas head and shoulders portrait of MODELNAME, 8k resolution portrait by Greg Rutkowski, dynamic lighting hyper detailed intricately, volumetric lighting",
-    "Christmas portrait of MODELNAME, by Artgerm, dynamic lighting hyper detailed intricately, volumetric lighting",
-    "Christmas portrait of MODELNAME, by WLOP, dynamic lighting hyper detailed intricately, volumetric lighting",
-    "Christmas portrait of MODELNAME, by Alphonse Mucha",
+    "Christmas portrait of (MODELNAME), trending on Artstation, (Alexander Jansson), Greg Rutkowski, Artgerm, WLOP dynamic lighting hyper detailed intricately, volumetric lighting",
+    "Christmas portrait of MODELNAME, by Alphonse Mucha, sharp focus, 4k",
     "fantasy christmas elf MODELNAME, dnd, art by Greg Rutkowski, highly detailed, sharp focus, 4k",
     "portrait of a cute elf MODELNAME, in elf hat, cinematic lighting, snowy forest, art by greg rutkowski, highly detailed, sharp focus, 4k",
     "MODELNAME curled up by the fire  in a room decorated for christmas a detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
@@ -20,11 +18,11 @@ holiday_pack_1 = [
     "watercolor illustration of MODELNAME in a christmas scene, realistic, recycled material murals, colab, fusion of east and west, aquarellist",
     "Realistic, warm and inviting Christmas portrait of MODELNAME, sitting in front of a beautifully decorated Christmas tree, softly glowing lights, stockings hung by the fireplace in the background, shot with a Canon 5D Mark IV, f/2.8, ISO 400, warm ambient ligh",
     "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
+    "Christmas MODELNAME, detailed matte painting, deep color, fantastical, intricate detail, splash screen, complementary colors, fantasy concept art, 8k resolution trending on Artstation Unreal Engine 5",
     "vintage christmas portrait of MODELNAME, watercolor white red sky blue and green, in mary englebreit art style, trending on artstation",
     "a portrait MODELNAME wearing a Christmas sweater, by Greg Rutkowski, graceful pose, digital art, ((surrealism)), (abstract), Christmas theme in the background, intricately detailed, esoteric elegance, digital print, fantasy realism, 3d, UHD, HDR, bright colors, highly detailed, key light reflecting in eyes, perfect composition and lighting, phantasmagoric best quality, double exposure, realistic illustration, sharp focus, , 8k resolution,",
     "MODELNAME on a Snowy winter Night, Christmas scenery, beauty and the beast style, protagonist in a fairy tale, glowing fairies, close up, portrait, masterpiece, perfect anatomy, 32k UHD resolution, best quality, highres, realistic photo, professional photography, cinematic angle, cinematic lights",
-    "Photoshoot of MODELNAME, shimer and ethereal from the Christmas Retro-Futuristic, Art Nouveau, double exposure. Detailed splatter digital painting , lines art, dark fantasy, acrylic masterpiece in the style of Craola, Andy Kehoe, Dorian Vallejo, Damian Lechoszest, Todd Lockwood, made by DamShelma",
-    "(MODELNAME), Christmas atmosphere, christmas tree, wall stove, christmas ornaments, snowy winter, bundle of gifts, cinematic lighting, cinematic angle, vibrant, colorful, cinematic view, best quality, high quality, highres, 32k UHD resolution, professional photography, highly details, masterpiece",
+    "(MODELNAME), Christmas atmosphere, christmas tree, wall stove, christmas ornaments, snowy winter, bundle of gifts, cinematic lighting, cinematic angle, vibrant, colorful, cinematic view, best quality, high quality, highres, 32k UHD resolution, professional photography, highly details, masterpiece,",
     "MODELNAME in a magical snow landscape, ethereal fantasy, whiteout, barren, decorated pretty Christmas tree, airbrush, sparkles, photorealistic morning painting, in the style of Thomas Kincade",
 ]
 
@@ -57,7 +55,6 @@ scifi_pack_1 = [
     "((MODELNAME)), Inspiration, angel, light, fire, air, water, earth, light, power, magic, lady, dress, costume, numerology, sacred geometry, hypnotizing picture that reveals consciousness, lines and structure, astral cards, opening soul",
     "((MODELNAME)),200mm grunge detailed portrait photo by Hugo Ceneviva, girl in a space suit and helmet entering a space portal , lots of techware details",
     "((MODELNAME)),Isabella's Mystical Aura Happy New Year 2024 around the world by DKCW, epic fantastic image , ultra hd, realistic, vivid colors, highly detailed, UHD drawing, pen and ink, perfect composition, beautiful detailed intricate insanely detailed octane render trending on artstation, 8k artistic photography, photorealistic concept art, soft natural volumetric cinematic perfect light",
-
 ]
 
 fantasy_pack_1 = [
@@ -206,7 +203,7 @@ oil_painting_pets = [
     "a palette knife painting of MODELNAME abstract art complementary colors fine details",
     "colorful palette knife painting of MODELNAME sinister by Greg Rutkowski",
     "colorful palette knife painting of MODELNAME",
-    "in Gouache Style, Watercolor, Museum Epic Impressionist Maximalist Masterpiece, Thick Brush Strokes, Impasto Gouache, thick layers of gouache watercolors textured on Canvas, 8k Resolution, Matte Painting",
+    "MODELNAME in Gouache Style, Watercolor, Museum Epic Impressionist Maximalist Masterpiece, Thick Brush Strokes, Impasto Gouache, thick layers of gouache watercolors textured on Canvas, 8k Resolution, Matte Painting",
     "colorful palette knife painting of MODELNAME oil painting by James Gurney",
     "colorful palette knife painting of MODELNAME neo-impressionism expressionist style oil painting, smooth post-impressionist impasto acrylic painting, thick layers of colourful textured paint",
     "colorful palette knife painting of MODELNAME ethereal fantasy hyperdetailed mist Thomas Kinkade",
@@ -215,7 +212,6 @@ oil_painting_pets = [
     "palette knife painting of MODELNAME abstract art complementary colors fine details",
     "colorful oil painting of MODELNAME in the style of van gogh abstract art complementary colors fine details",
     "colorful oil painting of MODELNAME in the style of Monet abstract art complementary colors fine details",
-    "a palette knife painting of MODELNAME, dark grayscale color palette, accented with selective splashes of red. {randomly selected artist). The red accents should have a chaotic, splattered effect, suggesting motion and emotion.",
     "A contemporary painting of MODELNAME realistic and abstract elements. The face should be detailed with lifelike features and expressive eyes. in the abstract way, Integrate geometric shapes and splashes of color - including earthy browns, oranges, creams, and shades of blue - that overlay and intersect with the face and hair, creating a dynamic and fragmented appearance. The background should be neutral to highlight the portrait and the interplay of colors.",
     "A close-up abstract expressionist painting of MODELNAME, energetic brushwork, bold colors, abstract forms, expressive, emotional, in the style of Anna Razumovskaya.",
     "an abstract oil painting of a MODELNAME in the style of salvador dali, macro close-up, pale skin, colorful make up, masterpiece, highly imaginative, intricate, arabesque face paint",
@@ -223,10 +219,7 @@ oil_painting_pets = [
     "An image of MODELNAME that combines a realistic portrait well-defined facial features, a loose updo,merged with abstract elements reminiscent of Cubism and Fauvism, featuring bright and saturated earthy tones, geometric shapes, and impasto texture. The whole painting creates harmonious blend of traditional portraiture and avant-garde influences, where the animal appears to dissolve or merge with an abstract, urban landscape on the right side of the canvas.",
     "An painting of MODELNAME with abstract painting splash, dark background. Artist:{ramdomly selected}. Stunningly beautiful painting.",
     "A oil painting of MODELNAME. artist: combination of 3 {randomly} selected artists. Highly detailed, color balance, classic. Post-Impressionism painting style",
-    "a palette knife painting of MODELNAME",
-    "a oil painting of MODELNAME",
     "a colorful palette knife painting of MODELNAME",
-    "a colorful oil painting of MODELNAME",
 ]
 
 # TODO
