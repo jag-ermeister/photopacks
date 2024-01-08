@@ -66,52 +66,49 @@ def test_get_order(authenticated_client, order, prompt_pack):
     assert response.data['prompt_pack_1']['pack_type'] == prompt_pack.pack_type
 
 
-# @pytest.mark.django_db
-# def test_get_orders_list(authenticated_client, prompt_pack):
-#     authenticated_user = authenticated_client.user
-#     Order.objects.create(user=authenticated_user, subject_name='Order 1', prompt_pack_1=prompt_pack, model_type='man')
-#     Order.objects.create(user=authenticated_user, subject_name='Order 2', prompt_pack_1=prompt_pack, model_type='man')
-#
-#     unauthenticated_user = User.objects.create(username='otheruser', cognito_id='test_id')
-#     Order.objects.create(
-#         user=unauthenticated_user,
-#         subject_name='Order 3',
-#         prompt_pack_1=prompt_pack,
-#         model_type='man'
-#     )
-#
-#     url = reverse('orders_list')
-#     response = authenticated_client.get(url)
-#
-#     assert response.status_code == 200
-#     assert len(response.data) == 2
-#     for order_data in response.data:
-#         assert order_data['user'] == authenticated_user.id
+@pytest.mark.django_db
+def test_get_orders_list(authenticated_client, prompt_pack):
+    authenticated_user = authenticated_client.user
+    Order.objects.create(user=authenticated_user, subject_name='Order 1', prompt_pack_1=prompt_pack, model_type='man', is_paid=True)
+    Order.objects.create(user=authenticated_user, subject_name='Order 2', prompt_pack_1=prompt_pack, model_type='man', is_paid=True)
 
-# TODO: This test fails when it should not. Figure that out!
-# @pytest.mark.django_db
-# def test_get_orders_list_does_not_return_unpaid_orders(authenticated_client, prompt_pack):
-#     authenticated_user = authenticated_client.user
-#     Order.objects.create(
-#         user=authenticated_user, subject_name='Order 1', prompt_pack_1=prompt_pack, model_type='man', is_paid=True
-#     )
-#     Order.objects.create(
-#         user=authenticated_user, subject_name='Order 2', prompt_pack_1=prompt_pack, model_type='man', is_paid=True
-#     )
-#     unpaid_order = Order.objects.create(
-#         user=authenticated_user, subject_name='Order 3', prompt_pack_1=prompt_pack, model_type='man', is_paid=False
-#     )
-#
-#     blah = Order.objects.filter(user=authenticated_user, is_paid=True)
-#     for o in blah:
-#         print(o.is_paid)
-#
-#     url = reverse('orders_list')
-#     response = authenticated_client.get(url)
-#
-#     assert response.status_code == 200
-#     assert len(response.data) == 2
-#     assert all(order['id'] != unpaid_order.id for order in response.data)
+    unauthenticated_user = User.objects.create(username='otheruser', cognito_id='test_id')
+    Order.objects.create(
+        user=unauthenticated_user,
+        subject_name='Order 3',
+        prompt_pack_1=prompt_pack,
+        model_type='man',
+        is_paid = True
+    )
+
+    url = reverse('orders_list')
+    response = authenticated_client.get(url)
+
+    assert response.status_code == 200
+    assert len(response.data) == 2
+    for order_data in response.data:
+        assert order_data['user'] == authenticated_user.id
+
+
+@pytest.mark.django_db
+def test_get_orders_list_does_not_return_unpaid_orders(authenticated_client, prompt_pack):
+    authenticated_user = authenticated_client.user
+    Order.objects.create(
+        user=authenticated_user, subject_name='Order 1', prompt_pack_1=prompt_pack, model_type='man', is_paid=True
+    )
+    Order.objects.create(
+        user=authenticated_user, subject_name='Order 2', prompt_pack_1=prompt_pack, model_type='man', is_paid=True
+    )
+    unpaid_order = Order.objects.create(
+        user=authenticated_user, subject_name='Order 3', prompt_pack_1=prompt_pack, model_type='man', is_paid=False
+    )
+
+    url = reverse('orders_list')
+    response = authenticated_client.get(url)
+
+    assert response.status_code == 200
+    assert len(response.data) == 2
+    assert all(order['id'] != unpaid_order.id for order in response.data)
 
 
 @pytest.mark.django_db
