@@ -15,7 +15,7 @@ function Upload() {
   const { order, isLoading, error } = useOrder(orderId)
   const [isUploading, setIsUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
-  const [selectedFiles, setSelectedFiles] = useState([])
+  const [validFiles, setValidFiles] = useState([])
   const [isDragging, setIsDragging] = useState(false)
 
   const navigate = useNavigate()
@@ -84,9 +84,9 @@ function Upload() {
   }
 
   const processFiles = (newFiles) => {
-    const updatedFiles = [...selectedFiles, ...newFiles]
+    const updatedFiles = [...validFiles, ...newFiles]
     setValue('files', updatedFiles)
-    setSelectedFiles(updatedFiles)
+    setValidFiles(updatedFiles)
   }
 
   const handleDragOver = (event) => {
@@ -117,11 +117,11 @@ function Upload() {
   }
 
   const removeFile = (fileToRemove) => {
-    setSelectedFiles(selectedFiles.filter((file) => file !== fileToRemove))
+    setValidFiles(validFiles.filter((file) => file !== fileToRemove))
   }
 
   const renderImagePreviews = () => {
-    return selectedFiles.map((file, index) => (
+    return validFiles.map((file, index) => (
       <div key={index} className="relative col-span-1">
         <img
           className="h-auto max-w-full rounded-lg"
@@ -290,14 +290,15 @@ function Upload() {
                   multiple
                   onChange={handleFileChange}
                   className="hidden"
+                  accept=".jpg, .jpeg, .png"
                 />
               </>
             )}
           />
           <div className="text-sm text-gray-500 mt-2">
-            {selectedFiles.length === 0
+            {validFiles.length === 0
               ? 'No photos selected'
-              : `${selectedFiles.length} photo(s) selected`}
+              : `${validFiles.length} photo(s) selected`}
           </div>
           {errors.files && (
             <div ref={fileErrorRef} className="text-red-500 text-lg italic">
