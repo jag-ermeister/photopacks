@@ -16,6 +16,7 @@ function Upload() {
   const [isUploading, setIsUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
   const [validFiles, setValidFiles] = useState([])
+  const [invalidFiles, setInvalidFiles] = useState([])
   const [isDragging, setIsDragging] = useState(false)
 
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ function Upload() {
     control,
     formState: { errors },
     setValue,
+    clearErrors,
   } = useForm()
 
   const fileErrorRef = useRef(null)
@@ -84,9 +86,54 @@ function Upload() {
   }
 
   const processFiles = (newFiles) => {
-    const updatedFiles = [...validFiles, ...newFiles]
-    setValue('files', updatedFiles)
-    setValidFiles(updatedFiles)
+    let validList = [...validFiles]
+    let invalidList = [...invalidFiles]
+    let processedCount = 0
+
+    const updateStatesAndForm = () => {
+      setValidFiles(validList)
+      setInvalidFiles(invalidList)
+      setValue('files', validList)
+    }
+
+    if (newFiles.length === 0) {
+      updateStatesAndForm()
+      return
+    }
+
+    newFiles.forEach((file) => {
+      if (file.type === 'image/jpeg' || file.type === 'image/png') {
+        const url = URL.createObjectURL(file)
+        const img = new Image()
+        img.onload = () => {
+          URL.revokeObjectURL(url) // Revoke the object URL after load
+          if (img.width >= 1024 && img.height >= 1024) {
+            validList.push(file)
+          } else {
+            invalidList.push({ file, reason: 'Insufficient resolution' })
+          }
+          processedCount++
+          if (processedCount === newFiles.length) {
+            updateStatesAndForm()
+          }
+        }
+        img.onerror = () => {
+          invalidList.push({ file, reason: 'Error loading image' })
+          processedCount++
+          if (processedCount === newFiles.length) {
+            updateStatesAndForm()
+          }
+        }
+        img.src = url
+      } else {
+        invalidList.push({ file, reason: 'Invalid file type' })
+        processedCount++
+        if (processedCount === newFiles.length) {
+          updateStatesAndForm()
+        }
+      }
+    })
+    clearErrors('files')
   }
 
   const handleDragOver = (event) => {
@@ -114,13 +161,37 @@ function Upload() {
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files)
     processFiles(files)
+    // Reset the value of the input to ensure onChange fires every time
+    event.target.value = ''
   }
 
-  const removeFile = (fileToRemove) => {
-    setValidFiles(validFiles.filter((file) => file !== fileToRemove))
+  const removeValidFile = (fileToRemove) => {
+    //this instead of filter just in case somebody is trying to remove a duplicate
+    const index = validFiles.findIndex((file) => file === fileToRemove)
+    const updatedList = [
+      ...validFiles.slice(0, index),
+      ...validFiles.slice(index + 1),
+    ]
+    if (index !== -1) {
+      setValidFiles(updatedList)
+      setValue('files', updatedList)
+    }
+    clearErrors('files')
   }
 
-  const renderImagePreviews = () => {
+  const removeInvalidFile = (fileToRemove) => {
+    const index = invalidFiles.findIndex((file) => file === fileToRemove)
+    if (index !== -1) {
+      setInvalidFiles([
+        ...invalidFiles.slice(0, index),
+        ...invalidFiles.slice(index + 1),
+      ])
+    }
+    setValue('files', validFiles) // this line is oddly necessary to make sure errors get cleared
+    clearErrors('files')
+  }
+
+  const renderValidImagePreviews = () => {
     return validFiles.map((file, index) => (
       <div key={index} className="relative col-span-1">
         <img
@@ -129,7 +200,36 @@ function Upload() {
           alt={`preview ${index}`}
         />
         <button
-          onClick={() => removeFile(file)}
+          onClick={() => removeValidFile(file)}
+          type="button"
+          className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 m-1"
+        >
+          <HiOutlineTrash className="h-5 w-5" />
+        </button>
+      </div>
+    ))
+  }
+
+  const renderInvalidImagePreviews = () => {
+    return invalidFiles.map((file, index) => (
+      <div key={index} className="relative col-span-1">
+        <div className="rounded-lg overflow-hidden">
+          <div className="bg-gray-500 opacity-20">
+            <img
+              className="h-auto max-w-full"
+              src={URL.createObjectURL(file.file)}
+              alt={`preview ${index}`}
+            />
+          </div>
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+            <span className="text-white text-center bg-red-500 opacity-80 px-2 py-1 rounded">
+              {file.reason}
+            </span>
+          </div>
+        </div>
+        <button
+          onClick={() => removeInvalidFile(file)}
+          type="button"
           className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 m-1"
         >
           <HiOutlineTrash className="h-5 w-5" />
@@ -193,9 +293,9 @@ function Upload() {
               </h3>
               <p className="mb-4 text-gray-500">
                 Provide many headshots and several full-body shots. Photos
-                should be fairly high resolution, well lit, and from a variety
-                of angles. The subject should we wearing a variety of clothing
-                in a variety of backgrounds.
+                should be fairly high resolution (at least <b>1024x1024</b>),
+                well lit, and from a variety of angles. The subject should we
+                wearing a variety of clothing in a variety of backgrounds.
               </p>
             </div>
             <div>
@@ -244,8 +344,13 @@ function Upload() {
             control={control}
             rules={{
               required: 'Please upload photos.',
-              validate: (files) =>
-                files?.length === 10 || 'Please select 10 photos.',
+              validate: {
+                checkLength: () =>
+                  validFiles?.length === 10 || 'Please select 10 valid photos.',
+                checkInvalidFiles: () =>
+                  invalidFiles.length === 0 ||
+                  'You still have invalid files included, please remove them.',
+              },
             }}
             render={() => (
               <>
@@ -297,8 +402,12 @@ function Upload() {
           />
           <div className="text-sm text-gray-500 mt-2">
             {validFiles.length === 0
-              ? 'No photos selected'
-              : `${validFiles.length} photo(s) selected`}
+              ? 'No valid photos selected'
+              : `${validFiles.length} valid photo(s) selected`}
+          </div>
+          <div className="text-sm text-red-500 italic mt-2">
+            {invalidFiles.length >= 1 &&
+              `${invalidFiles.length} photo(s) are not valid. Please remove them.`}
           </div>
           {errors.files && (
             <div ref={fileErrorRef} className="text-red-500 text-lg italic">
@@ -309,7 +418,8 @@ function Upload() {
 
         <section className="max-w-screen-xl mx-auto my-8 md:my-16">
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mx-4 gap-y-4">
-            {renderImagePreviews()}
+            {renderValidImagePreviews()}
+            {renderInvalidImagePreviews()}
           </div>
         </section>
 

@@ -29,6 +29,9 @@ class S3PresignedUrlView(APIView):
         )  # TODO validate model name before allowing uploading
         image_names = request.data.get("image_names")
 
+        if len(image_names) != 10:
+            return Response({"error": "10 images are expected"}, status=status.HTTP_400_BAD_REQUEST)
+
         image_urls = {}
         for image_name in image_names:
             extension = image_name.split('.')[-1]
