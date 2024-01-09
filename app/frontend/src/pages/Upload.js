@@ -6,7 +6,7 @@ import { Badge, Button, Spinner } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import withAuthenticatedLayout from '../components/hoc/withAuthenticatedLayout'
 import { STATIC_ROOT } from '../constants'
-import { HiOutlineArrowUp } from 'react-icons/hi'
+import { HiOutlineArrowUp, HiOutlineTrash } from 'react-icons/hi'
 import { useOrder } from '../hooks/dataHooks'
 import PackThumbnailCard from '../components/Cards/PackThumbnailCard'
 
@@ -105,14 +105,24 @@ function Upload() {
     processFiles(files)
   }
 
+  const removeFile = (fileToRemove) => {
+    setSelectedFiles(selectedFiles.filter((file) => file !== fileToRemove))
+  }
+
   const renderImagePreviews = () => {
     return selectedFiles.map((file, index) => (
-      <div key={index} className="col-span-1">
+      <div key={index} className="relative col-span-1">
         <img
           className="h-auto max-w-full rounded-lg"
           src={URL.createObjectURL(file)}
           alt={`preview ${index}`}
         />
+        <button
+          onClick={() => removeFile(file)}
+          className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 m-1"
+        >
+          <HiOutlineTrash className="h-5 w-5" />
+        </button>
       </div>
     ))
   }
