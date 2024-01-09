@@ -29,7 +29,17 @@ function Upload() {
   const fileErrorRef = useRef(null)
   useEffect(() => {
     if (errors.files) {
-      fileErrorRef.current?.scrollIntoView({ behavior: 'smooth' })
+      const element = fileErrorRef.current
+      if (element) {
+        const elementRect = element.getBoundingClientRect()
+        const absoluteElementTop = elementRect.top + window.pageYOffset
+        const middle = absoluteElementTop - window.innerHeight / 2
+
+        window.scrollTo({
+          top: middle,
+          behavior: 'smooth',
+        })
+      }
     }
   }, [errors.files])
 
