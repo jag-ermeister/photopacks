@@ -1,0 +1,10 @@
+opencv-python
+pillow
+torch
+torchvision
+psutil
+PyYAML
+tqdm
+ultralytics
+gitpython
+yolov5==7.0.10
