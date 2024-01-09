@@ -73,9 +73,10 @@ function Upload() {
     }
   }
 
-  const processFiles = (files) => {
-    setValue('files', files)
-    setSelectedFiles(files)
+  const processFiles = (newFiles) => {
+    const updatedFiles = [...selectedFiles, ...newFiles]
+    setValue('files', updatedFiles)
+    setSelectedFiles(updatedFiles)
   }
 
   const handleDragOver = (event) => {
