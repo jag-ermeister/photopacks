@@ -4,7 +4,7 @@ import cv2
 import os
 
 
-class FaceCropper:
+class SquareCropper:
     def __init__(self):
         self.detector = RetinaFace
 
@@ -35,42 +35,36 @@ class FaceCropper:
             img = cv2.imread(input_path)
             if img is None:
                 print(f"Image not found: {input_path}")
-                return
+                continue
 
-            # Detect faces in the image
             faces = self.detector.detect_faces(img)
             if not faces:
                 print(f"No faces found in {input_path}")
-                return
+                continue
 
-            # Get the largest face
             largest_face = self._get_largest_face(faces)
             if largest_face is None:
                 print("No face detected.")
-                return
+                continue
 
-                # Unpack the bounding box coordinates
-            x1, y1, x2, y2 = largest_face  # Change here
+            x1, y1, x2, y2 = largest_face
+            img_height, img_width = img.shape[:2]
 
-            face_width = x2 - x1
-            face_height = y2 - y1
+            # Determine image orientation and calculate cropping
+            if img_width >= img_height:  # Horizontal or square image
+                crop_size = img_height
+                face_center_x = (x1 + x2) // 2
+                new_x1 = max(face_center_x - crop_size // 2, 0)
+                new_x2 = min(new_x1 + crop_size, img_width)
+                cropped_img = img[0:crop_size, new_x1:new_x2]
+            else:  # Vertical image
+                crop_size = img_width
+                face_center_y = (y1 + y2) // 2
+                new_y1 = max(face_center_y - crop_size // 2, 0)
+                new_y2 = min(new_y1 + crop_size, img_height)
+                cropped_img = img[new_y1:new_y2, 0:crop_size]
 
-            # Center the square crop around the face
-            center_x, center_y = x1 + face_width // 2, y1 + face_height // 2
-            square_size = max(face_width, face_height)
-
-            # Calculate new square coordinates
-            new_x1 = max(center_x - square_size // 2, 0)
-            new_y1 = max(center_y - square_size // 2, 0)
-            new_x2 = min(new_x1 + square_size, img.shape[1])
-            new_y2 = min(new_y1 + square_size, img.shape[0])
-
-            # Crop the image
-            cropped_img = img[new_y1:new_y2, new_x1:new_x2]
-
-            # Convert BGR image to RGB for PIL
             cropped_img_rgb = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2RGB)
             result_img = Image.fromarray(cropped_img_rgb)
-
-            # Save the cropped image
             result_img.save(output_path)
+

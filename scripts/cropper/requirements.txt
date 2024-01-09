@@ -7,4 +7,5 @@ PyYAML
 tqdm
 ultralytics
 gitpython
+retina-face
 yolov5==7.0.10

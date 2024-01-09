@@ -1,1 +1,3 @@
 cropper_venv/
+*/__pycache__/*
+yolov5x.pt

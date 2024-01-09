@@ -7,9 +7,7 @@ import yolov5
 logger = logging.getLogger()
 
 
-
-
-class Cropper:
+class SubjectCropper:
     def _get_largest_object(self, detected_objects):
         return max(detected_objects, key=lambda x: (x[2] - x[0]) * (x[3] - x[1]))
 
